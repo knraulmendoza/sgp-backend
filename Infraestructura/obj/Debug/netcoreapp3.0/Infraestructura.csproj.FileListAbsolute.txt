@@ -1,0 +1,4 @@
+D:\Documentos\Workspace\Sgp\Infraestructura\bin\Debug\netcoreapp3.0\Dominio.dll
+D:\Documentos\Workspace\Sgp\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.csprojAssemblyReference.cache
+D:\Documentos\Workspace\Sgp\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.AssemblyInfoInputs.cache
+D:\Documentos\Workspace\Sgp\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.AssemblyInfo.cs
