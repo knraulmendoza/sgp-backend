@@ -16,5 +16,6 @@ namespace Dominio.Entities
         public Meta Meta { get; set; }
         public Indicador Indicador { get; set; }
         public float Costo { get; set; }
+        //entidad actividad
     }
 }
