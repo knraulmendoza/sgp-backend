@@ -6,7 +6,6 @@ namespace Dominio.Entities
 {
     public class Actividad : BaseEntity
     {
-        public long Id { get; set; }
         public int Codigo { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
@@ -16,6 +15,6 @@ namespace Dominio.Entities
         public Meta Meta { get; set; }
         public Indicador Indicador { get; set; }
         public float Costo { get; set; }
-        //entidad actividad
+        public Actividad() {}
     }
 }

@@ -6,7 +6,6 @@ namespace Dominio.Entities
 {
     public class Proyecto : BaseEntity
     {
-        public long Id { get; set; }
         public Propuesta Propuesta {get; set;}
         public int ProyectoState {get; set;}
         public string Nombre {get; set;}
@@ -20,6 +19,8 @@ namespace Dominio.Entities
         public DateTime FechaDeCierrePrevista {get; set;}
         public Programa Programa { get; set; }
         public List<Actividad> Actividades {get; set;}
+
+        public Proyecto() { }
 
     }
 }

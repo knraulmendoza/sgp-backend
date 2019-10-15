@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Aplicación",
-    "\\Aplicación\\Generics"
+    "\\Dominio",
+    "\\Dominio\\Entities",
+    "\\Infraestructura",
+    "\\Infraestructura\\Utils"
   ],
-  "SelectedNode": "\\Aplicación\\Generics\\GenericService.cs",
+  "SelectedNode": "\\Dominio\\Entities\\Estrategia.cs",
   "PreviewInSolutionExplorer": false
 }

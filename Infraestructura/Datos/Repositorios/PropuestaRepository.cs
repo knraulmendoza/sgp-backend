@@ -8,6 +8,6 @@ namespace Infraestructura.Datos.Repositorios
 {
     public class PropuestaRepository : GenericRepository<Propuesta>
     {
-        public PropuestaRepository() : base(new SgpContext()) { }
+        public PropuestaRepository (DbContext context): base(context){ }
     }
 }
