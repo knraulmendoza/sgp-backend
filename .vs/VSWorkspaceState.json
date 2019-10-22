@@ -1,11 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Dominio",
-    "\\Dominio\\Entities",
-    "\\Infraestructura",
     "\\Infraestructura\\Utils"
   ],
-  "SelectedNode": "\\Dominio\\Entities\\Estrategia.cs",
+  "SelectedNode": "\\Dominio",
   "PreviewInSolutionExplorer": false
 }
