@@ -8,19 +8,23 @@ namespace Infraestructura.Utils
 {
     public class SgpContext : DbContext
     {
-        private DbSet<Propuesta> propuestas { get; set; }
-        private DbSet<Proyecto> proyectos { get; set; }
-        private DbSet<Actividad> actividades { get; set; }
-        private DbSet<CertificadoDeDisponibilidadPresupuestal> CDPs { get; set; }
-        private DbSet<Componente> componente {get; set;} 
-        private DbSet<Compromiso> compromiso { get; set; }
-        private DbSet<Comunidad> comunidad { get; set; }
-        private DbSet<Convenio> convenio { get; set; }
-        private DbSet<Dimension> dimension { get; set; }
-        private DbSet<DocumentoPresupuestal> documentoPresupuestal { get; set; }
-        private DbSet<Estrategia> estrategia { get; set; }
-        private DbSet<Programa> programa { get; set; }
-        private DbSet<RegistroPresupuestal> registroPresupuestal { get; set; }
-        private DbSet<Transaccion> transaccion { get; set; }
+        public SgpContext() { }
+
+        public DbSet<Beneficiario> Beneficiarios { get; set; }
+
+        public DbSet<Propuesta> Propuestas { get; set; }
+        public DbSet<Proyecto> Proyectos { get; set; }
+        public DbSet<Actividad> Actividades { get; set; }
+        public DbSet<CertificadoDeDisponibilidadPresupuestal> CDPs { get; set; }
+        public DbSet<Componente> Componente {get; set;}
+        public DbSet<Compromiso> Compromiso { get; set; }
+        public DbSet<Comunidad> Comunidad { get; set; }
+        public DbSet<Convenio> Convenio { get; set; }
+        public DbSet<Dimension> Dimension { get; set; }
+        public DbSet<DocumentoPresupuestal> DocumentoPresupuestal { get; set; }
+        public DbSet<Estrategia> Estrategia { get; set; }
+        public DbSet<Programa> Programa { get; set; }
+        public DbSet<RegistroPresupuestal> RegistroPresupuestal { get; set; }
+        public DbSet<Transaccion> Transaccion { get; set; }
     }
 }
