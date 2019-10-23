@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Source\\Repos\\sgp-backend\\WebApi\\WebApi.csproj": {}
+    "C:\\Users\\Usuario\\source\\repos\\sgp-backend\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Source\\Repos\\sgp-backend\\WebApi\\WebApi.csproj": {
+    "C:\\Users\\Usuario\\source\\repos\\sgp-backend\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\sgp-backend\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\source\\repos\\sgp-backend\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\sgp-backend\\WebApi\\WebApi.csproj",
+        "projectPath": "C:\\Users\\Usuario\\source\\repos\\sgp-backend\\WebApi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\sgp-backend\\WebApi\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\source\\repos\\sgp-backend\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

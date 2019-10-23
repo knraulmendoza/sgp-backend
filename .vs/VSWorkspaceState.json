@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Infraestructura\\Utils"
+    "\\Aplicación",
+    "\\Aplicación\\Generics",
+    "\\Dominio",
+    "\\Infraestructura"
   ],
-  "SelectedNode": "\\Dominio",
+  "SelectedNode": "\\Aplicación\\Aplicación.csproj",
   "PreviewInSolutionExplorer": false
 }
