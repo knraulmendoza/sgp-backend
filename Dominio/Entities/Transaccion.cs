@@ -6,7 +6,7 @@ namespace Dominio.Entities
 {
     public class Transaccion : BaseEntity
     {
-        public DateTimer Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         public float Monto { get; set; }
         public int Tipo { get; set; }
 

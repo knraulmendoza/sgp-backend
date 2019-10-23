@@ -9,6 +9,6 @@ namespace Infraestructura.Datos.Repositorios
 {
     public class ProyectoRepository : GenericRepository<Proyecto>
     {
-        public ProgramaRepository(DbContext context) : base(context) { }
+        public ProyectoRepository(DbContext context) : base(context) { }
     }
 }

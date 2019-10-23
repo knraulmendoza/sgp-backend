@@ -12,8 +12,8 @@ namespace Dominio.Entities
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFinalizacion { get; set; }
         public int ActividadState { get; set; }
-        public Meta Meta { get; set; }
-        public Indicador Indicador { get; set; }
+        // public Meta Meta { get; set; }
+        // public Indicador Indicador { get; set; }
         public float Costo { get; set; }
         public Actividad() {}
     }
