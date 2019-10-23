@@ -7,7 +7,7 @@ namespace Aplicación
 {
     public abstract class GenericService<TEntity> where TEntity : BaseEntity
     {
-        public abstract ICollection<TEntity> Get();
+        public abstract IList<TEntity> Get();
 
         public abstract int Insert(TEntity entity);
 

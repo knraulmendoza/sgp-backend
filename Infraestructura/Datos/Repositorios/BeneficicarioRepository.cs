@@ -1,5 +1,4 @@
 ﻿using Dominio.Entities;
-using Infraestructura.Utils;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,8 +6,10 @@ using System.Text;
 
 namespace Infraestructura.Datos.Repositorios
 {
-    public class PropuestaRepository : GenericRepository<Propuesta>
+    public class BeneficicarioRepository : GenericRepository<Beneficiario>
     {
-        public PropuestaRepository (DbContext context): base(context){ }
+        public BeneficicarioRepository(DbContext context) : base(context)
+        {
+        }
     }
 }

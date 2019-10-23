@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Dominio;
 using Infraestructura.Datos.Repositorios;
 
 namespace Infraestructura.Utils
@@ -8,6 +9,8 @@ namespace Infraestructura.Utils
     public class UnitOfWork : IDisposable
     {
         private readonly SgpContext context = new SgpContext();
+
+        private List<GenericRepository<BaseEntity>> repositorios;
 
         private ActividadRepository actividadRepository = null;
         private CertificadoDeDisponibilidadPresupuestalRepository CDPRepository = null;
@@ -23,6 +26,19 @@ namespace Infraestructura.Utils
         private RegistroPresupuestalRepository registroPresupuestalRepository = null;
         private TransaccionRepository transaccionRepository = null;
         private PropuestaRepository propuestaRepository = null;
+        private BeneficicarioRepository beneficicarioRepository = null;
+
+        public BeneficicarioRepository BeneficicarioRepository
+        {
+            get
+            {
+                if (beneficicarioRepository == null)
+                {
+                    beneficicarioRepository = new BeneficicarioRepository(context);
+                }
+                return beneficicarioRepository;
+            }
+        }
 
         public ActividadRepository ActividadRepository
         {
@@ -30,8 +46,8 @@ namespace Infraestructura.Utils
                 if (actividadRepository == null)
                 {
                     actividadRepository = new ActividadRepository(context);
-                    return actividadRepository;
                 }
+                return actividadRepository;
             }
         }
 
@@ -39,11 +55,11 @@ namespace Infraestructura.Utils
         {
             get
             {
-                if (certificadoDeDisponibilidadPresupuestalRepository == null)
+                if (CertificadoDeDisponibilidadPresupuestalRepository == null)
                 {
                     CDPRepository = new CertificadoDeDisponibilidadPresupuestalRepository(context);
-                    return CDPRepository;
                 }
+                return CDPRepository;
             }
         }
 
@@ -54,8 +70,8 @@ namespace Infraestructura.Utils
                 if (componenteRepository == null)
                 {
                     componenteRepository = new ComponenteRepository(context);
-                    return componenteRepository;
                 }
+                return componenteRepository;
             }
         }
 
@@ -66,8 +82,8 @@ namespace Infraestructura.Utils
                 if (compromisoRepository == null)
                 {
                     compromisoRepository = new CompromisoRepository(context);
-                    return compromisoRepository;
                 }
+                return compromisoRepository;
             }
         }
 
@@ -78,8 +94,8 @@ namespace Infraestructura.Utils
                 if (comunidadRepository == null)
                 {
                     comunidadRepository = new ComunidadRepository(context);
-                    return comunidadRepository;
                 }
+                return comunidadRepository;
             }
         }
 
@@ -90,8 +106,8 @@ namespace Infraestructura.Utils
                 if (convenioRepository == null)
                 {
                     convenioRepository = new ConvenioRepository(context);
-                    return convenioRepository;
                 }
+                return convenioRepository;
             }
         }
 
@@ -102,8 +118,8 @@ namespace Infraestructura.Utils
                 if (dimensionRepository == null)
                 {
                     dimensionRepository = new DimensionRepository(context);
-                    return dimensionRepository;
                 }
+                return dimensionRepository;
             }
         }
 
@@ -114,8 +130,8 @@ namespace Infraestructura.Utils
                 if (documentoPresupuestalRepository == null)
                 {
                     documentoPresupuestalRepository = new DocumentoPresupuestalRepository(context);
-                    return documentoPresupuestalRepository;
                 }
+                return documentoPresupuestalRepository;
             }
         }
 
@@ -126,8 +142,8 @@ namespace Infraestructura.Utils
                 if (estrategiaRepository == null)
                 {
                     estrategiaRepository = new EstrategiaRepository(context);
-                    return estrategiaRepository;
                 }
+                return estrategiaRepository;
             }
         }
 
@@ -138,8 +154,8 @@ namespace Infraestructura.Utils
                 if (programaRepository == null)
                 {
                     programaRepository = new ProgramaRepository(context);
-                    return programaRepository;
                 }
+                return programaRepository;
             }
         }
 
@@ -148,8 +164,8 @@ namespace Infraestructura.Utils
             get {
                 if (propuestaRepository == null) {
                     propuestaRepository = new PropuestaRepository(context);
-                    return propuestaRepository;
                 }
+                return propuestaRepository;
             }
         }
 
@@ -160,8 +176,8 @@ namespace Infraestructura.Utils
                 if (proyectoRepository == null)
                 {
                     proyectoRepository = new ProyectoRepository(context);
-                    return proyectoRepository;
                 }
+                return proyectoRepository;
             }
         }
 
@@ -172,8 +188,8 @@ namespace Infraestructura.Utils
                 if (registroPresupuestalRepository == null)
                 {
                     registroPresupuestalRepository = new RegistroPresupuestalRepository(context);
-                    return registroPresupuestalRepository;
                 }
+                return registroPresupuestalRepository;
             }
 
         }
@@ -183,8 +199,8 @@ namespace Infraestructura.Utils
             {
                 if(transaccionRepository == null){
                     transaccionRepository = new TransaccionRepository(context);
-                    return transaccionRepository;
                 }
+                return transaccionRepository;
             }
         }
 
