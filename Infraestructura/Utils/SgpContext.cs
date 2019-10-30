@@ -8,7 +8,12 @@ namespace Infraestructura.Utils
 {
     public class SgpContext : DbContext
     {
-        public SgpContext() { }
+       // public SgpContext() { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Data Source = USUARIO-PC ; Initial Catalog = myDataBase; Integrated Security = true;");
+        }
 
         public DbSet<Beneficiario> Beneficiarios { get; set; }
 
