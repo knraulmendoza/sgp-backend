@@ -16,7 +16,6 @@ namespace Infraestructura.Utils
         }
 
         public DbSet<Beneficiario> Beneficiarios { get; set; }
-
         public DbSet<Propuesta> Propuestas { get; set; }
         public DbSet<Proyecto> Proyectos { get; set; }
         public DbSet<Actividad> Actividades { get; set; }
