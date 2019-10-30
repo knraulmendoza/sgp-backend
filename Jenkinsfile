@@ -5,7 +5,7 @@ node {
   }
   //SignusFinanciero.sln
   stage ('Restore Nuget') {
-      bat "dotnet clean -s https://github.com/menkemon/sgp-backend/tree/master/Dominio -s https://github.com/menkemon/sgp-backend/tree/master/Infraestructura -s https://github.com/menkemon/sgp-backend/tree/master/WebApi"
+      bat "dotnet restore -s https://github.com/menkemon/sgp-backend/tree/master/Dominio -s https://github.com/menkemon/sgp-backend/tree/master/Infraestructura -s https://github.com/menkemon/sgp-backend/tree/master/WebApi"
   }
   
   stage('Clean') {
