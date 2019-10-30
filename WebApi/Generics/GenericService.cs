@@ -1,5 +1,4 @@
 ﻿using Dominio;
-using Infraestructura.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

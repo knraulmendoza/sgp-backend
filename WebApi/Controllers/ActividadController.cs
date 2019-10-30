@@ -10,11 +10,12 @@ using System.Text;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ActividadController : GenericController<Actividad>
     {
         private UnitOfWork uow;
 
+        [HttpDelete]
         public override int Delete(long id)
         {
             uow = new UnitOfWork();
@@ -22,7 +23,7 @@ namespace WebApi.Controllers
             uow.Dispose();
             return 1;
         }
-
+        [HttpGet]
         public override ActionResult<IEnumerable<Actividad>> GetAll()
         {
             uow = new UnitOfWork();
@@ -30,6 +31,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
+        [HttpGet]
         public override Actividad Get(long id)
         {
             uow = new UnitOfWork();
@@ -37,7 +39,7 @@ namespace WebApi.Controllers
             uow.Dispose();
             return res.ToList().FirstOrDefault();
         }
-
+        [HttpPost]
         public override int Insert(Actividad entity)
         {
             uow = new UnitOfWork();
@@ -46,6 +48,7 @@ namespace WebApi.Controllers
             return 1;
         }
 
+        [HttpPut]
         public override int Update(Actividad entity)
         {
             uow = new UnitOfWork();
