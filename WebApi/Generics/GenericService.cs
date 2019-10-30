@@ -1,13 +1,14 @@
 ﻿using Dominio;
 using Infraestructura.Utils;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
-namespace Aplicación
+namespace Controllers.Generics
 {
-    public abstract class GenericService<TEntity> where TEntity : BaseEntity
+    public abstract class GenericController<TEntity> where TEntity : BaseEntity
     {
-        public abstract IList<TEntity> Get();
+        public abstract ActionResult<IEnumerable<TEntity>> GetAll();
 
         public abstract int Insert(TEntity entity);
 

@@ -1,13 +1,15 @@
 ﻿using Dominio.Entities;
 using Infraestructura.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Microsoft.AspNetCore.Mvc;
+using Controllers.Generics;
 
-namespace Aplicación.Services
+namespace WebApi.Controllers
 {
-    public class CompromisoService : GenericService<Compromiso>
+    [ApiController]
+    [Route("[controller]")]
+    public class CompromisoController : GenericController<Compromiso>
     {
         private UnitOfWork uow;
 
@@ -19,19 +21,19 @@ namespace Aplicación.Services
             return 1;
         }
 
-        public override IList<Compromiso> Get()
-        {
-            uow = new UnitOfWork();
-            var res = uow.CompromisoRepository.Get();
-            return res.ToList();
-        }
-
         public override Compromiso Get(long id)
         {
             uow = new UnitOfWork();
             IEnumerable<Compromiso> res = uow.CompromisoRepository.Get(a => a.Id == id);
             uow.Dispose();
             return res.ToList().FirstOrDefault();
+        }
+
+        public override ActionResult<IEnumerable<Compromiso>> GetAll()
+        {
+            uow = new UnitOfWork();
+            var res = uow.CompromisoRepository.Get();
+            return res.ToList();
         }
 
         public override int Insert(Compromiso entity)

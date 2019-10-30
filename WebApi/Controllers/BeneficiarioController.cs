@@ -1,13 +1,15 @@
-﻿using Dominio.Entities;
+﻿using Controllers.Generics;
+using Dominio.Entities;
 using Infraestructura.Utils;
-using System;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Aplicación.Services
+namespace WebApi.Controllers
 {
-    public class BeneficiarioService : GenericService<Beneficiario>
+    [ApiController]
+    [Route("[controller]")]
+    public class BeneficiarioController : GenericController<Beneficiario>
     {
         private UnitOfWork uow;
 
@@ -19,7 +21,7 @@ namespace Aplicación.Services
             return 1;
         }
 
-        public override IList<Beneficiario> Get()
+        public override ActionResult<IEnumerable<Beneficiario>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.BeneficicarioRepository.Get();

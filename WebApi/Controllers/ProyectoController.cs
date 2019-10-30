@@ -1,13 +1,15 @@
-﻿using Dominio.Entities;
+﻿using Controllers.Generics;
+using Dominio.Entities;
 using Infraestructura.Utils;
-using System;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Aplicación.Services
+namespace WebApi.Controllers
 {
-    public class ProyectoService : GenericService<Proyecto>
+    [ApiController]
+    [Route("[controller]")]
+    public class ProyectoController : GenericController<Proyecto>
     {
         private UnitOfWork uow;
 
@@ -19,19 +21,17 @@ namespace Aplicación.Services
             return 1;
         }
 
-        public override IList<Proyecto> Get()
-        {
-            uow = new UnitOfWork();
-            var res = uow.ProyectoRepository.Get();
-            return res.ToList();
-        }
-
         public override Proyecto Get(long id)
         {
             uow = new UnitOfWork();
             IEnumerable<Proyecto> res = uow.ProyectoRepository.Get(a => a.Id == id);
             uow.Dispose();
             return res.ToList().FirstOrDefault();
+        }
+
+        public override ActionResult<IEnumerable<Proyecto>> GetAll()
+        {
+            throw new System.NotImplementedException();
         }
 
         public override int Insert(Proyecto entity)

@@ -1,13 +1,15 @@
-﻿using Dominio.Entities;
+﻿using Controllers.Generics;
+using Dominio.Entities;
 using Infraestructura.Utils;
-using System;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Aplicación.Services
+namespace WebApi.Controllers
 {
-    public class ComponenteService : GenericService<Componente>
+    [ApiController]
+    [Route("[controller]")]
+    public class ComponenteController : GenericController<Componente>
     {
         private UnitOfWork uow;
         public override int Delete(long id)
@@ -18,19 +20,19 @@ namespace Aplicación.Services
             return 1;
         }
 
-        public override IList<Componente> Get()
-        {
-            uow = new UnitOfWork();
-            var res = uow.ComponenteRepository.Get();
-            return res.ToList();
-        }
-
         public override Componente Get(long id)
         {
             uow = new UnitOfWork();
             IEnumerable<Componente> res = uow.ComponenteRepository.Get(a => a.Id == id);
             uow.Dispose();
             return res.ToList().FirstOrDefault();
+        }
+
+        public override ActionResult<IEnumerable<Componente>> GetAll()
+        {
+            uow = new UnitOfWork();
+            var res = uow.ComponenteRepository.Get();
+            return res.ToList();
         }
 
         public override int Insert(Componente entity)

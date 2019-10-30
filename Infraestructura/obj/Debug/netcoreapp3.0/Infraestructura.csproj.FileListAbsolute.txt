@@ -2,3 +2,16 @@ D:\Documentos\Workspace\Sgp\Infraestructura\bin\Debug\netcoreapp3.0\Dominio.dll
 D:\Documentos\Workspace\Sgp\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.csprojAssemblyReference.cache
 D:\Documentos\Workspace\Sgp\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.AssemblyInfoInputs.cache
 D:\Documentos\Workspace\Sgp\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.AssemblyInfo.cs
+C:\Users\Araos\Documents\GitHub\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Infraestructura.deps.json
+C:\Users\Araos\Documents\GitHub\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Infraestructura.runtimeconfig.json
+C:\Users\Araos\Documents\GitHub\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Infraestructura.runtimeconfig.dev.json
+C:\Users\Araos\Documents\GitHub\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Infraestructura.dll
+C:\Users\Araos\Documents\GitHub\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Infraestructura.pdb
+C:\Users\Araos\Documents\GitHub\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Dominio.dll
+C:\Users\Araos\Documents\GitHub\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Dominio.pdb
+C:\Users\Araos\Documents\GitHub\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.csprojAssemblyReference.cache
+C:\Users\Araos\Documents\GitHub\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.AssemblyInfoInputs.cache
+C:\Users\Araos\Documents\GitHub\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.AssemblyInfo.cs
+C:\Users\Araos\Documents\GitHub\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.csproj.CopyComplete
+C:\Users\Araos\Documents\GitHub\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.dll
+C:\Users\Araos\Documents\GitHub\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.pdb

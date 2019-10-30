@@ -1,13 +1,15 @@
-﻿using Dominio.Entities;
+﻿using Controllers.Generics;
+using Dominio.Entities;
 using Infraestructura.Utils;
-using System;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Aplicación.Services
+namespace WebApi.Controllers
 {
-    public class EstrategiaService : GenericService<Estrategia>
+    [ApiController]
+    [Route("[controller]")]
+    public class EstrategiaController : GenericController<Estrategia>
     {
         private UnitOfWork uow;
 
@@ -19,19 +21,19 @@ namespace Aplicación.Services
             return 1;
         }
 
-        public override IList<Estrategia> Get()
-        {
-            uow = new UnitOfWork();
-            var res = uow.EstrategiaRepository.Get();
-            return res.ToList();
-        }
-
         public override Estrategia Get(long id)
         {
             uow = new UnitOfWork();
             IEnumerable<Estrategia> res = uow.EstrategiaRepository.Get(a => a.Id == id);
             uow.Dispose();
             return res.ToList().FirstOrDefault();
+        }
+
+        public override ActionResult<IEnumerable<Estrategia>> GetAll()
+        {
+            uow = new UnitOfWork();
+            var res = uow.EstrategiaRepository.Get();
+            return res.ToList();
         }
 
         public override int Insert(Estrategia entity)
