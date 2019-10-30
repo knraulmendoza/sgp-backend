@@ -3,10 +3,6 @@ node {
   stage('Checkout') {
     git url: 'https://github.com/menkemon/sgp-backend.git',branch: 'master'
   }
-  //SignusFinanciero.sln
-  stage ('Restore Nuget') {
-      bat "dotnet restore -s https://github.com/menkemon/sgp-backend/tree/master/Dominio/Dominio.cjproj -s https://github.com/menkemon/sgp-backend/tree/master/Infraestructura/Infraestructura.cjproj -s https://github.com/menkemon/sgp-backend/tree/master/WebApi/WebApi.cjproj"
-  }
   
   stage('Clean') {
     bat 'dotnet clean'
