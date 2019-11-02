@@ -3,5 +3,6 @@ using Dominio.Entities;
 
 public interface PropuestaContract
 {
-    public IList<Componente> GetComponentesPorDimension(long idDimension);
+    IList<Componente> GetComponentesPorDimension(long idDimension);
+    File getFileProject(long idProyecto);
 }
