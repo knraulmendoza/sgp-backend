@@ -19,6 +19,7 @@ namespace Infraestructura.Utils
         private ComunidadRepository comunidadRepository = null;
         private ConvenioRepository convenioRepository = null;
         private DimensionRepository dimensionRepository = null;
+        private DocumentoRepository documentoRepository = null; 
         private DocumentoPresupuestalRepository documentoPresupuestalRepository = null;
         private EstrategiaRepository estrategiaRepository = null;
         private ProgramaRepository programaRepository = null;
@@ -120,6 +121,15 @@ namespace Infraestructura.Utils
                     dimensionRepository = new DimensionRepository(context);
                 }
                 return dimensionRepository;
+            }
+        }
+
+        public DocumentoRepository DocumentoRepository{
+            get{
+                if(documentoRepository == null){
+                    documentoRepository = new DocumentoRepository(context)
+                }
+                return documentoRepository;
             }
         }
 

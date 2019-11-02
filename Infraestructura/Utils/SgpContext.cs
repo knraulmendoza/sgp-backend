@@ -8,10 +8,14 @@ namespace Infraestructura.Utils
 {
     public class SgpContext : DbContext
     {
-        public SgpContext() { }
+       // public SgpContext() { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=localhost;Database=sgp;Trusted_Connection=True;");
+        }
 
         public DbSet<Beneficiario> Beneficiarios { get; set; }
-
         public DbSet<Propuesta> Propuestas { get; set; }
         public DbSet<Proyecto> Proyectos { get; set; }
         public DbSet<Actividad> Actividades { get; set; }
