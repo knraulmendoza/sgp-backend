@@ -31,6 +31,8 @@ bld/
 .vs/
 WebApi/.vs/
 WebApi/obj/
+Dominio/obj/
+Infraestructura/obj/
 
 # Visual Studio Code
 .vscode/
