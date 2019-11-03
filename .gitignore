@@ -29,7 +29,7 @@ bld/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
-WebApi/.vs/
+WebApi/.vs/*
 WebApi/obj/
 Dominio/obj/
 Infraestructura/obj/
