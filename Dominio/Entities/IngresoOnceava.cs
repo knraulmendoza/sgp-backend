@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dominio.Entities
 {
-    public class IngresoGeneral : BaseEntity
+    public class IngresoOnceava : BaseEntity
     {
         public double Valor { get; set; }
         public double Interes { get; set; }
@@ -12,6 +12,6 @@ namespace Dominio.Entities
         public string SoporteInteres { get; set; }
         public string Descripcion { get; set; }
         public DateTime Fecha { get; set; }
-        public IngresoGeneral() { }
+        public IngresoOnceava() { }
     }
 }
