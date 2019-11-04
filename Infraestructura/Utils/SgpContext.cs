@@ -7,11 +7,15 @@ namespace Infraestructura.Utils
     {
        public SgpContext() { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-3QO597M;Database=sgp;Trusted_Connection=True;");
             // Database.SetInitializer<SgpContext>(new CreateDatabaseIfNotExists<SgpContext>());
-        }
+            // optionsBuilder.UseSqlServer("Server=DESKTOP-RB14CRB;Database=sgp;Trusted_Connection=True;");
+            optionsBuilder.UseSqlite("Data Source=sgp");
+        }*/
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+            => options.UseSqlite("Data Source=sgp");
 
         public DbSet<Beneficiario> Beneficiarios { get; set; }
         public DbSet<Propuesta> Propuestas { get; set; }

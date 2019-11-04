@@ -11,7 +11,7 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class IngresoGeneralController : GenericController<IngresoGeneral>
+    public class IngresoOnceavaController : GenericController<IngresoOnceava>
     {
         private UnitOfWork uow;
 
@@ -19,40 +19,41 @@ namespace WebApi.Controllers
         public override int Delete(long id)
         {
             uow = new UnitOfWork();
-            uow.IngresoGeneralRepository.Delete(id);
+            uow.IngresoOnceavaRepository.Delete(id);
             uow.Dispose();
             return 1;
         }
         [HttpGet]
-        public override ActionResult<IEnumerable<IngresoGeneral>> GetAll()
+        public override ActionResult<IEnumerable<IngresoOnceava>> GetAll()
         {
             uow = new UnitOfWork();
-            var res = uow.IngresoGeneralRepository.Get();
+            var res = uow.IngresoOnceavaRepository.Get();
             return res.ToList();
         }
 
         [HttpGet]
-        public override IngresoGeneral Get(long id)
+        [Route("{id}")]
+        public override IngresoOnceava Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<IngresoGeneral> res = uow.IngresoGeneralRepository.Get(a => a.Id == id);
+            IEnumerable<IngresoOnceava> res = uow.IngresoOnceavaRepository.Get(a => a.Id == id);
             uow.Dispose();
             return res.ToList().FirstOrDefault();
         }
         [HttpPost]
-        public override int Insert(IngresoGeneral entity)
+        public override int Insert(IngresoOnceava entity)
         {
             uow = new UnitOfWork();
-            uow.IngresoGeneralRepository.Insert(entity);
+            uow.IngresoOnceavaRepository.Insert(entity);
             uow.Dispose();
             return 1;
         }
 
         [HttpPut]
-        public override int Update(IngresoGeneral entity)
+        public override int Update(IngresoOnceava entity)
         {
             uow = new UnitOfWork();
-            uow.IngresoGeneralRepository.Update(entity);
+            uow.IngresoOnceavaRepository.Update(entity);
             return 1;
         }
     }
