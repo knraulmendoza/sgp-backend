@@ -33,6 +33,7 @@ WebApi/.vs/
 WebApi/obj/
 Dominio/obj/
 *.cache
+*.json
 
 # Visual Studio Code
 .vscode/
