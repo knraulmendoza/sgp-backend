@@ -3,14 +3,15 @@ using Dominio.Entities;
 
 public interface CertificadoDeDisponibilidadPresupuestalContract
 {
-    Route[("api/[controller]/{idProyecto}/generar-cdp")]
+    // Route[("api/[controller]/{idProyecto}/generar-cdp")]
     CertificadoDeDisponibilidadPresupuestal GenerarCertificadoDeDisponibilidadPresupuestal(long Proyecto, IDictionary<string, float> fondosYPresupuestos);
 
 
-    Route[("api/[controller]/{estado}/listarProyectos")]
-    IEnumerable<Proyecto> GetListarProyectos(string estado);
+    // [HttpGet]
+    // Route[("api/[controller]/{estado}/listarProyectos")]
+    IEnumerable<Proyecto> GetListarProyectos(string estado) {}
 
-    Route[("api/[controller]/listarFondos")]
+    // Route[("api/[controller]/listarFondos")]
 	IList<string, float> GetListarFondos();
     
 }
