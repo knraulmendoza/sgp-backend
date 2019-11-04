@@ -11,6 +11,6 @@ namespace Dominio.Entities
         public string Nombre {get; set;}
         public File RespaldoFisicoDigitalizado {get; set;}
 
-        public Documeto(){}
+        public Documento(){}
     }
 }
