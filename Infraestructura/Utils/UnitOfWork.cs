@@ -28,7 +28,7 @@ namespace Infraestructura.Utils
         private TransaccionRepository transaccionRepository = null;
         private PropuestaRepository propuestaRepository = null;
         private BeneficicarioRepository beneficicarioRepository = null;
-        private IngresoGeneralRepository ingresoGeneralRepository = null;
+        private IngresoGeneralRepository ingresoOnceavaRepository = null;
 
         public BeneficicarioRepository BeneficicarioRepository
         {
@@ -227,11 +227,11 @@ namespace Infraestructura.Utils
         {
             get
             {
-                if (ingresoGeneralRepository == null)
+                if (ingresoOnceavaRepository == null)
                 {
-                    ingresoGeneralRepository = new IngresoGeneralRepository(context);
+                    ingresoOnceavaRepository = new IngresoGeneralRepository(context);
                 }
-                return ingresoGeneralRepository;
+                return ingresoOnceavaRepository;
             }
         }
 

@@ -32,7 +32,7 @@ bld/
 WebApi/.vs/
 WebApi/obj/
 Dominio/obj/
-*cache
+*.cache
 
 # Visual Studio Code
 .vscode/
