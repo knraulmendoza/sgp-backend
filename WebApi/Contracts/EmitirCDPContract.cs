@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Dominio.Entities;
+using Microsoft.AspNetCore.Components;
 
 public interface CertificadoDeDisponibilidadPresupuestalContract
 {
