@@ -127,7 +127,7 @@ namespace Infraestructura.Utils
         public DocumentoRepository DocumentoRepository{
             get{
                 if(documentoRepository == null){
-                    documentoRepository = new DocumentoRepository(context)
+                    documentoRepository = new DocumentoRepository(context);
                 }
                 return documentoRepository;
             }

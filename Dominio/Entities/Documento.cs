@@ -8,9 +8,9 @@ namespace Dominio.Entities
 {
     public class Documento : BaseEntity
     {
-        public string Nombre {get; set;}
-        public File RespaldoFisicoDigitalizado {get; set;}
+        public string Nombre { get; set; }
+        public char[] RespaldoFisicoDigitalizado { get; set; }
 
-        public Documeto(){}
+        public Documento() { }
     }
 }

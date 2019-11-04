@@ -8,7 +8,9 @@ namespace Dominio.Entities
     {
         public DateTime Fecha { get; set; }
         public float Monto { get; set; }
-        public int Tipo { get; set; }
+        public Proyecto Proyecto { get; set; }
+
+        public TransaccionType Tipo { get; set; }
 
         public Transaccion() { }
     }

@@ -1,18 +1,16 @@
 ﻿using Dominio.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Infraestructura.Utils
 {
     public class SgpContext : DbContext
     {
-       // public SgpContext() { }
+       public SgpContext() { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=sgp;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-3QO597M;Database=sgp;Trusted_Connection=True;");
+            // Database.SetInitializer<SgpContext>(new CreateDatabaseIfNotExists<SgpContext>());
         }
 
         public DbSet<Beneficiario> Beneficiarios { get; set; }
