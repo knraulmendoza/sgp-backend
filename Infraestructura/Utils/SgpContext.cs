@@ -28,5 +28,6 @@ namespace Infraestructura.Utils
         public DbSet<Programa> Programa { get; set; }
         public DbSet<RegistroPresupuestal> RegistroPresupuestal { get; set; }
         public DbSet<Transaccion> Transaccion { get; set; }
+        public DbSet<IngresoSGP> IngresoSGP { get; set; }
     }
 }

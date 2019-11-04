@@ -19,7 +19,7 @@ namespace Infraestructura.Utils
         private ComunidadRepository comunidadRepository = null;
         private ConvenioRepository convenioRepository = null;
         private DimensionRepository dimensionRepository = null;
-        private DocumentoRepository documentoRepository = null; 
+        private DocumentoRepository documentoRepository = null;
         private DocumentoPresupuestalRepository documentoPresupuestalRepository = null;
         private EstrategiaRepository estrategiaRepository = null;
         private ProgramaRepository programaRepository = null;
@@ -28,6 +28,7 @@ namespace Infraestructura.Utils
         private TransaccionRepository transaccionRepository = null;
         private PropuestaRepository propuestaRepository = null;
         private BeneficicarioRepository beneficicarioRepository = null;
+        private IngresoGeneralRepository ingresoGeneralRepository = null;
 
         public BeneficicarioRepository BeneficicarioRepository
         {
@@ -43,7 +44,8 @@ namespace Infraestructura.Utils
 
         public ActividadRepository ActividadRepository
         {
-            get {
+            get
+            {
                 if (actividadRepository == null)
                 {
                     actividadRepository = new ActividadRepository(context);
@@ -124,9 +126,12 @@ namespace Infraestructura.Utils
             }
         }
 
-        public DocumentoRepository DocumentoRepository{
-            get{
-                if(documentoRepository == null){
+        public DocumentoRepository DocumentoRepository
+        {
+            get
+            {
+                if (documentoRepository == null)
+                {
                     documentoRepository = new DocumentoRepository(context);
                 }
                 return documentoRepository;
@@ -171,8 +176,10 @@ namespace Infraestructura.Utils
 
         public PropuestaRepository PropuestaRepository
         {
-            get {
-                if (propuestaRepository == null) {
+            get
+            {
+                if (propuestaRepository == null)
+                {
                     propuestaRepository = new PropuestaRepository(context);
                 }
                 return propuestaRepository;
@@ -204,13 +211,27 @@ namespace Infraestructura.Utils
 
         }
 
-        public TransaccionRepository TransaccionRepository{
+        public TransaccionRepository TransaccionRepository
+        {
             get
             {
-                if(transaccionRepository == null){
+                if (transaccionRepository == null)
+                {
                     transaccionRepository = new TransaccionRepository(context);
                 }
                 return transaccionRepository;
+            }
+        }
+
+        public IngresoGeneralRepository IngresoGeneralRepository
+        {
+            get
+            {
+                if (ingresoGeneralRepository == null)
+                {
+                    ingresoGeneralRepository = new IngresoGeneralRepository(context);
+                }
+                return ingresoGeneralRepository;
             }
         }
 
