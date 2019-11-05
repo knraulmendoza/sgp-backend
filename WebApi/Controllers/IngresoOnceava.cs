@@ -16,18 +16,22 @@ namespace WebApi.Controllers
         private UnitOfWork uow;
 
         [HttpDelete]
-        public override int Delete(long id)
+        public override IngresoOnceava Delete(long id)
         {
             uow = new UnitOfWork();
+            IngresoOnceava res = uow.IngresoOnceavaRepository.GetByID(id);
             uow.IngresoOnceavaRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return res;
         }
+
         [HttpGet]
         public override ActionResult<IEnumerable<IngresoOnceava>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.IngresoOnceavaRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
 
@@ -36,25 +40,28 @@ namespace WebApi.Controllers
         public override IngresoOnceava Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<IngresoOnceava> res = uow.IngresoOnceavaRepository.Get(a => a.Id == id);
+            IngresoOnceava res = uow.IngresoOnceavaRepository.GetByID(id);
             uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            return res;
         }
         [HttpPost]
-        public override int Insert(IngresoOnceava entity)
+        public override IngresoOnceava Insert(IngresoOnceava entity)
         {
             uow = new UnitOfWork();
             uow.IngresoOnceavaRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
         [HttpPut]
-        public override int Update(IngresoOnceava entity)
+        public override IngresoOnceava Update(IngresoOnceava entity)
         {
             uow = new UnitOfWork();
             uow.IngresoOnceavaRepository.Update(entity);
-            return 1;
+            uow.Save();
+            uow.Dispose();
+            return entity;
         }
     }
 }

@@ -13,20 +13,22 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override int Delete(long id)
+        [HttpDelete]
+        public override RegistroPresupuestal Delete(long id)
         {
             uow = new UnitOfWork();
+            RegistroPresupuestal res = uow.RegistroPresupuestalRepository.GetByID(id);
             uow.RegistroPresupuestalRepository.Delete(id);
             uow.Dispose();
-            return 1;
+            return res;
         }
 
+        [HttpGet("{id}")]
         public override RegistroPresupuestal Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<RegistroPresupuestal> res = uow.RegistroPresupuestalRepository.Get(a => a.Id == id);
-            uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            RegistroPresupuestal res = uow.RegistroPresupuestalRepository.GetByID(id);
+            return res;
         }
 
         public override ActionResult<IEnumerable<RegistroPresupuestal>> GetAll()
@@ -36,19 +38,22 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        public override int Insert(RegistroPresupuestal entity)
+        public override RegistroPresupuestal Insert(RegistroPresupuestal entity)
         {
             uow = new UnitOfWork();
             uow.RegistroPresupuestalRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
-        public override int Update(RegistroPresupuestal entity)
+        public override RegistroPresupuestal Update(RegistroPresupuestal entity)
         {
             uow = new UnitOfWork();
             uow.RegistroPresupuestalRepository.Update(entity);
-            return 1;
+            uow.Save();
+            uow.Dispose();
+            return entity;
         }
     }
 }

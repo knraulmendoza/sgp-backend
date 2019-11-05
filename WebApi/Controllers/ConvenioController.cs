@@ -13,42 +13,47 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override int Delete(long id)
+        public override Convenio Delete(long id)
         {
             uow = new UnitOfWork();
+            Convenio res = uow.ConvenioRepository.GetByID(id);
             uow.ConvenioRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return res;
         }
 
         public override Convenio Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<Convenio> res = uow.ConvenioRepository.Get(a => a.Id == id);
+            Convenio res = uow.ConvenioRepository.GetByID(id);
             uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            return res;
         }
 
         public override ActionResult<IEnumerable<Convenio>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.ConvenioRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
 
-        public override int Insert(Convenio entity)
+        public override Convenio Insert(Convenio entity)
         {
             uow = new UnitOfWork();
             uow.ConvenioRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
-        public override int Update(Convenio entity)
+        public override Convenio Update(Convenio entity)
         {
             uow = new UnitOfWork();
             uow.ConvenioRepository.Update(entity);
-            return 1;
+            uow.Save();
+            return entity;
         }
     }
 }

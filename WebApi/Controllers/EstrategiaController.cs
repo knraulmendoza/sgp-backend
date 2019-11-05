@@ -13,12 +13,14 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override int Delete(long id)
+        public override Estrategia Delete(long id)
         {
             uow = new UnitOfWork();
+            Estrategia res = uow.EstrategiaRepository.GetByID(id);
             uow.EstrategiaRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return res;
         }
 
         public override Estrategia Get(long id)
@@ -33,22 +35,23 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             var res = uow.EstrategiaRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
 
-        public override int Insert(Estrategia entity)
+        public override Estrategia Insert(Estrategia entity)
         {
             uow = new UnitOfWork();
             uow.EstrategiaRepository.Insert(entity);
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
-        public override int Update(Estrategia entity)
+        public override Estrategia Update(Estrategia entity)
         {
             uow = new UnitOfWork();
             uow.EstrategiaRepository.Update(entity);
-            return 1;
+            return entity;
         }
     }
 }

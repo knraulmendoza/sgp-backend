@@ -13,42 +13,49 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override int Delete(long id)
+        public override Compromiso Delete(long id)
         {
             uow = new UnitOfWork();
+            Compromiso res = uow.CompromisoRepository.GetByID(id);
             uow.CompromisoRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return res;
         }
 
         public override Compromiso Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<Compromiso> res = uow.CompromisoRepository.Get(a => a.Id == id);
+            Compromiso res = uow.CompromisoRepository.GetByID(id);
+            uow.Save();
             uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            return res;
         }
 
         public override ActionResult<IEnumerable<Compromiso>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.CompromisoRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
 
-        public override int Insert(Compromiso entity)
+        public override Compromiso Insert(Compromiso entity)
         {
             uow = new UnitOfWork();
             uow.CompromisoRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
-        public override int Update(Compromiso entity)
+        public override Compromiso Update(Compromiso entity)
         {
             uow = new UnitOfWork();
             uow.CompromisoRepository.Update(entity);
-            return 1;
+            uow.Save();
+            uow.Dispose();
+            return entity;
         }
     }
 }
