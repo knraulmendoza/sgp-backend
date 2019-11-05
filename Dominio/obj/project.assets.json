@@ -8,28 +8,30 @@
     ".NETCoreApp,Version=v3.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Araos\\.nuget\\packages\\": {},
+    "C:\\Users\\Alfonso Castro\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj",
+      "projectUniqueName": "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj",
       "projectName": "Dominio",
-      "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj",
-      "packagesPath": "C:\\Users\\Araos\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\obj\\",
+      "projectPath": "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj",
+      "packagesPath": "C:\\Users\\Alfonso Castro\\.nuget\\packages\\",
+      "outputPath": "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Araos\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Alfonso Castro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

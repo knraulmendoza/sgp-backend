@@ -11,7 +11,7 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PropuestaController : ControllerBase
+    public class PropuestaController : ControllerBase , PropuestaContract
     {
         private UnitOfWork uow;
         
@@ -51,6 +51,17 @@ namespace WebApi.Controllers
             return 1;
         }
 
+        public IList<Componente> GetComponentesPorDimension(long idDimension)
+        {
+            throw new NotImplementedException();
+        }
 
+        public string GetArchivoDelProyecto(long idPropuesta)
+        {
+            uow = new UnitOfWork();
+            var res = uow.PropuestaRepository.GetByID(idPropuesta);
+            string respuesta = res.Documento.RespaldoFisicoDigitalizado.ToString();
+            return respuesta;
+        }
     }
 }
