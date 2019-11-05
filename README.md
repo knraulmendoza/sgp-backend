@@ -24,9 +24,6 @@ dotnet --version
 _Ejecuta en tu carpeta webapi_
 
 ```
-dotnet run
-```
-```
 dotnet tool install --global dotnet-ef
 ```
 ```
@@ -37,6 +34,9 @@ dotnet ef migrations add InitialCreate
 ```
 ```
 dotnet ef database update
+```
+```
+dotnet run
 ```
 
 Podrás acceder al **https://localhost:5001** para tener acceso a la Api.
