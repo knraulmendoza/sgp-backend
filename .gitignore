@@ -34,7 +34,10 @@ WebApi/.vs/
 WebApi/obj/
 Dominio/obj/
 *.cache
+<<<<<<< HEAD
+=======
 *.json
+>>>>>>> b440406303879750d74e845495a92c597f518613
 
 # Visual Studio Code
 .vscode/

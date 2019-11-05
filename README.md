@@ -12,7 +12,6 @@ _Descarga el proyecto y abrelo desde tu Editor o IDE favorito_
 
 _Que cosas necesitas para instalar el software y como instalarlas_
 
-**dotnet**
 * [dotnet](https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-3.0.100-windows-x64-installer) - Sdk para utilizar .Net Core
 
 Puedes comprobar la instalación en la carpeta del proyecto **webapi** con
@@ -24,6 +23,18 @@ dotnet --version
 
 _Ejecuta en tu carpeta webapi_
 
+```
+dotnet tool install --global dotnet-ef
+```
+```
+dotnet add package Microsoft.EntityFrameworkCore.Design
+```
+```
+dotnet ef migrations add InitialCreate
+```
+```
+dotnet ef database update
+```
 ```
 dotnet run
 ```
