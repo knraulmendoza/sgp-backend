@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
@@ -16,18 +17,21 @@ namespace WebApi.Controllers
         private UnitOfWork uow;
 
         [HttpDelete]
-        public override int Delete(long id)
+        public override Actividad Delete(long id)
         {
+            // Actividad entity = Get(id);
             uow = new UnitOfWork();
+            Actividad entity = uow.ActividadRepository.GetByID(id);
             uow.ActividadRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
         [HttpGet]
         public override ActionResult<IEnumerable<Actividad>> GetAll()
         {
             uow = new UnitOfWork();
-            var res = uow.ActividadRepository.Get();
+            var res = uow.ActividadRepository.Get();;
             return res.ToList();
         }
 
@@ -35,25 +39,28 @@ namespace WebApi.Controllers
         public override Actividad Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<Actividad> res = uow.ActividadRepository.Get(a => a.Id == id);
+            Actividad res = uow.ActividadRepository.GetByID(id);
             uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            return res;
         }
         [HttpPost]
-        public override int Insert(Actividad entity)
+        public override Actividad Insert(Actividad entity)
         {
             uow = new UnitOfWork();
             uow.ActividadRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
         [HttpPut]
-        public override int Update(Actividad entity)
+        public override Actividad Update(Actividad entity)
         {
             uow = new UnitOfWork();
             uow.ActividadRepository.Update(entity);
-            return 1;
+            uow.Save();
+            uow.Dispose();
+            return entity;
         }
     }
 }

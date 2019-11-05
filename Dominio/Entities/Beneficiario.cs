@@ -6,8 +6,8 @@ namespace Dominio.Entities
 {
     public class Beneficiario : BaseEntity
     {
-        public String Codigo { get; set; }
+        public string Codigo { get; set; }
 
-        public String Nombre { get; set; }
+        public string Nombre { get; set; }
     }
 }

@@ -12,42 +12,48 @@ namespace WebApi.Controllers
     public class ComponenteController : GenericController<Componente>
     {
         private UnitOfWork uow;
-        public override int Delete(long id)
+        public override Componente Delete(long id)
         {
             uow = new UnitOfWork();
+            Componente res = uow.ComponenteRepository.GetByID(id);
             uow.ComponenteRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return res;
         }
 
         public override Componente Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<Componente> res = uow.ComponenteRepository.Get(a => a.Id == id);
+            Componente res = uow.ComponenteRepository.GetByID(id);
             uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            return res;
         }
 
         public override ActionResult<IEnumerable<Componente>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.ComponenteRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
 
-        public override int Insert(Componente entity)
+        public override Componente Insert(Componente entity)
         {
             uow = new UnitOfWork();
             uow.ComponenteRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
-        public override int Update(Componente entity)
+        public override Componente Update(Componente entity)
         {
             uow = new UnitOfWork();
             uow.ComponenteRepository.Update(entity);
-            return 1;
+            uow.Save();
+            uow.Dispose();
+            return entity;
         }
     }
 }

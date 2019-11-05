@@ -9,11 +9,11 @@ namespace Controllers.Generics
     {
         public abstract ActionResult<IEnumerable<TEntity>> GetAll();
 
-        public abstract int Insert(TEntity entity);
+        public abstract TEntity Insert(TEntity entity);
 
-        public abstract int Delete(long id);
+        public abstract TEntity Delete(long id);
 
-        public abstract int Update(TEntity entity);
+        public abstract TEntity Update(TEntity entity);
 
         public abstract TEntity Get(long id);
     }

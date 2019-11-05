@@ -11,46 +11,58 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PropuestaController : ControllerBase
+    public class PropuestaController : GenericController<Propuesta>
     {
         private UnitOfWork uow;
         
         [HttpGet]
-        public ActionResult<IEnumerable<Propuesta>> GetAll()
+        public override ActionResult<IEnumerable<Propuesta>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.PropuestaRepository.Get();
+            uow.Dispose();
             return res.ToList();
+        }
+
+        [HttpGet("{id}")]
+        public override Propuesta Get(long id)
+        {
+            uow = new UnitOfWork();
+            Propuesta res = uow.PropuestaRepository.GetByID(id);
+            uow.Dispose();
+            return res;
         }
         
         [HttpPost]
-        public int Insert(Propuesta entity)
+        public override Propuesta Insert(Propuesta entity)
         {
             uow = new UnitOfWork();
             uow.PropuestaRepository.Insert(entity);
             uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
         [HttpDelete]
-        public  int Delete(long id)
+        public override Propuesta Delete(long id)
         {
             uow = new UnitOfWork();
+            Propuesta res = uow.PropuestaRepository.GetByID(id);
             uow.PropuestaRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return res;
         }
 
         [HttpPut]
-        public  int Update(Propuesta entity)
+        public override Propuesta Update(Propuesta entity)
         {
             uow = new UnitOfWork();
             uow.PropuestaRepository.Update(entity);
             uow.Save();
-            return 1;
+            uow.Save();
+            return entity;
         }
-
 
     }
 }

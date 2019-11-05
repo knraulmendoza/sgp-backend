@@ -13,42 +13,48 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override int Delete(long id)
+        public override Transaccion Delete(long id)
         {
             uow = new UnitOfWork();
+            Transaccion res = uow.TransaccionRepository.GetByID(id);
             uow.TransaccionRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return res;
         }
 
         public override Transaccion Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<Transaccion> res = uow.TransaccionRepository.Get(a => a.Id == id);
+            Transaccion res = uow.TransaccionRepository.GetByID(id);
             uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            return res;
         }
 
         public override ActionResult<IEnumerable<Transaccion>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.TransaccionRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
 
-        public override int Insert(Transaccion entity)
+        public override Transaccion Insert(Transaccion entity)
         {
             uow = new UnitOfWork();
             uow.TransaccionRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
-        public override int Update(Transaccion entity)
+        public override Transaccion Update(Transaccion entity)
         {
             uow = new UnitOfWork();
             uow.TransaccionRepository.Update(entity);
-            return 1;
+            uow.Save();
+            uow.Dispose();
+            return entity;
         }
     }
 }

@@ -13,42 +13,48 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override int Delete(long id)
+        public override Programa Delete(long id)
         {
             uow = new UnitOfWork();
+            Programa res = uow.ProgramaRepository.GetByID(id);
             uow.ProgramaRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return res;
         }
 
         public override Programa Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<Programa> res = uow.ProgramaRepository.Get(a => a.Id == id);
+            Programa res = uow.ProgramaRepository.GetByID(id);
             uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            return res;
         }
 
         public override ActionResult<IEnumerable<Programa>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.ProgramaRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
 
-        public override int Insert(Programa entity)
+        public override Programa Insert(Programa entity)
         {
             uow = new UnitOfWork();
             uow.ProgramaRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
-        public override int Update(Programa entity)
+        public override Programa Update(Programa entity)
         {
             uow = new UnitOfWork();
             uow.ProgramaRepository.Update(entity);
-            return 1;
+            uow.Save();
+            uow.Dispose();
+            return entity;
         }
     }
 }
