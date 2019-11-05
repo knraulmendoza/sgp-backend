@@ -8,10 +8,12 @@ using System.Linq;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ComunidadController : GenericController<Comunidad>
     {
         private UnitOfWork uow;
+
+        [HttpDelete]
         public override Comunidad Delete(long id)
         {
             uow = new UnitOfWork();
@@ -22,6 +24,7 @@ namespace WebApi.Controllers
             return res;
         }
 
+        [HttpGet("{id}")]
         public override Comunidad Get(long id)
         {
             uow = new UnitOfWork();
@@ -30,6 +33,7 @@ namespace WebApi.Controllers
             return res;
         }
 
+        [HttpGet]
         public override ActionResult<IEnumerable<Comunidad>> GetAll()
         {
             uow = new UnitOfWork();
@@ -38,6 +42,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
+        [HttpPost]
         public override Comunidad Insert(Comunidad entity)
         {
             uow = new UnitOfWork();
@@ -47,6 +52,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
+        [HttpPut]
         public override Comunidad Update(Comunidad entity)
         {
             uow = new UnitOfWork();

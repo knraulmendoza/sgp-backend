@@ -10,9 +10,9 @@ public interface CertificadoDeDisponibilidadPresupuestalContract
 
     // [HttpGet]
     // Route[("api/[controller]/{estado}/listarProyectos")]
-    IEnumerable<Proyecto> GetListarProyectos(string estado) {}
+    IEnumerable<Proyecto> GetListarProyectos(string estado);
 
     // Route[("api/[controller]/listarFondos")]
-	IList<string, float> GetListarFondos();
+	// IEnumerable<string, float> GetListarFondos();
     
 }
