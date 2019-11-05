@@ -19,6 +19,7 @@ namespace WebApi.Controllers
             uow = new UnitOfWork();
             RegistroPresupuestal res = uow.RegistroPresupuestalRepository.GetByID(id);
             uow.RegistroPresupuestalRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
             return res;
         }
@@ -28,6 +29,7 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             RegistroPresupuestal res = uow.RegistroPresupuestalRepository.GetByID(id);
+            uow.Dispose();
             return res;
         }
 
@@ -35,6 +37,7 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             var res = uow.RegistroPresupuestalRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
 

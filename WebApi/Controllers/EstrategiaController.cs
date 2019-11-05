@@ -43,6 +43,7 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             uow.EstrategiaRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
             return entity;
         }
@@ -51,6 +52,8 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             uow.EstrategiaRepository.Update(entity);
+            uow.Save();
+            uow.Dispose();
             return entity;
         }
     }

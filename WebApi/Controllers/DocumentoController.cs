@@ -13,7 +13,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public override Documento Get(long id)
         {
             uow = new UnitOfWork();
@@ -41,6 +41,7 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             uow.DocumentoRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
             return entity;
         }
@@ -51,6 +52,7 @@ namespace WebApi.Controllers
             uow = new UnitOfWork();
             Documento res = uow.DocumentoRepository.GetByID(id);
             uow.DocumentoRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
             return res;
         }
@@ -60,6 +62,8 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             uow.DocumentoRepository.Update(entity);
+            uow.Save();
+            uow.Dispose();
             return entity;
         }
     }

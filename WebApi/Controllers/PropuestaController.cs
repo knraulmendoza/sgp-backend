@@ -20,6 +20,7 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             var res = uow.PropuestaRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
 

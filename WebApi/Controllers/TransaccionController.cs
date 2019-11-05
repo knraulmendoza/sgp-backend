@@ -18,6 +18,7 @@ namespace WebApi.Controllers
             uow = new UnitOfWork();
             Transaccion res = uow.TransaccionRepository.GetByID(id);
             uow.TransaccionRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
             return res;
         }

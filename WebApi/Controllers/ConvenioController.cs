@@ -53,6 +53,7 @@ namespace WebApi.Controllers
             uow = new UnitOfWork();
             uow.ConvenioRepository.Update(entity);
             uow.Save();
+            uow.Dispose();
             return entity;
         }
     }

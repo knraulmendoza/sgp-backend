@@ -41,6 +41,7 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             uow.DimensionRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
             return entity;
         }
