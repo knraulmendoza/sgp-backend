@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj": {}
+    "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Infraestructura\\Infraestructura.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj": {
+    "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj",
+        "projectUniqueName": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj",
         "projectName": "Dominio",
-        "projectPath": "c:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj",
-        "packagesPath": "C:\\Users\\Araos\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\obj\\",
+        "projectPath": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj",
+        "packagesPath": "C:\\Users\\Alfonso Castro\\.nuget\\packages\\",
+        "outputPath": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Araos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alfonso Castro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -59,20 +59,20 @@
         }
       }
     },
-    "c:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj": {
+    "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Infraestructura\\Infraestructura.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj",
+        "projectUniqueName": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Infraestructura\\Infraestructura.csproj",
         "projectName": "Infraestructura",
-        "projectPath": "c:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj",
-        "packagesPath": "C:\\Users\\Araos\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\obj\\",
+        "projectPath": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Infraestructura\\Infraestructura.csproj",
+        "packagesPath": "C:\\Users\\Alfonso Castro\\.nuget\\packages\\",
+        "outputPath": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Infraestructura\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Araos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alfonso Castro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,8 +85,8 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "c:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj": {
-                "projectPath": "c:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj"
+              "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj": {
+                "projectPath": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj"
               }
             }
           }
