@@ -19,7 +19,7 @@ namespace Dominio.Entities
         public DateTime FechaDeCierrePrevista { get; set; }
         public Programa Programa { get; set; }
         public List<Actividad> Actividades { get; set; }
-        public IList<Beneficiario> Beneficiarios { get; set; }
+        public List<Beneficiario> Beneficiarios { get; set; }
 
         public Proyecto() { }
 

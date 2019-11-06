@@ -32,7 +32,8 @@ namespace WebApi.Controllers
             uow.Dispose();
             return res;
         }
-
+        
+        [HttpGet]
         public override ActionResult<IEnumerable<Proyecto>> GetAll()
         {
             uow = new UnitOfWork();
@@ -41,6 +42,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
+        [HttpPost]
         public override Proyecto Insert(Proyecto entity)
         {
             uow = new UnitOfWork();
@@ -50,6 +52,8 @@ namespace WebApi.Controllers
             return entity;
         }
 
+
+        [HttpPut]
         public override Proyecto Update(Proyecto entity)
         {
             uow = new UnitOfWork();
