@@ -21,7 +21,7 @@ dotnet --version
 
 ### Instalación 🔧
 
-_Ejecuta en tu carpeta webapi_
+_Ubícate en tu carpeta webapi_
 
 ```
 dotnet tool install --global dotnet-ef
@@ -30,12 +30,15 @@ dotnet tool install --global dotnet-ef
 dotnet add package Microsoft.EntityFrameworkCore.Design
 ```
 ```
-dotnet ef migrations add InitialCreate
+cd ../Infraestructura
+dotnet ef --startup-project ../WebApi/ migrations add Initial
 ```
 ```
-dotnet ef database update
+cd ../Infraestructura
+dotnet ef --startup-project ../WebApi/ database update
 ```
 ```
+cd ../WebApi
 dotnet run
 ```
 

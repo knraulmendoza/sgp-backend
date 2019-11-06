@@ -12,7 +12,7 @@ namespace Infraestructura.Utils
             System.Console.WriteLine("Configurando DbContext");
             // Database.SetInitializer<SgpContext>(new CreateDatabaseIfNotExists<SgpContext>());
             // optionsBuilder.UseSqlServer("Server=DESKTOP-RB14CRB;Database=sgp;Trusted_Connection=True;");
-            optionsBuilder.UseSqlite("Data Source=sgp");
+            optionsBuilder.UseSqlite("Data Source=sgps");
         }
 
         public DbSet<Beneficiario> Beneficiarios { get; set; }

@@ -35,8 +35,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        [HttpGet]
-        [Route("{id}")]
+        [HttpGet("{id}")]
         public override IngresoOnceava Get(long id)
         {
             uow = new UnitOfWork();
