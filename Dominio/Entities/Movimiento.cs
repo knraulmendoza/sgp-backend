@@ -2,7 +2,7 @@ using System;
 
 namespace Dominio.Entities
 {
-    public class Movimiento
+    public class Movimiento : BaseEntity
     {
         public float Monto {get;set;}
 

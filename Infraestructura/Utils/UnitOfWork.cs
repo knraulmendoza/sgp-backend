@@ -30,6 +30,8 @@ namespace Infraestructura.Utils
         private BeneficicarioRepository beneficicarioRepository = null;
         private IngresoGeneralRepository ingresoGeneralRepository = null;
 
+        private EgresoRepository egresoRepository = null;
+
         public BeneficicarioRepository BeneficicarioRepository
         {
             get
@@ -232,6 +234,15 @@ namespace Infraestructura.Utils
                     ingresoGeneralRepository = new IngresoGeneralRepository(context);
                 }
                 return ingresoGeneralRepository;
+            }
+        }
+
+        public EgresoRepository EgresoRepository{
+            get{
+                if(egresoRepository == null){
+                    egresoRepository = new EgresoRepository(context);
+                }
+                return egresoRepository;
             }
         }
 

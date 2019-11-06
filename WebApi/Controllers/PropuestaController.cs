@@ -51,11 +51,13 @@ namespace WebApi.Controllers
             return 1;
         }
 
+        [HttpGet]
         public IList<Componente> GetComponentesPorDimension(long idDimension)
         {
             throw new NotImplementedException();
         }
 
+        [HttpGet]
         public string GetArchivoDelProyecto(long idPropuesta)
         {
             uow = new UnitOfWork();
