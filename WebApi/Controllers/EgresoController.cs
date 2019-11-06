@@ -14,12 +14,12 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override int Delete(long id)
+        public override Egreso Delete(long id)
         {
             uow = new UnitOfWork();
             uow.EgresoRepository.Delete(id);
             uow.Dispose();
-            return 1;
+            return null;
         }
 
         public override Egreso Get(long id)
@@ -50,20 +50,20 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public override int Insert(Egreso entity)
+        public override Egreso Insert(Egreso entity)
         {
             uow = new UnitOfWork();
             uow.EgresoRepository.Insert(entity);
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
         [HttpPut]
-        public override int Update(Egreso entity)
+        public override Egreso Update(Egreso entity)
         {
             uow = new UnitOfWork();
             uow.EgresoRepository.Update(entity);
-            return 1;
+            return entity;
         }
     }
 }

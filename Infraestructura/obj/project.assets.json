@@ -53,7 +53,7 @@
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/2.1.11": {
+      "Microsoft.EntityFrameworkCore.Analyzers/3.0.0": {
         "type": "package"
       },
       "Microsoft.EntityFrameworkCore.Design/2.1.11": {
@@ -1798,15 +1798,15 @@
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/2.1.11": {
-      "sha512": "KEwH2xTiUsw85yy9a8hgD8dwcscygSNWr+SdL6H6i8nrkuvwDfO3m2IlE1grDIisvosn/8w0IPuNI/i1tjstCw==",
+    "Microsoft.EntityFrameworkCore.Analyzers/3.0.0": {
+      "sha512": "V62p0CDlBkQVjCWUhwr22M3gLk5xJOmnzWbLIZHgVmhvb4UF3oMu1y+96XXXHozM7KNUbzH5jlN18vJW01TH/g==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.analyzers/2.1.11",
+      "path": "microsoft.entityframeworkcore.analyzers/3.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
-        "microsoft.entityframeworkcore.analyzers.2.1.11.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.3.0.0.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
@@ -5782,29 +5782,30 @@
     ".NETCoreApp,Version=v3.0": [
       "Dominio >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 2.1.11",
+      "Microsoft.EntityFrameworkCore.Analyzers >= 3.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 2.1.11",
       "Microsoft.EntityFrameworkCore.Sqlite >= 2.1.11",
       "Microsoft.EntityFrameworkCore.Tools >= 2.1.11"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alfonso Castro\\.nuget\\packages\\": {},
+    "C:\\Users\\Araos\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Infraestructura\\Infraestructura.csproj",
+      "projectUniqueName": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj",
       "projectName": "Infraestructura",
-      "projectPath": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Infraestructura\\Infraestructura.csproj",
-      "packagesPath": "C:\\Users\\Alfonso Castro\\.nuget\\packages\\",
-      "outputPath": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Infraestructura\\obj\\",
+      "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj",
+      "packagesPath": "C:\\Users\\Araos\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Alfonso Castro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Araos\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5817,8 +5818,8 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj": {
-              "projectPath": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj"
+            "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj": {
+              "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj"
             }
           }
         }
@@ -5835,6 +5836,10 @@
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[2.1.11, )"
+          },
+          "Microsoft.EntityFrameworkCore.Analyzers": {
+            "target": "Package",
+            "version": "[3.0.0, )"
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
@@ -5869,13 +5874,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema al leer el archivo de caché a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Infraestructura\\obj\\Infraestructura.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

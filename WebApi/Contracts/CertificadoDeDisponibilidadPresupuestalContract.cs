@@ -7,12 +7,11 @@ public interface CertificadoDeDisponibilidadPresupuestalContract
     // Route[("api/[controller]/{idProyecto}/generar-cdp")]
     CertificadoDeDisponibilidadPresupuestal GenerarCertificadoDeDisponibilidadPresupuestal(long Proyecto, IDictionary<string, float> fondosYPresupuestos);
 
-
     // [HttpGet]
     // Route[("api/[controller]/{estado}/listarProyectos")]
     IEnumerable<Proyecto> GetListarProyectos(string estado);
 
     // Route[("api/[controller]/listarFondos")]
-	// IEnumerable<string, float> GetListarFondos();
+	IDictionary<string, float> GetListarFondos();
     
 }

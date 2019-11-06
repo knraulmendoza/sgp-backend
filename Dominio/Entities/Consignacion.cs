@@ -9,6 +9,7 @@ namespace Dominio.Entities
         public DateTime Fecha { get; set; }
 
         public ConsignaciónType Tipo { get; set; }
+        public string Concepto { get; set; }
 
         public Consignación() { }
     }

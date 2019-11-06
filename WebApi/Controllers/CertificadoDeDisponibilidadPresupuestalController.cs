@@ -2,6 +2,7 @@
 using Dominio.Entities;
 using Infraestructura.Utils;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CertificadoDeDisponibilidadPresupuestalService : GenericController<CertificadoDeDisponibilidadPresupuestal>
+    public class CertificadoDeDisponibilidadPresupuestalController : GenericController<CertificadoDeDisponibilidadPresupuestal>, CertificadoDeDisponibilidadPresupuestalContract
     {
         private UnitOfWork uow;
 
@@ -21,6 +22,23 @@ namespace WebApi.Controllers
             uow.Save();
             uow.Dispose();
             return res;
+        }
+
+        public CertificadoDeDisponibilidadPresupuestal GenerarCertificadoDeDisponibilidadPresupuestal(long idProyecto, IDictionary<string, float> fondosYPresupuestos)
+        {
+            var certificado = new CertificadoDeDisponibilidadPresupuestal();
+
+            uow = new UnitOfWork();
+            var proyecto = uow.ProyectoRepository.GetByID(idProyecto);
+            certificado = new CertificadoDeDisponibilidadPresupuestal() {
+                Codigo = "",
+                FechaDeExpedicion = DateTime.Now,
+                FechaDeVencimiento = DateTime.Now,
+                RegistroPresupuestal = new RegistroPresupuestal() {
+                    
+                }
+            };
+            return certificado;
         }
 
         public override CertificadoDeDisponibilidadPresupuestal Get(long id)
@@ -37,6 +55,16 @@ namespace WebApi.Controllers
             var res = uow.CertificadoDeDisponibilidadPresupuestalRepository.Get();
             uow.Dispose();
             return res.ToList();
+        }
+
+        public IDictionary<string, float> GetListarFondos()
+        {
+            return FondoGlobal.GetInstance().Fondos;
+        }
+
+        public IEnumerable<Proyecto> GetListarProyectos(string estado)
+        {
+            throw new System.NotImplementedException();
         }
 
         public override CertificadoDeDisponibilidadPresupuestal Insert(CertificadoDeDisponibilidadPresupuestal entity)

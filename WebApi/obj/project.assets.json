@@ -605,6 +605,7 @@
         "dependencies": {
           "Dominio": "1.0.0",
           "Microsoft.EntityFrameworkCore": "2.1.11",
+          "Microsoft.EntityFrameworkCore.Analyzers": "3.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.11",
           "Microsoft.EntityFrameworkCore.Sqlite": "2.1.11"
         },
@@ -1664,23 +1665,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alfonso Castro\\.nuget\\packages\\": {},
+    "C:\\Users\\Araos\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\WebApi\\WebApi.csproj",
-      "packagesPath": "C:\\Users\\Alfonso Castro\\.nuget\\packages\\",
-      "outputPath": "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\WebApi\\obj\\",
+      "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\WebApi\\WebApi.csproj",
+      "packagesPath": "C:\\Users\\Araos\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Alfonso Castro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Araos\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1693,11 +1694,11 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj": {
-              "projectPath": "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj"
+            "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj": {
+              "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj"
             },
-            "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Infraestructura\\Infraestructura.csproj": {
-              "projectPath": "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Infraestructura\\Infraestructura.csproj"
+            "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj": {
+              "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj"
             }
           }
         }
