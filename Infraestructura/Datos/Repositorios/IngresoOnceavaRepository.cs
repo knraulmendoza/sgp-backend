@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructura.Datos.Repositorios
 {
-    public class IngresoGeneralRepository : GenericRepository<IngresoGeneral>
+    public class IngresoOnceavaRepository : GenericRepository<IngresoOnceava>
     {
-        public IngresoGeneralRepository(DbContext context) : base(context) { }
+        public IngresoOnceavaRepository(DbContext context) : base(context) { }
     }
 }

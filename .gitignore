@@ -28,11 +28,16 @@ bld/
 [Ll]og/
 
 # Visual Studio 2015/2017 cache/options directory
+
 .vs/
 WebApi/.vs/
 WebApi/obj/
 Dominio/obj/
-*cache
+*.cache
+<<<<<<< HEAD
+=======
+*.json
+>>>>>>> b440406303879750d74e845495a92c597f518613
 
 # Visual Studio Code
 .vscode/

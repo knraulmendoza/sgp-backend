@@ -8,47 +8,56 @@ using System.Linq;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class DocumentoPresupuestalController : GenericController<DocumentoPresupuestal>
     {
         private UnitOfWork uow;
 
-        public override int Delete(long id)
+        public override DocumentoPresupuestal Delete(long id)
         {
             uow = new UnitOfWork();
+            DocumentoPresupuestal res = uow.DocumentoPresupuestalRepository.GetByID(id);
             uow.DocumentoPresupuestalRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return res;
         }
 
+        [HttpGet("{id}")]
         public override DocumentoPresupuestal Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<DocumentoPresupuestal> res = uow.DocumentoPresupuestalRepository.Get(a => a.Id == id);
+            DocumentoPresupuestal res = uow.DocumentoPresupuestalRepository.GetByID(id);
             uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            return res;
         }
-
+        [HttpGet]
         public override ActionResult<IEnumerable<DocumentoPresupuestal>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.DocumentoPresupuestalRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
 
-        public override int Insert(DocumentoPresupuestal entity)
+        [HttpPost]
+        public override DocumentoPresupuestal Insert(DocumentoPresupuestal entity)
         {
             uow = new UnitOfWork();
             uow.DocumentoPresupuestalRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
-        public override int Update(DocumentoPresupuestal entity)
+        [HttpPut]
+        public override DocumentoPresupuestal Update(DocumentoPresupuestal entity)
         {
             uow = new UnitOfWork();
             uow.DocumentoPresupuestalRepository.Update(entity);
-            return 1;
+            uow.Save();
+            uow.Dispose();
+            return entity;
         }
     }
 }

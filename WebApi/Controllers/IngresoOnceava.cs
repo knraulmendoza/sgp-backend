@@ -6,58 +6,58 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ActividadController : GenericController<Actividad>
+    public class IngresoOnceavaController : GenericController<IngresoOnceava>
     {
         private UnitOfWork uow;
 
         [HttpDelete]
-        public override Actividad Delete(long id)
+        public override IngresoOnceava Delete(long id)
         {
-            // Actividad entity = Get(id);
             uow = new UnitOfWork();
-            Actividad entity = uow.ActividadRepository.GetByID(id);
-            uow.ActividadRepository.Delete(id);
+            IngresoOnceava res = uow.IngresoOnceavaRepository.GetByID(id);
+            uow.IngresoOnceavaRepository.Delete(id);
             uow.Save();
             uow.Dispose();
-            return entity;
-        }
-        [HttpGet]
-        public override ActionResult<IEnumerable<Actividad>> GetAll()
-        {
-            uow = new UnitOfWork();
-            var res = uow.ActividadRepository.Get();;
-            return res.ToList();
+            return res;
         }
 
         [HttpGet]
-        public override Actividad Get(long id)
+        public override ActionResult<IEnumerable<IngresoOnceava>> GetAll()
         {
             uow = new UnitOfWork();
-            Actividad res = uow.ActividadRepository.GetByID(id);
+            var res = uow.IngresoOnceavaRepository.Get();
+            uow.Dispose();
+            return res.ToList();
+        }
+
+        [HttpGet("{id}")]
+        public override IngresoOnceava Get(long id)
+        {
+            uow = new UnitOfWork();
+            IngresoOnceava res = uow.IngresoOnceavaRepository.GetByID(id);
             uow.Dispose();
             return res;
         }
         [HttpPost]
-        public override Actividad Insert(Actividad entity)
+        public override IngresoOnceava Insert(IngresoOnceava entity)
         {
             uow = new UnitOfWork();
-            uow.ActividadRepository.Insert(entity);
+            uow.IngresoOnceavaRepository.Insert(entity);
             uow.Save();
             uow.Dispose();
             return entity;
         }
 
         [HttpPut]
-        public override Actividad Update(Actividad entity)
+        public override IngresoOnceava Update(IngresoOnceava entity)
         {
             uow = new UnitOfWork();
-            uow.ActividadRepository.Update(entity);
+            uow.IngresoOnceavaRepository.Update(entity);
             uow.Save();
             uow.Dispose();
             return entity;

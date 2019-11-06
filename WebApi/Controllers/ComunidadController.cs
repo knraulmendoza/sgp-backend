@@ -8,46 +8,58 @@ using System.Linq;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ComunidadController : GenericController<Comunidad>
     {
         private UnitOfWork uow;
-        public override int Delete(long id)
+
+        [HttpDelete]
+        public override Comunidad Delete(long id)
         {
             uow = new UnitOfWork();
+            Comunidad res = uow.ComunidadRepository.GetByID(id);
             uow.ComunidadRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return res;
         }
 
+        [HttpGet("{id}")]
         public override Comunidad Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<Comunidad> res = uow.ComunidadRepository.Get(a => a.Id == id);
+            Comunidad res = uow.ComunidadRepository.GetByID(id);
             uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            return res;
         }
 
+        [HttpGet]
         public override ActionResult<IEnumerable<Comunidad>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.ComunidadRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
 
-        public override int Insert(Comunidad entity)
+        [HttpPost]
+        public override Comunidad Insert(Comunidad entity)
         {
             uow = new UnitOfWork();
             uow.ComunidadRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
-        public override int Update(Comunidad entity)
+        [HttpPut]
+        public override Comunidad Update(Comunidad entity)
         {
             uow = new UnitOfWork();
             uow.ComunidadRepository.Update(entity);
-            return 1;
+            uow.Save();
+            uow.Dispose();
+            return entity;
         }
     }
 }

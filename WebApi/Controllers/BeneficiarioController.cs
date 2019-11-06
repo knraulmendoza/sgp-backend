@@ -8,47 +8,56 @@ using System.Linq;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class BeneficiarioController : GenericController<Beneficiario>
     {
         private UnitOfWork uow;
 
-        public override int Delete(long id)
+        [HttpDelete]
+        public override Beneficiario Delete(long id)
         {
             uow = new UnitOfWork();
+            Beneficiario res = uow.BeneficicarioRepository.GetByID(id);
             uow.ComponenteRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return res;
         }
 
+        [HttpGet]
         public override ActionResult<IEnumerable<Beneficiario>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.BeneficicarioRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
-
+        
+        [HttpGet("{id}")]
         public override Beneficiario Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<Beneficiario> res = uow.BeneficicarioRepository.Get(a => a.Id == id);
+            Beneficiario res = uow.BeneficicarioRepository.GetByID(id);
             uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            return res;
         }
-
-        public override int Insert(Beneficiario entity)
+        [HttpPost]
+        public override Beneficiario Insert(Beneficiario entity)
         {
             uow = new UnitOfWork();
             uow.BeneficicarioRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
-
-        public override int Update(Beneficiario entity)
+        [HttpPut]
+        public override Beneficiario Update(Beneficiario entity)
         {
             uow = new UnitOfWork();
             uow.BeneficicarioRepository.Update(entity);
-            return 1;
+            uow.Save();
+            uow.Dispose();
+            return entity;
         }
     }
 }

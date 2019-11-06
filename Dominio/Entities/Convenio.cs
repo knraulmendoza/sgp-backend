@@ -10,7 +10,7 @@ namespace Dominio.Entities
         public DateTime FechaDeSuscripcion { get; set; }
         public short Plazo { get; set; }
         public float Valor { get; set; }
-        public string objeto { get; set; }
+        public string Obbjeto { get; set; }
 
         public Convenio() { }
         

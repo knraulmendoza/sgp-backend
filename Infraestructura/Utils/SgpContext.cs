@@ -9,8 +9,10 @@ namespace Infraestructura.Utils
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-3QO597M;Database=sgp;Trusted_Connection=True;");
+            System.Console.WriteLine("Configurando DbContext");
             // Database.SetInitializer<SgpContext>(new CreateDatabaseIfNotExists<SgpContext>());
+            // optionsBuilder.UseSqlServer("Server=DESKTOP-RB14CRB;Database=sgp;Trusted_Connection=True;");
+            optionsBuilder.UseSqlite("Data Source=sgps");
         }
 
         public DbSet<Beneficiario> Beneficiarios { get; set; }
@@ -28,5 +30,6 @@ namespace Infraestructura.Utils
         public DbSet<Programa> Programa { get; set; }
         public DbSet<RegistroPresupuestal> RegistroPresupuestal { get; set; }
         public DbSet<Transaccion> Transaccion { get; set; }
+        public DbSet<IngresoOnceava> IngresoOnceava { get; set; }
     }
 }

@@ -9,19 +9,22 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DocumentoController : GenericController<Documento>
+    public class DocumentoController : GenericWithFileController<Documento>
     {
         private UnitOfWork uow;
 
-        
-
-        [HttpGet]
+        [HttpGet("{id}")]
         public override Documento Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<Documento> res = uow.DocumentoRepository.Get(a => a.Id == id);
+            Documento res = uow.DocumentoRepository.GetByID(id);
             uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            return res;
+        }
+
+        [HttpGet("download/{url}")]
+        public override ActionResult DownloadFile(string fileName) {
+            return base.DownloadFile(fileName);
         }
 
         [HttpGet]
@@ -29,33 +32,39 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             var res = uow.DocumentoRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
 
         [HttpPost]
-        public override int Insert(Documento entity)
+        public override Documento Insert(Documento entity)
         {
             uow = new UnitOfWork();
             uow.DocumentoRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
         [HttpDelete]
-        public override int Delete(long id)
+        public override Documento Delete(long id)
         {
             uow = new UnitOfWork();
+            Documento res = uow.DocumentoRepository.GetByID(id);
             uow.DocumentoRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return res;
         }
 
         [HttpPut]
-        public override int Update(Documento entity)
+        public override Documento Update(Documento entity)
         {
             uow = new UnitOfWork();
             uow.DocumentoRepository.Update(entity);
-            return 1;
+            uow.Save();
+            uow.Dispose();
+            return entity;
         }
     }
 }

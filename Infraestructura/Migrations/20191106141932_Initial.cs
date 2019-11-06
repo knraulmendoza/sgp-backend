@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infraestructura.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,12 +12,12 @@ namespace Infraestructura.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Codigo = table.Column<string>(nullable: true),
                     FechaDeSuscripcion = table.Column<DateTime>(nullable: false),
                     Plazo = table.Column<short>(nullable: false),
                     Valor = table.Column<float>(nullable: false),
-                    objeto = table.Column<string>(nullable: true)
+                    Obbjeto = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -30,7 +29,7 @@ namespace Infraestructura.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Nombre = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true)
                 },
@@ -40,18 +39,35 @@ namespace Infraestructura.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Propuestas",
+                name: "Documento",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    FechaDePresentacion = table.Column<DateTime>(nullable: false),
-                    FechaDeAprovacion = table.Column<DateTime>(nullable: false),
-                    Documento = table.Column<byte[]>(nullable: true)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombre = table.Column<string>(nullable: true),
+                    RespaldoFisicoDigitalizado = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Propuestas", x => x.Id);
+                    table.PrimaryKey("PK_Documento", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IngresoOnceava",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Valor = table.Column<double>(nullable: false),
+                    Interes = table.Column<double>(nullable: false),
+                    SoporteValor = table.Column<string>(nullable: true),
+                    SoporteInteres = table.Column<string>(nullable: true),
+                    Descripcion = table.Column<string>(nullable: true),
+                    Fecha = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IngresoOnceava", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,7 +75,7 @@ namespace Infraestructura.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Nombre = table.Column<string>(nullable: true),
                     ConvenioId = table.Column<long>(nullable: true)
                 },
@@ -79,7 +95,7 @@ namespace Infraestructura.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Nombre = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
                     DimensionId = table.Column<long>(nullable: true)
@@ -96,22 +112,26 @@ namespace Infraestructura.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Beneficiarios",
+                name: "Propuestas",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Codigo = table.Column<string>(nullable: true),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FechaDePresentacion = table.Column<DateTime>(nullable: false),
+                    FechaDeAprovacion = table.Column<DateTime>(nullable: false),
+                    DocumentoId = table.Column<long>(nullable: true),
+                    NumeroDeFamilias = table.Column<int>(nullable: false),
                     Nombre = table.Column<string>(nullable: true),
-                    PropuestaId = table.Column<long>(nullable: true)
+                    PresupuestoEstimado = table.Column<double>(nullable: false),
+                    FechaDeRegistro = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Beneficiarios", x => x.Id);
+                    table.PrimaryKey("PK_Propuestas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Beneficiarios_Propuestas_PropuestaId",
-                        column: x => x.PropuestaId,
-                        principalTable: "Propuestas",
+                        name: "FK_Propuestas_Documento_DocumentoId",
+                        column: x => x.DocumentoId,
+                        principalTable: "Documento",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -121,7 +141,7 @@ namespace Infraestructura.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Nombre = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
                     ComponenteId = table.Column<long>(nullable: true)
@@ -142,7 +162,7 @@ namespace Infraestructura.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Nombre = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
                     EstrategiaId = table.Column<long>(nullable: true)
@@ -163,7 +183,7 @@ namespace Infraestructura.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     PropuestaId = table.Column<long>(nullable: true),
                     ProyectoState = table.Column<int>(nullable: false),
                     Nombre = table.Column<string>(nullable: true),
@@ -196,8 +216,8 @@ namespace Infraestructura.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Codigo = table.Column<int>(nullable: false),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Codigo = table.Column<string>(nullable: true),
                     Nombre = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
                     FechaInicio = table.Column<DateTime>(nullable: false),
@@ -218,11 +238,39 @@ namespace Infraestructura.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Beneficiarios",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Codigo = table.Column<string>(nullable: true),
+                    Nombre = table.Column<string>(nullable: true),
+                    PropuestaId = table.Column<long>(nullable: true),
+                    ProyectoId = table.Column<long>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Beneficiarios", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Beneficiarios_Propuestas_PropuestaId",
+                        column: x => x.PropuestaId,
+                        principalTable: "Propuestas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Beneficiarios_Proyectos_ProyectoId",
+                        column: x => x.ProyectoId,
+                        principalTable: "Proyectos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Comunidad",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Nombre = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
                     ProyectoId = table.Column<long>(nullable: true)
@@ -239,11 +287,33 @@ namespace Infraestructura.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Transaccion",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Fecha = table.Column<DateTime>(nullable: false),
+                    Monto = table.Column<float>(nullable: false),
+                    ProyectoId = table.Column<long>(nullable: true),
+                    Tipo = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transaccion", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Transaccion_Proyectos_ProyectoId",
+                        column: x => x.ProyectoId,
+                        principalTable: "Proyectos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DocumentoPresupuestal",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     FechaDeExpedicion = table.Column<DateTime>(nullable: false),
                     Codigo = table.Column<string>(nullable: true),
                     Discriminator = table.Column<string>(nullable: false),
@@ -284,28 +354,6 @@ namespace Infraestructura.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Transaccion",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Fecha = table.Column<DateTime>(nullable: false),
-                    Monto = table.Column<float>(nullable: false),
-                    Tipo = table.Column<int>(nullable: false),
-                    ProyectoId = table.Column<long>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transaccion", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Transaccion_Proyectos_ProyectoId",
-                        column: x => x.ProyectoId,
-                        principalTable: "Proyectos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Actividades_ProyectoId",
                 table: "Actividades",
@@ -315,6 +363,11 @@ namespace Infraestructura.Migrations
                 name: "IX_Beneficiarios_PropuestaId",
                 table: "Beneficiarios",
                 column: "PropuestaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Beneficiarios_ProyectoId",
+                table: "Beneficiarios",
+                column: "ProyectoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Componente_DimensionId",
@@ -362,6 +415,11 @@ namespace Infraestructura.Migrations
                 column: "EstrategiaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Propuestas_DocumentoId",
+                table: "Propuestas",
+                column: "DocumentoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Proyectos_ProgramaId",
                 table: "Proyectos",
                 column: "ProgramaId");
@@ -389,6 +447,9 @@ namespace Infraestructura.Migrations
                 name: "DocumentoPresupuestal");
 
             migrationBuilder.DropTable(
+                name: "IngresoOnceava");
+
+            migrationBuilder.DropTable(
                 name: "Transaccion");
 
             migrationBuilder.DropTable(
@@ -411,6 +472,9 @@ namespace Infraestructura.Migrations
 
             migrationBuilder.DropTable(
                 name: "Estrategia");
+
+            migrationBuilder.DropTable(
+                name: "Documento");
 
             migrationBuilder.DropTable(
                 name: "Componente");

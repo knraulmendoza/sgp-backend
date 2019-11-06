@@ -13,40 +13,50 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override int Delete(long id)
+        [HttpDelete]
+        public override Proyecto Delete(long id)
         {
             uow = new UnitOfWork();
+            Proyecto res = uow.ProyectoRepository.GetByID(id);
             uow.ProyectoRepository.Delete(id);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return res;
         }
 
+        [HttpGet("{id}")]
         public override Proyecto Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<Proyecto> res = uow.ProyectoRepository.Get(a => a.Id == id);
+            Proyecto res = uow.ProyectoRepository.GetByID(id);
             uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            return res;
         }
 
         public override ActionResult<IEnumerable<Proyecto>> GetAll()
         {
-            throw new System.NotImplementedException();
+            uow = new UnitOfWork();
+            IEnumerable<Proyecto> res = uow.ProyectoRepository.Get();
+            uow.Dispose();
+            return res.ToList();
         }
 
-        public override int Insert(Proyecto entity)
+        public override Proyecto Insert(Proyecto entity)
         {
             uow = new UnitOfWork();
             uow.ProyectoRepository.Insert(entity);
+            uow.Save();
             uow.Dispose();
-            return 1;
+            return entity;
         }
 
-        public override int Update(Proyecto entity)
+        public override Proyecto Update(Proyecto entity)
         {
             uow = new UnitOfWork();
             uow.ProyectoRepository.Update(entity);
-            return 1;
+            uow.Save();
+            uow.Dispose();
+            return entity;
         }
     }
 }

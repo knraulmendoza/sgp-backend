@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj": {}
+    "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj": {}
   },
   "projects": {
-    "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj": {
+    "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj",
+        "projectUniqueName": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj",
         "projectName": "Dominio",
-        "projectPath": "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj",
+        "projectPath": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\Dominio.csproj",
         "packagesPath": "C:\\Users\\Alfonso Castro\\.nuget\\packages\\",
-        "outputPath": "A:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\obj\\",
+        "outputPath": "a:\\Universidad\\SEMESTRE 10\\PROCESOS AGILES\\sgp-backend\\Dominio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
