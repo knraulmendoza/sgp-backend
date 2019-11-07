@@ -1,7 +1,7 @@
 node {
 
   stage('Checkout') {
-    git url: 'https://github.com/menkemon/sgp-backend.git',branch: 'master'
+    git url: 'https://github.com/menkemon/sgp-backend.git',branch: 'dev'
   }
    stage('Restore Nuget') {
     bat 'dotnet restore webapi/webapi.sln'
