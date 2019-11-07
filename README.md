@@ -21,21 +21,21 @@ dotnet --version
 
 ### Instalación 🔧
 
-_Ubícate en tu carpeta webapi y ejecuta los siquientes comandos_
+_Ubícate en tu carpeta **WebApi** y ejecuta los siquientes comandos_
 
 ```
 dotnet restore
 dotnet tool install --global dotnet-ef
 dotnet add package Microsoft.EntityFrameworkCore.Design
 ```
-_Luego en la carpeta Infraestructura ejecuta estos otros_
+_Luego en la carpeta **Infraestructura** ejecuta estos otros_
 ```
 dotnet ef database update 0
 dotnet ef migrations remove
 dotnet ef migrations add MigracionInicial
 dotnet ef database update
 ```
-_Ahora vuelven nuevamente a la carpeta **WebApi** en la raiz del proyect y ejecuta_
+_Ahora vuelven nuevamente a la carpeta **WebApi** en la raiz del proyecto y ejecuta_
 ```
 dotnet run
 ```
