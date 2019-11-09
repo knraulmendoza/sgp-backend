@@ -8,11 +8,30 @@ using System.Linq;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TransaccionController : GenericController<Transaccion>
     {
         private UnitOfWork uow;
 
+        public TransaccionController(){
+            uow = new UnitOfWork();
+            if(uow.TransaccionRepository.Get().ToList().Count == 0){
+                uow.TransaccionRepository.Insert(new Transaccion{
+                    Fecha = new System.DateTime(),
+                    Monto = 5000,
+                    Tipo =  TransaccionType.EGRESO
+                });
+                uow.TransaccionRepository.Insert(new Transaccion{
+                    Fecha = new System.DateTime(),
+                    Monto = 4000,
+                    Tipo =  TransaccionType.EGRESO
+                });
+            }
+            uow.Save();
+            uow.Dispose();
+        }
+
+        [HttpDelete]
         public ActionResult<Transaccion> Delete(long id)
         {
             uow = new UnitOfWork();
@@ -23,6 +42,7 @@ namespace WebApi.Controllers
             return res;
         }
 
+        [HttpGet("{id}")]
         public ActionResult<Transaccion> Get(long id)
         {
             uow = new UnitOfWork();
@@ -31,6 +51,7 @@ namespace WebApi.Controllers
             return res;
         }
 
+        [HttpGet]
         public ActionResult<IEnumerable<Transaccion>> GetAll()
         {
             uow = new UnitOfWork();
@@ -39,6 +60,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
+        [HttpPost]
         public ActionResult<Transaccion> Insert(Transaccion entity)
         {
             uow = new UnitOfWork();
@@ -48,6 +70,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
+        [HttpPut]
         public ActionResult<Transaccion> Update(Transaccion entity)
         {
             uow = new UnitOfWork();
