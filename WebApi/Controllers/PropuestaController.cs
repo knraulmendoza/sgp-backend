@@ -11,7 +11,7 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PropuestaController : GenericController<Propuesta>
+    public class PropuestaController : GenericController<Propuesta>,PropuestaContract
     {
         private UnitOfWork uow;
         
@@ -60,8 +60,19 @@ namespace WebApi.Controllers
             uow = new UnitOfWork();
             uow.PropuestaRepository.Update(entity);
             uow.Save();
-            uow.Save();
+            uow.Dispose();
             return entity;
+        }
+
+        [HttpGet]
+
+        public byte[] GetArchivoDelProyecto(long idProyecto){
+
+            uow=new UnitOfWork();
+            var PDF=uow.PropuestaRepository.GetByID(idProyecto).Documento.RawData;
+            uow.Save();
+            uow.Dispose();
+            return PDF;
         }
 
     }
