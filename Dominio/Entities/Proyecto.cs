@@ -33,6 +33,7 @@ namespace Dominio.Entities
         public Programa Programa { get; set; }
 
         public List<Actividad> Actividades { get; set; }
+        
         public IList<Beneficiario> Beneficiarios { get; set; }
 
         public Proyecto() { }
