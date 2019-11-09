@@ -14,28 +14,37 @@ namespace Infraestructura.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099");
+                .HasAnnotation("ProductVersion", "3.0.0");
 
             modelBuilder.Entity("Dominio.Entities.Actividad", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("ActividadState");
+                    b.Property<int>("ActividadState")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Codigo");
+                    b.Property<string>("Codigo")
+                        .HasColumnType("TEXT");
 
-                    b.Property<float>("Costo");
+                    b.Property<decimal>("Costo")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Descripcion");
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("FechaFinalizacion");
+                    b.Property<DateTime>("FechaFinalizacion")
+                        .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("FechaInicio");
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
 
-                    b.Property<long?>("ProyectoId");
+                    b.Property<long?>("ProyectoId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -47,15 +56,20 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.Beneficiario", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Codigo");
+                    b.Property<string>("Codigo")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
 
-                    b.Property<long?>("PropuestaId");
+                    b.Property<long?>("PropuestaId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<long?>("ProyectoId");
+                    b.Property<long?>("ProyectoId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -69,13 +83,17 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.Componente", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Descripcion");
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("TEXT");
 
-                    b.Property<long?>("DimensionId");
+                    b.Property<long?>("DimensionId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -87,11 +105,14 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.Compromiso", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<long?>("ConvenioId");
+                    b.Property<long?>("ConvenioId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -103,13 +124,17 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.Comunidad", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Descripcion");
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
 
-                    b.Property<long?>("ProyectoId");
+                    b.Property<long?>("ProyectoId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -121,17 +146,23 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.Convenio", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Codigo");
+                    b.Property<string>("Codigo")
+                        .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("FechaDeSuscripcion");
+                    b.Property<DateTime>("FechaDeSuscripcion")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Obbjeto");
+                    b.Property<string>("Obbjeto")
+                        .HasColumnType("TEXT");
 
-                    b.Property<short>("Plazo");
+                    b.Property<short>("Plazo")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<float>("Valor");
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -141,11 +172,14 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.Dimension", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Descripcion");
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -155,11 +189,17 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.Documento", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("RespaldoFisicoDigitalizado");
+                    b.Property<byte[]>("RawData")
+                        .HasColumnType("BLOB");
+
+                    b.Property<string>("RespaldoFisicoDigitalizado")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -169,14 +209,18 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.DocumentoPresupuestal", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Codigo");
+                    b.Property<string>("Codigo")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Discriminator")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("FechaDeExpedicion");
+                    b.Property<DateTime>("FechaDeExpedicion")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -188,13 +232,17 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.Estrategia", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<long?>("ComponenteId");
+                    b.Property<long?>("ComponenteId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Descripcion");
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -206,19 +254,26 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.IngresoOnceava", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Descripcion");
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("Fecha");
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
 
-                    b.Property<double>("Interes");
+                    b.Property<decimal>("Interes")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("SoporteInteres");
+                    b.Property<string>("SoporteInteres")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("SoporteValor");
+                    b.Property<string>("SoporteValor")
+                        .HasColumnType("TEXT");
 
-                    b.Property<double>("Valor");
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -228,13 +283,17 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.Programa", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Descripcion");
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("TEXT");
 
-                    b.Property<long?>("EstrategiaId");
+                    b.Property<long?>("EstrategiaId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -246,21 +305,29 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.Propuesta", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<long?>("DocumentoId");
+                    b.Property<long?>("DocumentoId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("FechaDeAprovacion");
+                    b.Property<DateTime>("FechaDeAprovacion")
+                        .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("FechaDePresentacion");
+                    b.Property<DateTime>("FechaDePresentacion")
+                        .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("FechaDeRegistro");
+                    b.Property<DateTime>("FechaDeRegistro")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("NumeroDeFamilias");
+                    b.Property<int>("NumeroDeFamilias")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<double>("PresupuestoEstimado");
+                    b.Property<decimal>("PresupuestoEstimado")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -272,25 +339,35 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.Proyecto", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("FechaCierre");
+                    b.Property<DateTime>("FechaCierre")
+                        .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("FechaDeCierrePrevista");
+                    b.Property<DateTime>("FechaDeCierrePrevista")
+                        .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("FechaEjecucion");
+                    b.Property<DateTime>("FechaEjecucion")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
 
-                    b.Property<float>("PresupuestoAprovado");
+                    b.Property<decimal>("PresupuestoAprobado")
+                        .HasColumnType("TEXT");
 
-                    b.Property<float>("PresupuestoEjecutado");
+                    b.Property<decimal>("PresupuestoEjecutado")
+                        .HasColumnType("TEXT");
 
-                    b.Property<long?>("ProgramaId");
+                    b.Property<long?>("ProgramaId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<long?>("PropuestaId");
+                    b.Property<long?>("PropuestaId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("ProyectoState");
+                    b.Property<int>("ProyectoState")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -304,38 +381,45 @@ namespace Infraestructura.Migrations
             modelBuilder.Entity("Dominio.Entities.Transaccion", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("Fecha");
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.Property<float>("Monto");
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
 
-                    b.Property<long?>("ProyectoId");
+                    b.Property<decimal>("Monto")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("Tipo");
+                    b.Property<int>("Tipo")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProyectoId");
-
                     b.ToTable("Transaccion");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Transaccion");
                 });
 
             modelBuilder.Entity("Dominio.Entities.CertificadoDeDisponibilidadPresupuestal", b =>
                 {
                     b.HasBaseType("Dominio.Entities.DocumentoPresupuestal");
 
-                    b.Property<DateTime>("FechaDeVencimiento");
+                    b.Property<DateTime>("FechaDeVencimiento")
+                        .HasColumnType("TEXT");
 
-                    b.Property<long?>("ProyectoId");
+                    b.Property<long?>("ProyectoId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<long?>("RegistroPresupuestalId");
+                    b.Property<long?>("RegistroPresupuestalId")
+                        .HasColumnType("INTEGER");
 
                     b.HasIndex("ProyectoId");
 
                     b.HasIndex("RegistroPresupuestalId");
-
-                    b.ToTable("CertificadoDeDisponibilidadPresupuestal");
 
                     b.HasDiscriminator().HasValue("CertificadoDeDisponibilidadPresupuestal");
                 });
@@ -344,44 +428,61 @@ namespace Infraestructura.Migrations
                 {
                     b.HasBaseType("Dominio.Entities.DocumentoPresupuestal");
 
-                    b.Property<long?>("BeneficiarioId");
+                    b.Property<long?>("BeneficiarioId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<long?>("CompromisoId");
+                    b.Property<long?>("CompromisoId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("VigenciaFiscal");
+                    b.Property<DateTime>("VigenciaFiscal")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("identificacion");
+                    b.Property<string>("identificacion")
+                        .HasColumnType("TEXT");
 
                     b.HasIndex("BeneficiarioId");
 
                     b.HasIndex("CompromisoId");
 
-                    b.ToTable("RegistroPresupuestal");
-
                     b.HasDiscriminator().HasValue("RegistroPresupuestal");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.TransaccionUnaria", b =>
+                {
+                    b.HasBaseType("Dominio.Entities.Transaccion");
+
+                    b.Property<string>("Concepto")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("ProyectoId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasIndex("ProyectoId");
+
+                    b.HasDiscriminator().HasValue("TransaccionUnaria");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Actividad", b =>
                 {
-                    b.HasOne("Dominio.Entities.Proyecto")
+                    b.HasOne("Dominio.Entities.Proyecto", null)
                         .WithMany("Actividades")
                         .HasForeignKey("ProyectoId");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Beneficiario", b =>
                 {
-                    b.HasOne("Dominio.Entities.Propuesta")
+                    b.HasOne("Dominio.Entities.Propuesta", null)
                         .WithMany("Beneficiarios")
                         .HasForeignKey("PropuestaId");
 
-                    b.HasOne("Dominio.Entities.Proyecto")
+                    b.HasOne("Dominio.Entities.Proyecto", null)
                         .WithMany("Beneficiarios")
                         .HasForeignKey("ProyectoId");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Componente", b =>
                 {
-                    b.HasOne("Dominio.Entities.Dimension")
+                    b.HasOne("Dominio.Entities.Dimension", null)
                         .WithMany("Componentes")
                         .HasForeignKey("DimensionId");
                 });
@@ -395,21 +496,21 @@ namespace Infraestructura.Migrations
 
             modelBuilder.Entity("Dominio.Entities.Comunidad", b =>
                 {
-                    b.HasOne("Dominio.Entities.Proyecto")
+                    b.HasOne("Dominio.Entities.Proyecto", null)
                         .WithMany("Comunidad")
                         .HasForeignKey("ProyectoId");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Estrategia", b =>
                 {
-                    b.HasOne("Dominio.Entities.Componente")
+                    b.HasOne("Dominio.Entities.Componente", null)
                         .WithMany("Estrategias")
                         .HasForeignKey("ComponenteId");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Programa", b =>
                 {
-                    b.HasOne("Dominio.Entities.Estrategia")
+                    b.HasOne("Dominio.Entities.Estrategia", null)
                         .WithMany("Programas")
                         .HasForeignKey("EstrategiaId");
                 });
@@ -432,16 +533,9 @@ namespace Infraestructura.Migrations
                         .HasForeignKey("PropuestaId");
                 });
 
-            modelBuilder.Entity("Dominio.Entities.Transaccion", b =>
-                {
-                    b.HasOne("Dominio.Entities.Proyecto", "Proyecto")
-                        .WithMany("Transacciones")
-                        .HasForeignKey("ProyectoId");
-                });
-
             modelBuilder.Entity("Dominio.Entities.CertificadoDeDisponibilidadPresupuestal", b =>
                 {
-                    b.HasOne("Dominio.Entities.Proyecto")
+                    b.HasOne("Dominio.Entities.Proyecto", null)
                         .WithMany("CertificadosDeDisponibilidaPresupuestales")
                         .HasForeignKey("ProyectoId");
 
@@ -459,6 +553,13 @@ namespace Infraestructura.Migrations
                     b.HasOne("Dominio.Entities.Compromiso", "Compromiso")
                         .WithMany()
                         .HasForeignKey("CompromisoId");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.TransaccionUnaria", b =>
+                {
+                    b.HasOne("Dominio.Entities.Proyecto", "Proyecto")
+                        .WithMany("TransaccionesUnarias")
+                        .HasForeignKey("ProyectoId");
                 });
 #pragma warning restore 612, 618
         }

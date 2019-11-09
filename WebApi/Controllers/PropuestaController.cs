@@ -64,12 +64,11 @@ namespace WebApi.Controllers
             return entity;
         }
 
-        [HttpGet]
-
-        public byte[] GetArchivoDelProyecto(long idProyecto)
+        [HttpGet("{id}")]
+        public byte[] GetArchivoDelProyecto(long id)
         {
             uow=new UnitOfWork();
-            var PDF=uow.PropuestaRepository.GetByID(idProyecto).Documento.RawData;
+            var PDF=uow.PropuestaRepository.GetByID(id).Documento.RawData;
             uow.Save();
             uow.Dispose();
             return PDF;

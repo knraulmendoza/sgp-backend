@@ -5,7 +5,7 @@ namespace Dominio.Entities
 {
     public class FondoGlobal
     {
-        public float PresupuestoTotal { get; set; }
+        public decimal PresupuestoTotal { get; set; }
 
         public IList<Movimiento> Movimientos { get; set; }
 
@@ -44,7 +44,7 @@ namespace Dominio.Entities
 
         public void RecalcularPresupuesto()
         {
-            float nuevoPresupuesto = 0;
+            decimal nuevoPresupuesto = 0;
             foreach (Movimiento m in Movimientos)
             {
                 if (m.Tipo == MovimientoType.INGRESO)

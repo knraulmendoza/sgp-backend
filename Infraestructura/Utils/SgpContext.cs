@@ -1,4 +1,5 @@
-﻿using Dominio.Entities;
+﻿using System.IO;
+using Dominio.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructura.Utils
@@ -12,7 +13,9 @@ namespace Infraestructura.Utils
             System.Console.WriteLine("Configurando DbContext");
             // Database.SetInitializer<SgpContext>(new CreateDatabaseIfNotExists<SgpContext>());
             // optionsBuilder.UseSqlServer("Server=DESKTOP-RB14CRB;Database=sgp;Trusted_Connection=True;");
-            optionsBuilder.UseSqlite(@"Data Source=C:\sgp.db");
+            string urlBase = "D:/";
+            urlBase = Path.Combine(urlBase, "sgp.db");
+            optionsBuilder.UseSqlite(@"Data Source=" + urlBase);
         }
 
         public DbSet<Beneficiario> Beneficiarios { get; set; }

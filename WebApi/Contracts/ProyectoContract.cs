@@ -10,6 +10,6 @@ namespace WebApi.Contracts
         ICollection<Proyecto> GetProyectosPorEstado(ProyectoState proyectoState);
 
         [Route("api/{controller}/{idProyecto}/gastos")]
-        IList<TransacciónUnaria> GetGastosProyectos(long idProyecto);
+        IList<TransaccionUnaria> GetGastosProyectos(long idProyecto);
     }
 }
