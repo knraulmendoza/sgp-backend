@@ -1,17 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Dominio",
-    "\\Dominio\\Entities",
-    "\\Infraestructura",
     "\\Infraestructura\\Generics",
     "\\Infraestructura\\Migrations",
     "\\Infraestructura\\Utils",
-    "\\WebApi",
     "\\WebApi\\Contracts",
     "\\WebApi\\Controllers",
     "\\WebApi\\Generics"
   ],
-  "SelectedNode": "\\Dominio\\Entities\\Propuesta.cs",
+  "SelectedNode": "\\Dominio",
   "PreviewInSolutionExplorer": false
 }

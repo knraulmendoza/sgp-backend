@@ -19,6 +19,7 @@ namespace WebApi
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -45,8 +46,13 @@ namespace WebApi
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            // app.UseAuthorization();
 
+            app.UseCors(builder => builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            );
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
