@@ -35,7 +35,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public override Actividad Get(long id)
         {
             uow = new UnitOfWork();

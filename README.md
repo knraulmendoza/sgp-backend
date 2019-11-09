@@ -21,28 +21,26 @@ dotnet --version
 
 ### Instalación 🔧
 
-_Ubícate en tu carpeta webapi_
+_Ubícate en tu carpeta **WebApi** y ejecuta los siquientes comandos_
 
 ```
+dotnet restore
 dotnet tool install --global dotnet-ef
-```
-```
 dotnet add package Microsoft.EntityFrameworkCore.Design
 ```
+_Luego en la carpeta **Infraestructura** ejecuta estos otros_
 ```
-cd ../Infraestructura
-dotnet ef --startup-project ../WebApi/ migrations add Initial
+dotnet ef database update 0
+dotnet ef migrations remove
+dotnet ef migrations add MigracionInicial
+dotnet ef database update
 ```
+_Ahora vuelven nuevamente a la carpeta **WebApi** en la raiz del proyecto y ejecuta_
 ```
-cd ../Infraestructura
-dotnet ef --startup-project ../WebApi/ database update
-```
-```
-cd ../WebApi
 dotnet run
 ```
 
-Podrás acceder al **https://localhost:5001** para tener acceso a la Api.
+Ahora podrás acceder al **https://localhost:5001** para tener acceso a la Api.
 
 ---
 ⌨️ con ❤️ basado en  [Villanuevand](https://gist.github.com/Villanuevand/6386899f70346d4580c723232524d35a#file-readme-espanol-md) 😊

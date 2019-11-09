@@ -48,6 +48,8 @@ namespace WebApi
 
             // app.UseAuthorization();
 
+            app.UseCors(options => options.AllowAnyOrigin()); 
+
             app.UseCors(builder => builder.AllowAnyOrigin()
                 .AllowAnyHeader()
                 .AllowAnyMethod()
