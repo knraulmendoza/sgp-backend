@@ -7,9 +7,9 @@ namespace Dominio.Entities
     public class Proyecto : BaseEntity
     {
         public Propuesta Propuesta { get; set; }
-        
-        public int ProyectoState { get; set; }
-        
+
+        public ProyectoState ProyectoState { get; set; }
+
         public string Nombre { get; set; }
 
         public float PresupuestoAprovado { get; set; }
@@ -22,7 +22,9 @@ namespace Dominio.Entities
 
         public List<CertificadoDeDisponibilidadPresupuestal> CertificadosDeDisponibilidaPresupuestales { get; set; }
 
-        public List<Transaccion> Transacciones { get; set; }
+        public List<TransacciónBinaria> TransaccionesBinarias { get; set; }
+
+        public List<TransacciónUnaria> TransaccionesUnarias { get; set; }
 
         public DateTime FechaCierre { get; set; }
 

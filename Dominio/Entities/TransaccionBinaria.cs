@@ -1,9 +1,9 @@
 namespace Dominio.Entities
 {
-    public class TransaccionBinaria : Transaccion
+    public class TransacciónBinaria : Transaccion
     {
         public Proyecto ProyectoDeDestino { get; set; }
 
-        public TransaccionBinaria() { }
+        public TransacciónBinaria() { }
     }
 }

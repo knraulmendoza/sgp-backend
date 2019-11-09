@@ -4,12 +4,13 @@ using Infraestructura.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using WebApi.Contracts;
 
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class ProyectoController : GenericController<Proyecto>
+    [Route("api/[controller]")]
+    public class ProyectoController : GenericController<Proyecto>, ProyectoContract
     {
         private UnitOfWork uow;
 
@@ -32,7 +33,7 @@ namespace WebApi.Controllers
             uow.Dispose();
             return res;
         }
-        
+
         [HttpGet]
         public override ActionResult<IEnumerable<Proyecto>> GetAll()
         {
@@ -40,6 +41,24 @@ namespace WebApi.Controllers
             IEnumerable<Proyecto> res = uow.ProyectoRepository.Get();
             uow.Dispose();
             return res.ToList();
+        }
+
+        public IList<TransacciónUnaria> GetGastosProyectos(long idProyecto)
+        {
+            uow = new UnitOfWork();
+            var egresos = uow.ProyectoRepository
+                            .GetByID(idProyecto).TransaccionesUnarias
+                            .Where(t => t.Tipo == TransaccionType.EGRESO);
+            return egresos.ToList();
+        }
+
+        public ICollection<Proyecto> GetProyectosPorEstado(ProyectoState proyectoState)
+        {
+            uow = new UnitOfWork();
+            var proyectos = uow.ProyectoRepository.Get(p => p.ProyectoState == proyectoState);
+            uow.Save();
+            uow.Dispose();
+            return proyectos.ToList();
         }
 
         [HttpPost]
