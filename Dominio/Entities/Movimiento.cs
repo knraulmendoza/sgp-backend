@@ -4,7 +4,7 @@ namespace Dominio.Entities
 {
     public class Movimiento : BaseEntity
     {
-        public float Monto {get;set;}
+        public decimal Monto {get;set;}
 
         public DateTime Fecha {get;set;}
 

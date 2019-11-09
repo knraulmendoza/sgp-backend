@@ -14,7 +14,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override CertificadoDeDisponibilidadPresupuestal Delete(long id)
+        public ActionResult<CertificadoDeDisponibilidadPresupuestal> Delete(long id)
         {
             uow = new UnitOfWork();
             CertificadoDeDisponibilidadPresupuestal res = uow.CertificadoDeDisponibilidadPresupuestalRepository.GetByID(id);
@@ -24,7 +24,7 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public CertificadoDeDisponibilidadPresupuestal GenerarCertificadoDeDisponibilidadPresupuestal(long idProyecto, IDictionary<string, float> fondosYPresupuestos)
+        public ActionResult<CertificadoDeDisponibilidadPresupuestal> GenerarCertificadoDeDisponibilidadPresupuestal(long idProyecto, IDictionary<string, decimal> fondosYPresupuestos)
         {
             var certificado = new CertificadoDeDisponibilidadPresupuestal();
 
@@ -41,7 +41,7 @@ namespace WebApi.Controllers
             return certificado;
         }
 
-        public override CertificadoDeDisponibilidadPresupuestal Get(long id)
+        public ActionResult<CertificadoDeDisponibilidadPresupuestal> Get(long id)
         {
             uow = new UnitOfWork();
             CertificadoDeDisponibilidadPresupuestal res = uow.CertificadoDeDisponibilidadPresupuestalRepository.GetByID(id);
@@ -49,7 +49,7 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override ActionResult<IEnumerable<CertificadoDeDisponibilidadPresupuestal>> GetAll()
+        public ActionResult<IEnumerable<CertificadoDeDisponibilidadPresupuestal>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.CertificadoDeDisponibilidadPresupuestalRepository.Get();
@@ -57,7 +57,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        public IDictionary<string, float> GetListarFondos()
+        public IDictionary<string, decimal> GetListarFondos()
         {
             return FondoGlobal.GetInstance().Fondos;
         }
@@ -67,7 +67,7 @@ namespace WebApi.Controllers
             throw new System.NotImplementedException();
         }
 
-        public override CertificadoDeDisponibilidadPresupuestal Insert(CertificadoDeDisponibilidadPresupuestal entity)
+        public ActionResult<CertificadoDeDisponibilidadPresupuestal> Insert(CertificadoDeDisponibilidadPresupuestal entity)
         {
             uow = new UnitOfWork();
             uow.CertificadoDeDisponibilidadPresupuestalRepository.Insert(entity);
@@ -76,7 +76,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
-        public override CertificadoDeDisponibilidadPresupuestal Update(CertificadoDeDisponibilidadPresupuestal entity)
+        public ActionResult<CertificadoDeDisponibilidadPresupuestal> Update(CertificadoDeDisponibilidadPresupuestal entity)
         {
             uow = new UnitOfWork();
             uow.CertificadoDeDisponibilidadPresupuestalRepository.Update(entity);

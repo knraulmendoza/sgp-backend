@@ -13,7 +13,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override DocumentoPresupuestal Delete(long id)
+        public ActionResult<DocumentoPresupuestal> Delete(long id)
         {
             uow = new UnitOfWork();
             DocumentoPresupuestal res = uow.DocumentoPresupuestalRepository.GetByID(id);
@@ -24,7 +24,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public override DocumentoPresupuestal Get(long id)
+        public ActionResult<DocumentoPresupuestal> Get(long id)
         {
             uow = new UnitOfWork();
             DocumentoPresupuestal res = uow.DocumentoPresupuestalRepository.GetByID(id);
@@ -32,7 +32,7 @@ namespace WebApi.Controllers
             return res;
         }
         [HttpGet]
-        public override ActionResult<IEnumerable<DocumentoPresupuestal>> GetAll()
+        public ActionResult<IEnumerable<DocumentoPresupuestal>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.DocumentoPresupuestalRepository.Get();
@@ -41,7 +41,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public override DocumentoPresupuestal Insert(DocumentoPresupuestal entity)
+        public ActionResult<DocumentoPresupuestal> Insert(DocumentoPresupuestal entity)
         {
             uow = new UnitOfWork();
             uow.DocumentoPresupuestalRepository.Insert(entity);
@@ -51,7 +51,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        public override DocumentoPresupuestal Update(DocumentoPresupuestal entity)
+        public ActionResult<DocumentoPresupuestal> Update(DocumentoPresupuestal entity)
         {
             uow = new UnitOfWork();
             uow.DocumentoPresupuestalRepository.Update(entity);

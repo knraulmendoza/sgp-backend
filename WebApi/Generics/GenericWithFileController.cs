@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Controllers.Generics
 {
-    public abstract class GenericWithFileController<TEntity>: GenericController<TEntity> where TEntity : BaseEntity
+    public abstract class GenericWithFileController<TEntity> where TEntity : BaseEntity
     {
         public virtual ActionResult DownloadFile(string fileName)
         {

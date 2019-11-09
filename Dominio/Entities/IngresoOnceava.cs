@@ -6,8 +6,8 @@ namespace Dominio.Entities
 {
     public class IngresoOnceava : BaseEntity
     {
-        public double Valor { get; set; }
-        public double Interes { get; set; }
+        public decimal Valor { get; set; }
+        public decimal Interes { get; set; }
         public string SoporteValor { get; set; }
         public string SoporteInteres { get; set; }
         public string Descripcion { get; set; }

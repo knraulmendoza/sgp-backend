@@ -9,7 +9,7 @@ namespace Dominio.Entities
 
         public IList<Movimiento> Movimientos { get; set; }
 
-        public IDictionary<string, float> Fondos { get; set; }
+        public IDictionary<string, decimal> Fondos { get; set; }
 
         public static readonly Lazy<FondoGlobal> instance = new Lazy<FondoGlobal>(() => new FondoGlobal());
 
@@ -18,7 +18,7 @@ namespace Dominio.Entities
             Construir();
         }
 
-        public void GenerarMovimiento(MovimientoType tipo, float monto, string nombreDelFondo, IDetalleDelMovimiento detalle)
+        public void GenerarMovimiento(MovimientoType tipo, decimal monto, string nombreDelFondo, IDetalleDelMovimiento detalle)
         {
             if (tipo == MovimientoType.EGRESO) {
                 Fondos[nombreDelFondo] -= monto;

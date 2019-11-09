@@ -13,7 +13,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override Convenio Delete(long id)
+        public ActionResult<Convenio> Delete(long id)
         {
             uow = new UnitOfWork();
             Convenio res = uow.ConvenioRepository.GetByID(id);
@@ -23,7 +23,7 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override Convenio Get(long id)
+        public ActionResult<Convenio> Get(long id)
         {
             uow = new UnitOfWork();
             Convenio res = uow.ConvenioRepository.GetByID(id);
@@ -31,7 +31,7 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override ActionResult<IEnumerable<Convenio>> GetAll()
+        public ActionResult<IEnumerable<Convenio>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.ConvenioRepository.Get();
@@ -39,7 +39,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        public override Convenio Insert(Convenio entity)
+        public ActionResult<Convenio> Insert(Convenio entity)
         {
             uow = new UnitOfWork();
             uow.ConvenioRepository.Insert(entity);
@@ -48,7 +48,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
-        public override Convenio Update(Convenio entity)
+        public ActionResult<Convenio> Update(Convenio entity)
         {
             uow = new UnitOfWork();
             uow.ConvenioRepository.Update(entity);

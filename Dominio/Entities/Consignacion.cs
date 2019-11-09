@@ -4,7 +4,7 @@ namespace Dominio.Entities
 {
     public class Consignación : IDetalleDelMovimiento
     {
-        public float Valor { get; set; }
+        public decimal Valor { get; set; }
 
         public DateTime Fecha { get; set; }
 

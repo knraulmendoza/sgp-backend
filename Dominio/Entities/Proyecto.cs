@@ -12,9 +12,9 @@ namespace Dominio.Entities
 
         public string Nombre { get; set; }
 
-        public float PresupuestoAprovado { get; set; }
+        public decimal PresupuestoAprobado { get; set; }
 
-        public float PresupuestoEjecutado { get; set; }
+        public decimal PresupuestoEjecutado { get; set; }
 
         public List<Comunidad> Comunidad { get; set; }
 

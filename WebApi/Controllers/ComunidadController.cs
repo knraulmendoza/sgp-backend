@@ -14,7 +14,7 @@ namespace WebApi.Controllers
         private UnitOfWork uow;
 
         [HttpDelete]
-        public override Comunidad Delete(long id)
+        public ActionResult<Comunidad> Delete(long id)
         {
             uow = new UnitOfWork();
             Comunidad res = uow.ComunidadRepository.GetByID(id);
@@ -25,7 +25,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public override Comunidad Get(long id)
+        public ActionResult<Comunidad> Get(long id)
         {
             uow = new UnitOfWork();
             Comunidad res = uow.ComunidadRepository.GetByID(id);
@@ -34,7 +34,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public override ActionResult<IEnumerable<Comunidad>> GetAll()
+        public ActionResult<IEnumerable<Comunidad>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.ComunidadRepository.Get();
@@ -43,7 +43,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public override Comunidad Insert(Comunidad entity)
+        public ActionResult<Comunidad> Insert(Comunidad entity)
         {
             uow = new UnitOfWork();
             uow.ComunidadRepository.Insert(entity);
@@ -53,7 +53,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        public override Comunidad Update(Comunidad entity)
+        public ActionResult<Comunidad> Update(Comunidad entity)
         {
             uow = new UnitOfWork();
             uow.ComunidadRepository.Update(entity);

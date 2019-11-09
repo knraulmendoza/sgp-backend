@@ -9,12 +9,12 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DocumentoController : GenericWithFileController<Documento>
+    public class DocumentoController : GenericWithFileController<Documento>, GenericController<Documento>
     {
         private UnitOfWork uow;
 
         [HttpGet("{id}")]
-        public override Documento Get(long id)
+        public ActionResult<Documento> Get(long id)
         {
             uow = new UnitOfWork();
             Documento res = uow.DocumentoRepository.GetByID(id);
@@ -28,7 +28,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public override ActionResult<IEnumerable<Documento>> GetAll()
+        public ActionResult<IEnumerable<Documento>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.DocumentoRepository.Get();
@@ -37,7 +37,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public override Documento Insert(Documento entity)
+        public ActionResult<Documento> Insert(Documento entity)
         {
             uow = new UnitOfWork();
             uow.DocumentoRepository.Insert(entity);
@@ -47,7 +47,7 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete]
-        public override Documento Delete(long id)
+        public ActionResult<Documento> Delete(long id)
         {
             uow = new UnitOfWork();
             Documento res = uow.DocumentoRepository.GetByID(id);
@@ -58,7 +58,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        public override Documento Update(Documento entity)
+        public ActionResult<Documento> Update(Documento entity)
         {
             uow = new UnitOfWork();
             uow.DocumentoRepository.Update(entity);

@@ -19,7 +19,7 @@ namespace Dominio.Entities
 
         public string Nombre { get; set; }
         
-        public Double PresupuestoEstimado { get; set; }
+        public decimal PresupuestoEstimado { get; set; }
         
         public DateTime FechaDeRegistro { get; set; }
 

@@ -12,7 +12,7 @@ namespace WebApi.Controllers
     public class ComponenteController : GenericController<Componente>
     {
         private UnitOfWork uow;
-        public override Componente Delete(long id)
+        public ActionResult<Componente> Delete(long id)
         {
             uow = new UnitOfWork();
             Componente res = uow.ComponenteRepository.GetByID(id);
@@ -22,7 +22,7 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override Componente Get(long id)
+        public ActionResult<Componente> Get(long id)
         {
             uow = new UnitOfWork();
             Componente res = uow.ComponenteRepository.GetByID(id);
@@ -30,7 +30,7 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override ActionResult<IEnumerable<Componente>> GetAll()
+        public ActionResult<IEnumerable<Componente>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.ComponenteRepository.Get();
@@ -38,7 +38,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        public override Componente Insert(Componente entity)
+        public ActionResult<Componente> Insert(Componente entity)
         {
             uow = new UnitOfWork();
             uow.ComponenteRepository.Insert(entity);
@@ -47,7 +47,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
-        public override Componente Update(Componente entity)
+        public ActionResult<Componente> Update(Componente entity)
         {
             uow = new UnitOfWork();
             uow.ComponenteRepository.Update(entity);
