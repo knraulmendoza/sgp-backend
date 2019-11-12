@@ -16,7 +16,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult<Actividad> Delete(long id)
         {
             // Actividad entity = Get(id);

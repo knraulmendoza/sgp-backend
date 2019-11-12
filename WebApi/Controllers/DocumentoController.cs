@@ -46,7 +46,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult<Documento> Delete(long id)
         {
             uow = new UnitOfWork();

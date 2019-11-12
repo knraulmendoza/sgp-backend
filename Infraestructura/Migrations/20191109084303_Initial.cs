@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infraestructura.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,24 +54,6 @@ namespace Infraestructura.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "IngresoOnceava",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Valor = table.Column<decimal>(nullable: false),
-                    Interes = table.Column<decimal>(nullable: false),
-                    SoporteValor = table.Column<string>(nullable: true),
-                    SoporteInteres = table.Column<string>(nullable: true),
-                    Descripcion = table.Column<string>(nullable: true),
-                    Fecha = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_IngresoOnceava", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Compromiso",
                 columns: table => new
                 {
@@ -108,6 +90,36 @@ namespace Infraestructura.Migrations
                         name: "FK_Componente_Dimension_DimensionId",
                         column: x => x.DimensionId,
                         principalTable: "Dimension",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IngresoOnceava",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Valor = table.Column<decimal>(nullable: false),
+                    Interes = table.Column<decimal>(nullable: false),
+                    SoporteValorId = table.Column<long>(nullable: true),
+                    SoporteInteresId = table.Column<long>(nullable: true),
+                    Descripcion = table.Column<string>(nullable: true),
+                    Fecha = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IngresoOnceava", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_IngresoOnceava_Documento_SoporteInteresId",
+                        column: x => x.SoporteInteresId,
+                        principalTable: "Documento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_IngresoOnceava_Documento_SoporteValorId",
+                        column: x => x.SoporteValorId,
+                        principalTable: "Documento",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -411,6 +423,16 @@ namespace Infraestructura.Migrations
                 name: "IX_Estrategia_ComponenteId",
                 table: "Estrategia",
                 column: "ComponenteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IngresoOnceava_SoporteInteresId",
+                table: "IngresoOnceava",
+                column: "SoporteInteresId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IngresoOnceava_SoporteValorId",
+                table: "IngresoOnceava",
+                column: "SoporteValorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Programa_EstrategiaId",

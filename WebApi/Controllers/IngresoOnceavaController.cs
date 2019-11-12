@@ -15,7 +15,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult<IngresoOnceava> Delete(long id)
         {
             uow = new UnitOfWork();

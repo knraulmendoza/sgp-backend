@@ -8,8 +8,8 @@ namespace Dominio.Entities
     {
         public decimal Valor { get; set; }
         public decimal Interes { get; set; }
-        public string SoporteValor { get; set; }
-        public string SoporteInteres { get; set; }
+        public Documento SoporteValor { get; set; }
+        public Documento SoporteInteres { get; set; }
         public string Descripcion { get; set; }
         public DateTime Fecha { get; set; }
         public IngresoOnceava() { }

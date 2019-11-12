@@ -14,6 +14,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
+        [HttpDelete("{id}")]
         public ActionResult<Egreso> Delete(long id)
         {
             uow = new UnitOfWork();
@@ -22,6 +23,7 @@ namespace WebApi.Controllers
             return null;
         }
 
+        [HttpGet("{id}")]
         public ActionResult<Egreso> Get(long id)
         {
             uow = new UnitOfWork();
@@ -43,7 +45,7 @@ namespace WebApi.Controllers
             throw new System.NotImplementedException();
         }
 
-        [HttpGet]
+        [HttpGet("/estado/{proyectoState}")]
         public IList<Proyecto> GetProyectosConRP(string proyectoState)
         {
             throw new System.NotImplementedException();

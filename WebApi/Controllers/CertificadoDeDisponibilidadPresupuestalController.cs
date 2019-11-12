@@ -14,6 +14,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
+        [HttpDelete("{id}")]
         public ActionResult<CertificadoDeDisponibilidadPresupuestal> Delete(long id)
         {
             uow = new UnitOfWork();
@@ -41,6 +42,7 @@ namespace WebApi.Controllers
             return certificado;
         }
 
+        [HttpGet("{id}")]
         public ActionResult<CertificadoDeDisponibilidadPresupuestal> Get(long id)
         {
             uow = new UnitOfWork();
@@ -49,6 +51,7 @@ namespace WebApi.Controllers
             return res;
         }
 
+        [HttpGet]
         public ActionResult<IEnumerable<CertificadoDeDisponibilidadPresupuestal>> GetAll()
         {
             uow = new UnitOfWork();
@@ -67,6 +70,7 @@ namespace WebApi.Controllers
             throw new System.NotImplementedException();
         }
 
+        [HttpPost]
         public ActionResult<CertificadoDeDisponibilidadPresupuestal> Insert(CertificadoDeDisponibilidadPresupuestal entity)
         {
             uow = new UnitOfWork();
@@ -76,6 +80,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
+        [HttpPut]
         public ActionResult<CertificadoDeDisponibilidadPresupuestal> Update(CertificadoDeDisponibilidadPresupuestal entity)
         {
             uow = new UnitOfWork();

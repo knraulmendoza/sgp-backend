@@ -13,7 +13,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult<RegistroPresupuestal> Delete(long id)
         {
             uow = new UnitOfWork();
@@ -33,6 +33,7 @@ namespace WebApi.Controllers
             return res;
         }
 
+        [HttpGet]
         public ActionResult<IEnumerable<RegistroPresupuestal>> GetAll()
         {
             uow = new UnitOfWork();
@@ -41,6 +42,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
+        [HttpPost]
         public ActionResult<RegistroPresupuestal> Insert(RegistroPresupuestal entity)
         {
             uow = new UnitOfWork();
@@ -50,6 +52,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
+        [HttpPut]
         public ActionResult<RegistroPresupuestal> Update(RegistroPresupuestal entity)
         {
             uow = new UnitOfWork();
