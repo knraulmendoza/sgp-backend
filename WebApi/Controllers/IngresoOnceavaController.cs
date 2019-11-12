@@ -15,7 +15,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult<IngresoOnceava> Delete(long id)
         {
             uow = new UnitOfWork();
@@ -40,6 +40,8 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             IngresoOnceava res = uow.IngresoOnceavaRepository.GetByID(id);
+            res.SoporteInteres = uow.DocumentoRepository.GetByID(res.SoporteInteresId);
+            res.SoporteValor = uow.DocumentoRepository.GetByID(res.SoporteValorId);
             uow.Dispose();
             return res;
         }

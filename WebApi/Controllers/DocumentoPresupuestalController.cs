@@ -13,6 +13,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
+        [HttpDelete("{id}")]
         public ActionResult<DocumentoPresupuestal> Delete(long id)
         {
             uow = new UnitOfWork();
@@ -31,6 +32,7 @@ namespace WebApi.Controllers
             uow.Dispose();
             return res;
         }
+        
         [HttpGet]
         public ActionResult<IEnumerable<DocumentoPresupuestal>> GetAll()
         {

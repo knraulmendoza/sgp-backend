@@ -12,6 +12,8 @@ namespace WebApi.Controllers
     public class DimensionController : GenericController<Dimension>
     {
         private UnitOfWork uow;
+
+        [HttpDelete("{id}")]
         public ActionResult<Dimension> Delete(long id)
         {
             uow = new UnitOfWork();
@@ -21,6 +23,8 @@ namespace WebApi.Controllers
             return res;
         }
 
+
+        [HttpGet("{id}")]
         public ActionResult<Dimension> Get(long id)
         {
             uow = new UnitOfWork();
@@ -29,6 +33,7 @@ namespace WebApi.Controllers
             return res;
         }
 
+        [HttpGet]
         public ActionResult<IEnumerable<Dimension>> GetAll()
         {
             uow = new UnitOfWork();
@@ -37,6 +42,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
+        [HttpPost]
         public ActionResult<Dimension> Insert(Dimension entity)
         {
             uow = new UnitOfWork();
@@ -46,6 +52,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
+        [HttpPut]
         public ActionResult<Dimension> Update(Dimension entity)
         {
             uow = new UnitOfWork();

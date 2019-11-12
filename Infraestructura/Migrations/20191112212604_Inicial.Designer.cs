@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructura.Migrations
 {
     [DbContext(typeof(SgpContext))]
-    [Migration("20191109073133_Inicial")]
+    [Migration("20191112212604_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -268,16 +268,20 @@ namespace Infraestructura.Migrations
                     b.Property<decimal>("Interes")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("SoporteInteres")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("SoporteInteresId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("SoporteValor")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("SoporteValorId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Valor")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SoporteInteresId");
+
+                    b.HasIndex("SoporteValorId");
 
                     b.ToTable("IngresoOnceava");
                 });
@@ -508,6 +512,21 @@ namespace Infraestructura.Migrations
                     b.HasOne("Dominio.Entities.Componente", null)
                         .WithMany("Estrategias")
                         .HasForeignKey("ComponenteId");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.IngresoOnceava", b =>
+                {
+                    b.HasOne("Dominio.Entities.Documento", "SoporteInteres")
+                        .WithMany()
+                        .HasForeignKey("SoporteInteresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Dominio.Entities.Documento", "SoporteValor")
+                        .WithMany()
+                        .HasForeignKey("SoporteValorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Dominio.Entities.Programa", b =>

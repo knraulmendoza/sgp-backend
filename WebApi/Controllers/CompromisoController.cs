@@ -13,6 +13,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
+        [HttpDelete("{id}")]
         public ActionResult<Compromiso> Delete(long id)
         {
             uow = new UnitOfWork();
@@ -23,6 +24,7 @@ namespace WebApi.Controllers
             return res;
         }
 
+        [HttpGet("{id}")]
         public ActionResult<Compromiso> Get(long id)
         {
             uow = new UnitOfWork();
@@ -32,6 +34,7 @@ namespace WebApi.Controllers
             return res;
         }
 
+        [HttpGet]
         public ActionResult<IEnumerable<Compromiso>> GetAll()
         {
             uow = new UnitOfWork();
@@ -40,6 +43,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
+        [HttpPost]
         public ActionResult<Compromiso> Insert(Compromiso entity)
         {
             uow = new UnitOfWork();
@@ -49,6 +53,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
+        [HttpPut]
         public ActionResult<Compromiso> Update(Compromiso entity)
         {
             uow = new UnitOfWork();

@@ -12,6 +12,8 @@ namespace WebApi.Controllers
     public class ComponenteController : GenericController<Componente>
     {
         private UnitOfWork uow;
+
+        [HttpDelete("{id}")]
         public ActionResult<Componente> Delete(long id)
         {
             uow = new UnitOfWork();
@@ -22,6 +24,7 @@ namespace WebApi.Controllers
             return res;
         }
 
+        [HttpGet("{id}")]
         public ActionResult<Componente> Get(long id)
         {
             uow = new UnitOfWork();
@@ -30,6 +33,7 @@ namespace WebApi.Controllers
             return res;
         }
 
+        [HttpGet]
         public ActionResult<IEnumerable<Componente>> GetAll()
         {
             uow = new UnitOfWork();
@@ -38,6 +42,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
+        [HttpPost]
         public ActionResult<Componente> Insert(Componente entity)
         {
             uow = new UnitOfWork();
@@ -47,6 +52,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
+        [HttpPut]
         public ActionResult<Componente> Update(Componente entity)
         {
             uow = new UnitOfWork();

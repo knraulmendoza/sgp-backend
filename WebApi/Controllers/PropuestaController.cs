@@ -43,7 +43,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult<Propuesta> Delete(long id)
         {
             uow = new UnitOfWork();
@@ -64,7 +64,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("/file/{id}")]
         public byte[] GetArchivoDelProyecto(long id)
         {
             uow=new UnitOfWork();

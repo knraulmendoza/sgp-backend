@@ -13,6 +13,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
+        [HttpDelete("{id}")]
         public ActionResult<Estrategia> Delete(long id)
         {
             uow = new UnitOfWork();
@@ -23,6 +24,7 @@ namespace WebApi.Controllers
             return res;
         }
 
+        [HttpGet("{id}")]
         public ActionResult<Estrategia> Get(long id)
         {
             uow = new UnitOfWork();
@@ -31,6 +33,7 @@ namespace WebApi.Controllers
             return res.ToList().FirstOrDefault();
         }
 
+        [HttpGet]
         public ActionResult<IEnumerable<Estrategia>> GetAll()
         {
             uow = new UnitOfWork();
@@ -39,6 +42,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
+        [HttpPost]
         public ActionResult<Estrategia> Insert(Estrategia entity)
         {
             uow = new UnitOfWork();
@@ -48,6 +52,7 @@ namespace WebApi.Controllers
             return entity;
         }
 
+        [HttpPut]
         public ActionResult<Estrategia> Update(Estrategia entity)
         {
             uow = new UnitOfWork();
