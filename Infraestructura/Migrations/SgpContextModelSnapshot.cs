@@ -266,10 +266,10 @@ namespace Infraestructura.Migrations
                     b.Property<decimal>("Interes")
                         .HasColumnType("TEXT");
 
-                    b.Property<long?>("SoporteInteresId")
+                    b.Property<long>("SoporteInteresId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long?>("SoporteValorId")
+                    b.Property<long>("SoporteValorId")
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Valor")
@@ -516,11 +516,15 @@ namespace Infraestructura.Migrations
                 {
                     b.HasOne("Dominio.Entities.Documento", "SoporteInteres")
                         .WithMany()
-                        .HasForeignKey("SoporteInteresId");
+                        .HasForeignKey("SoporteInteresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Dominio.Entities.Documento", "SoporteValor")
                         .WithMany()
-                        .HasForeignKey("SoporteValorId");
+                        .HasForeignKey("SoporteValorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Dominio.Entities.Programa", b =>

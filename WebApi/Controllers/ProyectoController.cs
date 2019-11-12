@@ -14,7 +14,6 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        [HttpDelete("{id}")]
         public ProyectoController(){
             uow = new UnitOfWork();
             if(uow.ProyectoRepository.Get().ToList().Count == 0){

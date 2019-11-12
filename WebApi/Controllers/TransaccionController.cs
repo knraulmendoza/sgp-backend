@@ -13,7 +13,6 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        [HttpDelete("{id}")]
         public TransaccionController(){
             uow = new UnitOfWork();
             if(uow.TransaccionRepository.Get().ToList().Count == 0){

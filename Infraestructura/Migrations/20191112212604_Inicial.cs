@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infraestructura.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -102,8 +102,8 @@ namespace Infraestructura.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Valor = table.Column<decimal>(nullable: false),
                     Interes = table.Column<decimal>(nullable: false),
-                    SoporteValorId = table.Column<long>(nullable: true),
-                    SoporteInteresId = table.Column<long>(nullable: true),
+                    SoporteValorId = table.Column<long>(nullable: false),
+                    SoporteInteresId = table.Column<long>(nullable: false),
                     Descripcion = table.Column<string>(nullable: true),
                     Fecha = table.Column<DateTime>(nullable: false)
                 },
@@ -115,13 +115,13 @@ namespace Infraestructura.Migrations
                         column: x => x.SoporteInteresId,
                         principalTable: "Documento",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_IngresoOnceava_Documento_SoporteValorId",
                         column: x => x.SoporteValorId,
                         principalTable: "Documento",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
