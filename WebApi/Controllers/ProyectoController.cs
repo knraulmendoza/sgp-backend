@@ -40,7 +40,7 @@ namespace WebApi.Controllers
             uow.Dispose();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult<Proyecto> Delete(long id)
         {
             uow = new UnitOfWork();
@@ -98,7 +98,6 @@ namespace WebApi.Controllers
             uow.Dispose();
             return entity;
         }
-
 
         [HttpPut]
         public ActionResult<Proyecto> Update(Proyecto entity)
