@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Dominio.Entities;
 using Microsoft.AspNetCore.Components;
 
-public interface CertificadoDeDisponibilidadPresupuestalContract
+public interface ICertificadoDeDisponibilidadPresupuestalContract
 {
     // Route[("api/[controller]/{idProyecto}/generar-cdp")]
     CertificadoDeDisponibilidadPresupuestal GenerarCertificadoDeDisponibilidadPresupuestal(long Proyecto, IDictionary<string, float> fondosYPresupuestos);

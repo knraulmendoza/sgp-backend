@@ -10,7 +10,7 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CertificadoDeDisponibilidadPresupuestalController : GenericController<CertificadoDeDisponibilidadPresupuestal>, CertificadoDeDisponibilidadPresupuestalContract
+    public class CertificadoDeDisponibilidadPresupuestalController : GenericController<CertificadoDeDisponibilidadPresupuestal>, ICertificadoDeDisponibilidadPresupuestalContract
     {
         private UnitOfWork uow;
 
@@ -26,18 +26,18 @@ namespace WebApi.Controllers
 
         public CertificadoDeDisponibilidadPresupuestal GenerarCertificadoDeDisponibilidadPresupuestal(long idProyecto, IDictionary<string, float> fondosYPresupuestos)
         {
-            var certificado = new CertificadoDeDisponibilidadPresupuestal();
-
             uow = new UnitOfWork();
             var proyecto = uow.ProyectoRepository.GetByID(idProyecto);
-            certificado = new CertificadoDeDisponibilidadPresupuestal() {
-                Codigo = "",
+            var certificado = new CertificadoDeDisponibilidadPresupuestal() {
+                Codigo = Guid.NewGuid().ToString(),
                 FechaDeExpedicion = DateTime.Now,
                 FechaDeVencimiento = DateTime.Now,
-                RegistroPresupuestal = new RegistroPresupuestal() {
-                    
-                }
+                RegistroPresupuestal = default
             };
+            proyecto.CertificadosDeDisponibilidaPresupuestales.Add(certificado);
+            uow.ProyectoRepository.Update(proyecto);
+            uow.Save();
+            uow.Dispose();
             return certificado;
         }
 

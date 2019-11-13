@@ -43,6 +43,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
+        [Route("/Egresos/{idProyecto}")]
         public IList<TransacciónUnaria> GetGastosProyectos(long idProyecto)
         {
             uow = new UnitOfWork();
