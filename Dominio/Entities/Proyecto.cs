@@ -27,6 +27,8 @@ namespace Dominio.Entities
 
         public List<TransaccionUnaria> TransaccionesUnarias { get; set; }
 
+        public List<TransaccionBinaria> TransaccionesBinarias { get; set; }
+
         public DateTime FechaCierre { get; set; }
 
         public DateTime FechaDeCierrePrevista { get; set; }
@@ -34,7 +36,7 @@ namespace Dominio.Entities
         public Programa Programa { get; set; }
 
         public List<Actividad> Actividades { get; set; }
-        
+
         public IList<Beneficiario> Beneficiarios { get; set; }
 
         public Proyecto() { }
