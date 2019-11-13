@@ -16,7 +16,7 @@ namespace Dominio.Entities
 
         public decimal PresupuestoEjecutado { get; set; }
 
-        public List<Comunidad> Comunidad { get; set; }
+        public List<ProyectoComunidad> ProyectosComunidads { get; set; }
 
         public DateTime FechaEjecucion { get; set; }
 

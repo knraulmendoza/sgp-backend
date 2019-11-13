@@ -133,12 +133,7 @@ namespace Infraestructura.Migrations
                     b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
-                    b.Property<long?>("ProyectoId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProyectoId");
 
                     b.ToTable("Comunidad");
                 });
@@ -382,6 +377,27 @@ namespace Infraestructura.Migrations
                     b.ToTable("Proyectos");
                 });
 
+            modelBuilder.Entity("Dominio.Entities.ProyectoComunidad", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("ComunidadId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("ProyectoId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ComunidadId");
+
+                    b.HasIndex("ProyectoId");
+
+                    b.ToTable("ProyectoComunidad");
+                });
+
             modelBuilder.Entity("Dominio.Entities.Transaccion", b =>
                 {
                     b.Property<long>("Id")
@@ -498,13 +514,6 @@ namespace Infraestructura.Migrations
                         .HasForeignKey("ConvenioId");
                 });
 
-            modelBuilder.Entity("Dominio.Entities.Comunidad", b =>
-                {
-                    b.HasOne("Dominio.Entities.Proyecto", null)
-                        .WithMany("Comunidad")
-                        .HasForeignKey("ProyectoId");
-                });
-
             modelBuilder.Entity("Dominio.Entities.Estrategia", b =>
                 {
                     b.HasOne("Dominio.Entities.Componente", null)
@@ -550,6 +559,21 @@ namespace Infraestructura.Migrations
                     b.HasOne("Dominio.Entities.Propuesta", "Propuesta")
                         .WithMany()
                         .HasForeignKey("PropuestaId");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.ProyectoComunidad", b =>
+                {
+                    b.HasOne("Dominio.Entities.Comunidad", "Comunidad")
+                        .WithMany("ProyectosComunidads")
+                        .HasForeignKey("ComunidadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Dominio.Entities.Proyecto", "Proyecto")
+                        .WithMany("ProyectosComunidads")
+                        .HasForeignKey("ProyectoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Dominio.Entities.CertificadoDeDisponibilidadPresupuestal", b =>

@@ -8,6 +8,20 @@ namespace Infraestructura.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Comunidad",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombre = table.Column<string>(nullable: true),
+                    Descripcion = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comunidad", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Convenio",
                 columns: table => new
                 {
@@ -279,24 +293,29 @@ namespace Infraestructura.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comunidad",
+                name: "ProyectoComunidad",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nombre = table.Column<string>(nullable: true),
-                    Descripcion = table.Column<string>(nullable: true),
-                    ProyectoId = table.Column<long>(nullable: true)
+                    ProyectoId = table.Column<long>(nullable: false),
+                    ComunidadId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comunidad", x => x.Id);
+                    table.PrimaryKey("PK_ProyectoComunidad", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comunidad_Proyectos_ProyectoId",
+                        name: "FK_ProyectoComunidad_Comunidad_ComunidadId",
+                        column: x => x.ComunidadId,
+                        principalTable: "Comunidad",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProyectoComunidad_Proyectos_ProyectoId",
                         column: x => x.ProyectoId,
                         principalTable: "Proyectos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -395,11 +414,6 @@ namespace Infraestructura.Migrations
                 column: "ConvenioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comunidad_ProyectoId",
-                table: "Comunidad",
-                column: "ProyectoId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_DocumentoPresupuestal_ProyectoId",
                 table: "DocumentoPresupuestal",
                 column: "ProyectoId");
@@ -445,6 +459,16 @@ namespace Infraestructura.Migrations
                 column: "DocumentoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProyectoComunidad_ComunidadId",
+                table: "ProyectoComunidad",
+                column: "ComunidadId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProyectoComunidad_ProyectoId",
+                table: "ProyectoComunidad",
+                column: "ProyectoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Proyectos_ProgramaId",
                 table: "Proyectos",
                 column: "ProgramaId");
@@ -466,13 +490,13 @@ namespace Infraestructura.Migrations
                 name: "Actividades");
 
             migrationBuilder.DropTable(
-                name: "Comunidad");
-
-            migrationBuilder.DropTable(
                 name: "DocumentoPresupuestal");
 
             migrationBuilder.DropTable(
                 name: "IngresoOnceava");
+
+            migrationBuilder.DropTable(
+                name: "ProyectoComunidad");
 
             migrationBuilder.DropTable(
                 name: "Transaccion");
@@ -482,6 +506,9 @@ namespace Infraestructura.Migrations
 
             migrationBuilder.DropTable(
                 name: "Compromiso");
+
+            migrationBuilder.DropTable(
+                name: "Comunidad");
 
             migrationBuilder.DropTable(
                 name: "Proyectos");
