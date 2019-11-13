@@ -11,12 +11,12 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PropuestaController : GenericController<Propuesta>
+    public class PropuestaController : GenericController<Propuesta>, PropuestaContract
     {
         private UnitOfWork uow;
         
         [HttpGet]
-        public override ActionResult<IEnumerable<Propuesta>> GetAll()
+        public ActionResult<IEnumerable<Propuesta>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.PropuestaRepository.Get();
@@ -25,7 +25,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public override Propuesta Get(long id)
+        public ActionResult<Propuesta> Get(long id)
         {
             uow = new UnitOfWork();
             Propuesta res = uow.PropuestaRepository.GetByID(id);
@@ -34,7 +34,7 @@ namespace WebApi.Controllers
         }
         
         [HttpPost]
-        public override Propuesta Insert(Propuesta entity)
+        public ActionResult<Propuesta> Insert(Propuesta entity)
         {
             uow = new UnitOfWork();
             uow.PropuestaRepository.Insert(entity);
@@ -43,8 +43,8 @@ namespace WebApi.Controllers
             return entity;
         }
 
-        [HttpDelete]
-        public override Propuesta Delete(long id)
+        [HttpDelete("{id}")]
+        public ActionResult<Propuesta> Delete(long id)
         {
             uow = new UnitOfWork();
             Propuesta res = uow.PropuestaRepository.GetByID(id);
@@ -55,14 +55,28 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        public override Propuesta Update(Propuesta entity)
+        public ActionResult<Propuesta> Update(Propuesta entity)
         {
             uow = new UnitOfWork();
             uow.PropuestaRepository.Update(entity);
             uow.Save();
-            uow.Save();
+            uow.Dispose();
             return entity;
         }
 
+        [HttpGet("/file/{id}")]
+        public byte[] GetArchivoDelProyecto(long id)
+        {
+            uow=new UnitOfWork();
+            var PDF=uow.PropuestaRepository.GetByID(id).Documento.RawData;
+            uow.Save();
+            uow.Dispose();
+            return PDF;
+        }
+
+        public IList<Componente> GetComponentesPorDimension(long idDimension)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,6 +7,7 @@ public interface PropuestaContract
 {
     IList<Componente> GetComponentesPorDimension(long idDimension);
     
-    //[Route("api/[controller]/{idProyecto}/documento")]
-    string GetArchivoDelProyecto(long idProyecto);
+    // [Route("api/[controller]/{idProyecto}/documento")]
+    byte[] GetArchivoDelProyecto(long idProyecto);
+
 }

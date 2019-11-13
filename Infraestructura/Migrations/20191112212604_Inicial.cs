@@ -16,7 +16,7 @@ namespace Infraestructura.Migrations
                     Codigo = table.Column<string>(nullable: true),
                     FechaDeSuscripcion = table.Column<DateTime>(nullable: false),
                     Plazo = table.Column<short>(nullable: false),
-                    Valor = table.Column<float>(nullable: false),
+                    Valor = table.Column<decimal>(nullable: false),
                     Obbjeto = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -45,29 +45,12 @@ namespace Infraestructura.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Nombre = table.Column<string>(nullable: true),
+                    RawData = table.Column<byte[]>(nullable: true),
                     RespaldoFisicoDigitalizado = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Documento", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "IngresoOnceava",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Valor = table.Column<double>(nullable: false),
-                    Interes = table.Column<double>(nullable: false),
-                    SoporteValor = table.Column<string>(nullable: true),
-                    SoporteInteres = table.Column<string>(nullable: true),
-                    Descripcion = table.Column<string>(nullable: true),
-                    Fecha = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_IngresoOnceava", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -112,6 +95,36 @@ namespace Infraestructura.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "IngresoOnceava",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Valor = table.Column<decimal>(nullable: false),
+                    Interes = table.Column<decimal>(nullable: false),
+                    SoporteValorId = table.Column<long>(nullable: false),
+                    SoporteInteresId = table.Column<long>(nullable: false),
+                    Descripcion = table.Column<string>(nullable: true),
+                    Fecha = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IngresoOnceava", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_IngresoOnceava_Documento_SoporteInteresId",
+                        column: x => x.SoporteInteresId,
+                        principalTable: "Documento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_IngresoOnceava_Documento_SoporteValorId",
+                        column: x => x.SoporteValorId,
+                        principalTable: "Documento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Propuestas",
                 columns: table => new
                 {
@@ -122,7 +135,7 @@ namespace Infraestructura.Migrations
                     DocumentoId = table.Column<long>(nullable: true),
                     NumeroDeFamilias = table.Column<int>(nullable: false),
                     Nombre = table.Column<string>(nullable: true),
-                    PresupuestoEstimado = table.Column<double>(nullable: false),
+                    PresupuestoEstimado = table.Column<decimal>(nullable: false),
                     FechaDeRegistro = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -187,8 +200,8 @@ namespace Infraestructura.Migrations
                     PropuestaId = table.Column<long>(nullable: true),
                     ProyectoState = table.Column<int>(nullable: false),
                     Nombre = table.Column<string>(nullable: true),
-                    PresupuestoAprovado = table.Column<float>(nullable: false),
-                    PresupuestoEjecutado = table.Column<float>(nullable: false),
+                    PresupuestoAprobado = table.Column<decimal>(nullable: false),
+                    PresupuestoEjecutado = table.Column<decimal>(nullable: false),
                     FechaEjecucion = table.Column<DateTime>(nullable: false),
                     FechaCierre = table.Column<DateTime>(nullable: false),
                     FechaDeCierrePrevista = table.Column<DateTime>(nullable: false),
@@ -223,7 +236,7 @@ namespace Infraestructura.Migrations
                     FechaInicio = table.Column<DateTime>(nullable: false),
                     FechaFinalizacion = table.Column<DateTime>(nullable: false),
                     ActividadState = table.Column<int>(nullable: false),
-                    Costo = table.Column<float>(nullable: false),
+                    Costo = table.Column<decimal>(nullable: false),
                     ProyectoId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
@@ -293,9 +306,11 @@ namespace Infraestructura.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Fecha = table.Column<DateTime>(nullable: false),
-                    Monto = table.Column<float>(nullable: false),
+                    Monto = table.Column<decimal>(nullable: false),
+                    Tipo = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
                     ProyectoId = table.Column<long>(nullable: true),
-                    Tipo = table.Column<int>(nullable: false)
+                    Concepto = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -408,6 +423,16 @@ namespace Infraestructura.Migrations
                 name: "IX_Estrategia_ComponenteId",
                 table: "Estrategia",
                 column: "ComponenteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IngresoOnceava_SoporteInteresId",
+                table: "IngresoOnceava",
+                column: "SoporteInteresId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IngresoOnceava_SoporteValorId",
+                table: "IngresoOnceava",
+                column: "SoporteValorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Programa_EstrategiaId",

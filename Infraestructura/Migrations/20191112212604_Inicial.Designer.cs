@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructura.Migrations
 {
     [DbContext(typeof(SgpContext))]
-    [Migration("20191106220014_Initial")]
-    partial class Initial
+    [Migration("20191112212604_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,8 +30,8 @@ namespace Infraestructura.Migrations
                     b.Property<string>("Codigo")
                         .HasColumnType("TEXT");
 
-                    b.Property<float>("Costo")
-                        .HasColumnType("REAL");
+                    b.Property<decimal>("Costo")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Descripcion")
                         .HasColumnType("TEXT");
@@ -163,8 +163,8 @@ namespace Infraestructura.Migrations
                     b.Property<short>("Plazo")
                         .HasColumnType("INTEGER");
 
-                    b.Property<float>("Valor")
-                        .HasColumnType("REAL");
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -196,6 +196,9 @@ namespace Infraestructura.Migrations
 
                     b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("RawData")
+                        .HasColumnType("BLOB");
 
                     b.Property<string>("RespaldoFisicoDigitalizado")
                         .HasColumnType("TEXT");
@@ -262,19 +265,23 @@ namespace Infraestructura.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Interes")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("SoporteInteres")
+                    b.Property<decimal>("Interes")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("SoporteValor")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("SoporteInteresId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<double>("Valor")
-                        .HasColumnType("REAL");
+                    b.Property<long>("SoporteValorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SoporteInteresId");
+
+                    b.HasIndex("SoporteValorId");
 
                     b.ToTable("IngresoOnceava");
                 });
@@ -325,8 +332,8 @@ namespace Infraestructura.Migrations
                     b.Property<int>("NumeroDeFamilias")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("PresupuestoEstimado")
-                        .HasColumnType("REAL");
+                    b.Property<decimal>("PresupuestoEstimado")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -353,11 +360,11 @@ namespace Infraestructura.Migrations
                     b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
-                    b.Property<float>("PresupuestoAprovado")
-                        .HasColumnType("REAL");
+                    b.Property<decimal>("PresupuestoAprobado")
+                        .HasColumnType("TEXT");
 
-                    b.Property<float>("PresupuestoEjecutado")
-                        .HasColumnType("REAL");
+                    b.Property<decimal>("PresupuestoEjecutado")
+                        .HasColumnType("TEXT");
 
                     b.Property<long?>("ProgramaId")
                         .HasColumnType("INTEGER");
@@ -383,23 +390,24 @@ namespace Infraestructura.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
-                    b.Property<float>("Monto")
-                        .HasColumnType("REAL");
-
-                    b.Property<long?>("ProyectoId")
-                        .HasColumnType("INTEGER");
+                    b.Property<decimal>("Monto")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Tipo")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProyectoId");
-
                     b.ToTable("Transaccion");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Transaccion");
                 });
 
             modelBuilder.Entity("Dominio.Entities.CertificadoDeDisponibilidadPresupuestal", b =>
@@ -443,6 +451,21 @@ namespace Infraestructura.Migrations
                     b.HasIndex("CompromisoId");
 
                     b.HasDiscriminator().HasValue("RegistroPresupuestal");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.TransaccionUnaria", b =>
+                {
+                    b.HasBaseType("Dominio.Entities.Transaccion");
+
+                    b.Property<string>("Concepto")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("ProyectoId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasIndex("ProyectoId");
+
+                    b.HasDiscriminator().HasValue("TransaccionUnaria");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Actividad", b =>
@@ -491,6 +514,21 @@ namespace Infraestructura.Migrations
                         .HasForeignKey("ComponenteId");
                 });
 
+            modelBuilder.Entity("Dominio.Entities.IngresoOnceava", b =>
+                {
+                    b.HasOne("Dominio.Entities.Documento", "SoporteInteres")
+                        .WithMany()
+                        .HasForeignKey("SoporteInteresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Dominio.Entities.Documento", "SoporteValor")
+                        .WithMany()
+                        .HasForeignKey("SoporteValorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Dominio.Entities.Programa", b =>
                 {
                     b.HasOne("Dominio.Entities.Estrategia", null)
@@ -516,13 +554,6 @@ namespace Infraestructura.Migrations
                         .HasForeignKey("PropuestaId");
                 });
 
-            modelBuilder.Entity("Dominio.Entities.Transaccion", b =>
-                {
-                    b.HasOne("Dominio.Entities.Proyecto", "Proyecto")
-                        .WithMany("Transacciones")
-                        .HasForeignKey("ProyectoId");
-                });
-
             modelBuilder.Entity("Dominio.Entities.CertificadoDeDisponibilidadPresupuestal", b =>
                 {
                     b.HasOne("Dominio.Entities.Proyecto", null)
@@ -543,6 +574,13 @@ namespace Infraestructura.Migrations
                     b.HasOne("Dominio.Entities.Compromiso", "Compromiso")
                         .WithMany()
                         .HasForeignKey("CompromisoId");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.TransaccionUnaria", b =>
+                {
+                    b.HasOne("Dominio.Entities.Proyecto", "Proyecto")
+                        .WithMany("TransaccionesUnarias")
+                        .HasForeignKey("ProyectoId");
                 });
 #pragma warning restore 612, 618
         }

@@ -14,7 +14,8 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override Egreso Delete(long id)
+        [HttpDelete("{id}")]
+        public ActionResult<Egreso> Delete(long id)
         {
             uow = new UnitOfWork();
             uow.EgresoRepository.Delete(id);
@@ -22,7 +23,8 @@ namespace WebApi.Controllers
             return null;
         }
 
-        public override Egreso Get(long id)
+        [HttpGet("{id}")]
+        public ActionResult<Egreso> Get(long id)
         {
             uow = new UnitOfWork();
             IEnumerable<Egreso> res = uow.EgresoRepository.Get(a => a.Id == id);
@@ -31,7 +33,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public override ActionResult<IEnumerable<Egreso>> GetAll()
+        public ActionResult<IEnumerable<Egreso>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.EgresoRepository.Get();
@@ -43,14 +45,14 @@ namespace WebApi.Controllers
             throw new System.NotImplementedException();
         }
 
-        [HttpGet]
+        [HttpGet("/estado/{proyectoState}")]
         public IList<Proyecto> GetProyectosConRP(string proyectoState)
         {
             throw new System.NotImplementedException();
         }
 
         [HttpPost]
-        public override Egreso Insert(Egreso entity)
+        public ActionResult<Egreso> Insert(Egreso entity)
         {
             uow = new UnitOfWork();
             uow.EgresoRepository.Insert(entity);
@@ -59,7 +61,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        public override Egreso Update(Egreso entity)
+        public ActionResult<Egreso> Update(Egreso entity)
         {
             uow = new UnitOfWork();
             uow.EgresoRepository.Update(entity);

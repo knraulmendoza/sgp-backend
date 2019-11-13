@@ -12,9 +12,9 @@ namespace Dominio.Entities
 
         public string Nombre { get; set; }
 
-        public float PresupuestoAprovado { get; set; }
+        public decimal PresupuestoAprobado { get; set; }
 
-        public float PresupuestoEjecutado { get; set; }
+        public decimal PresupuestoEjecutado { get; set; }
 
         public List<Comunidad> Comunidad { get; set; }
 
@@ -22,9 +22,10 @@ namespace Dominio.Entities
 
         public List<CertificadoDeDisponibilidadPresupuestal> CertificadosDeDisponibilidaPresupuestales { get; set; }
 
-        public List<TransacciónBinaria> TransaccionesBinarias { get; set; }
+        /* Comentada por problemas de relación n a n */
+        // public List<TransaccionBinaria> TransaccionesBinarias { get; set; }
 
-        public List<TransacciónUnaria> TransaccionesUnarias { get; set; }
+        public List<TransaccionUnaria> TransaccionesUnarias { get; set; }
 
         public DateTime FechaCierre { get; set; }
 

@@ -6,10 +6,12 @@ namespace Dominio.Entities
 {
     public class IngresoOnceava : BaseEntity
     {
-        public double Valor { get; set; }
-        public double Interes { get; set; }
-        public string SoporteValor { get; set; }
-        public string SoporteInteres { get; set; }
+        public decimal Valor { get; set; }
+        public decimal Interes { get; set; }
+        public long SoporteValorId { get; set; }
+        public Documento SoporteValor { get; set; }
+        public long SoporteInteresId { get; set; }
+        public Documento SoporteInteres { get; set; }
         public string Descripcion { get; set; }
         public DateTime Fecha { get; set; }
         public IngresoOnceava() { }

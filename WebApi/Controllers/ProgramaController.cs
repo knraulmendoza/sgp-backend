@@ -13,7 +13,8 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override Programa Delete(long id)
+        [HttpDelete("{id}")]
+        public ActionResult<Programa> Delete(long id)
         {
             uow = new UnitOfWork();
             Programa res = uow.ProgramaRepository.GetByID(id);
@@ -23,7 +24,8 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override Programa Get(long id)
+        [HttpGet("{id}")]
+        public ActionResult<Programa> Get(long id)
         {
             uow = new UnitOfWork();
             Programa res = uow.ProgramaRepository.GetByID(id);
@@ -31,7 +33,8 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override ActionResult<IEnumerable<Programa>> GetAll()
+        [HttpGet]
+        public ActionResult<IEnumerable<Programa>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.ProgramaRepository.Get();
@@ -39,7 +42,8 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        public override Programa Insert(Programa entity)
+        [HttpPost]
+        public ActionResult<Programa> Insert(Programa entity)
         {
             uow = new UnitOfWork();
             uow.ProgramaRepository.Insert(entity);
@@ -48,7 +52,8 @@ namespace WebApi.Controllers
             return entity;
         }
 
-        public override Programa Update(Programa entity)
+        [HttpPut]
+        public ActionResult<Programa> Update(Programa entity)
         {
             uow = new UnitOfWork();
             uow.ProgramaRepository.Update(entity);
