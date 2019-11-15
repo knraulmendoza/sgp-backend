@@ -12,7 +12,9 @@ namespace WebApi.Controllers
     public class DimensionController : GenericController<Dimension>
     {
         private UnitOfWork uow;
-        public override Dimension Delete(long id)
+
+        [HttpDelete("{id}")]
+        public ActionResult<Dimension> Delete(long id)
         {
             uow = new UnitOfWork();
             Dimension res = uow.DimensionRepository.GetByID(id);
@@ -21,7 +23,9 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override Dimension Get(long id)
+
+        [HttpGet("{id}")]
+        public ActionResult<Dimension> Get(long id)
         {
             uow = new UnitOfWork();
             Dimension res = uow.DimensionRepository.GetByID(id);
@@ -29,7 +33,8 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override ActionResult<IEnumerable<Dimension>> GetAll()
+        [HttpGet]
+        public ActionResult<IEnumerable<Dimension>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.DimensionRepository.Get();
@@ -37,7 +42,8 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        public override Dimension Insert(Dimension entity)
+        [HttpPost]
+        public ActionResult<Dimension> Insert(Dimension entity)
         {
             uow = new UnitOfWork();
             uow.DimensionRepository.Insert(entity);
@@ -46,7 +52,8 @@ namespace WebApi.Controllers
             return entity;
         }
 
-        public override Dimension Update(Dimension entity)
+        [HttpPut]
+        public ActionResult<Dimension> Update(Dimension entity)
         {
             uow = new UnitOfWork();
             uow.DimensionRepository.Update(entity);

@@ -16,8 +16,8 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        [HttpDelete]
-        public override Actividad Delete(long id)
+        [HttpDelete("{id}")]
+        public ActionResult<Actividad> Delete(long id)
         {
             // Actividad entity = Get(id);
             uow = new UnitOfWork();
@@ -28,7 +28,7 @@ namespace WebApi.Controllers
             return entity;
         }
         [HttpGet]
-        public override ActionResult<IEnumerable<Actividad>> GetAll()
+        public ActionResult<IEnumerable<Actividad>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.ActividadRepository.Get();;
@@ -36,7 +36,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public override Actividad Get(long id)
+        public  ActionResult<Actividad> Get(long id)
         {
             uow = new UnitOfWork();
             Actividad res = uow.ActividadRepository.GetByID(id);
@@ -44,7 +44,7 @@ namespace WebApi.Controllers
             return res;
         }
         [HttpPost]
-        public override Actividad Insert(Actividad entity)
+        public ActionResult<Actividad> Insert(Actividad entity)
         {
             uow = new UnitOfWork();
             uow.ActividadRepository.Insert(entity);
@@ -54,7 +54,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        public override Actividad Update(Actividad entity)
+        public ActionResult<Actividad> Update(Actividad entity)
         {
             uow = new UnitOfWork();
             uow.ActividadRepository.Update(entity);

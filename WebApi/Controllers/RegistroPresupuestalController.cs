@@ -13,8 +13,8 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        [HttpDelete]
-        public override RegistroPresupuestal Delete(long id)
+        [HttpDelete("{id}")]
+        public ActionResult<RegistroPresupuestal> Delete(long id)
         {
             uow = new UnitOfWork();
             RegistroPresupuestal res = uow.RegistroPresupuestalRepository.GetByID(id);
@@ -25,7 +25,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public override RegistroPresupuestal Get(long id)
+        public ActionResult<RegistroPresupuestal> Get(long id)
         {
             uow = new UnitOfWork();
             RegistroPresupuestal res = uow.RegistroPresupuestalRepository.GetByID(id);
@@ -33,7 +33,8 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override ActionResult<IEnumerable<RegistroPresupuestal>> GetAll()
+        [HttpGet]
+        public ActionResult<IEnumerable<RegistroPresupuestal>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.RegistroPresupuestalRepository.Get();
@@ -41,7 +42,8 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        public override RegistroPresupuestal Insert(RegistroPresupuestal entity)
+        [HttpPost]
+        public ActionResult<RegistroPresupuestal> Insert(RegistroPresupuestal entity)
         {
             uow = new UnitOfWork();
             uow.RegistroPresupuestalRepository.Insert(entity);
@@ -50,7 +52,8 @@ namespace WebApi.Controllers
             return entity;
         }
 
-        public override RegistroPresupuestal Update(RegistroPresupuestal entity)
+        [HttpPut]
+        public ActionResult<RegistroPresupuestal> Update(RegistroPresupuestal entity)
         {
             uow = new UnitOfWork();
             uow.RegistroPresupuestalRepository.Update(entity);

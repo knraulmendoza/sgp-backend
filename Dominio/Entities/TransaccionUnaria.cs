@@ -1,9 +1,9 @@
 
 namespace Dominio.Entities
 {
-    public class TransacciónUnaria : Transaccion, IDetalleDelMovimiento
+    public class TransaccionUnaria : Transaccion, IDetalleDelMovimiento
     {
-        public TransacciónUnaria() { }
+        public TransaccionUnaria() { }
 
         public string Concepto { get; set; }
     }

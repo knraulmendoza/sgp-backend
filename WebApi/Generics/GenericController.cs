@@ -5,16 +5,16 @@ using System.Collections.Generic;
 
 namespace Controllers.Generics
 {
-    public abstract class GenericController<TEntity> where TEntity : BaseEntity
+    public interface GenericController<TEntity> where TEntity : BaseEntity
     {
-        public abstract ActionResult<IEnumerable<TEntity>> GetAll();
+        public ActionResult<IEnumerable<TEntity>> GetAll();
 
-        public abstract TEntity Insert(TEntity entity);
+        public ActionResult<TEntity> Insert(TEntity entity);
 
-        public abstract TEntity Delete(long id);
+        public ActionResult<TEntity> Delete(long id);
 
-        public abstract TEntity Update(TEntity entity);
+        public ActionResult<TEntity> Update(TEntity entity);
 
-        public abstract TEntity Get(long id);
+        public ActionResult<TEntity> Get(long id);
     }
 }

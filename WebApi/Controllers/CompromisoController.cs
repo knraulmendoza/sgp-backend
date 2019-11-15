@@ -13,7 +13,8 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public override Compromiso Delete(long id)
+        [HttpDelete("{id}")]
+        public ActionResult<Compromiso> Delete(long id)
         {
             uow = new UnitOfWork();
             Compromiso res = uow.CompromisoRepository.GetByID(id);
@@ -23,7 +24,8 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override Compromiso Get(long id)
+        [HttpGet("{id}")]
+        public ActionResult<Compromiso> Get(long id)
         {
             uow = new UnitOfWork();
             Compromiso res = uow.CompromisoRepository.GetByID(id);
@@ -32,7 +34,8 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override ActionResult<IEnumerable<Compromiso>> GetAll()
+        [HttpGet]
+        public ActionResult<IEnumerable<Compromiso>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.CompromisoRepository.Get();
@@ -40,7 +43,8 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        public override Compromiso Insert(Compromiso entity)
+        [HttpPost]
+        public ActionResult<Compromiso> Insert(Compromiso entity)
         {
             uow = new UnitOfWork();
             uow.CompromisoRepository.Insert(entity);
@@ -49,7 +53,8 @@ namespace WebApi.Controllers
             return entity;
         }
 
-        public override Compromiso Update(Compromiso entity)
+        [HttpPut]
+        public ActionResult<Compromiso> Update(Compromiso entity)
         {
             uow = new UnitOfWork();
             uow.CompromisoRepository.Update(entity);

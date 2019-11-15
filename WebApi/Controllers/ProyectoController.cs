@@ -15,7 +15,7 @@ namespace WebApi.Controllers
         private UnitOfWork uow;
 
         [HttpDelete]
-        public override Proyecto Delete(long id)
+        public ActionResult<Proyecto> Delete(long id)
         {
             uow = new UnitOfWork();
             Proyecto res = uow.ProyectoRepository.GetByID(id);
@@ -26,7 +26,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public override Proyecto Get(long id)
+        public ActionResult<Proyecto> Get(long id)
         {
             uow = new UnitOfWork();
             Proyecto res = uow.ProyectoRepository.GetByID(id);
@@ -35,7 +35,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public override ActionResult<IEnumerable<Proyecto>> GetAll()
+        public ActionResult<IEnumerable<Proyecto>> GetAll()
         {
             uow = new UnitOfWork();
             IEnumerable<Proyecto> res = uow.ProyectoRepository.Get();
@@ -43,7 +43,8 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        public IList<TransacciónUnaria> GetGastosProyectos(long idProyecto)
+        [Route("/Egresos/{idProyecto}")]
+        public IList<TransaccionUnaria> GetGastosProyectos(long idProyecto)
         {
             uow = new UnitOfWork();
             var egresos = uow.ProyectoRepository
@@ -62,7 +63,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public override Proyecto Insert(Proyecto entity)
+        public ActionResult<Proyecto> Insert(Proyecto entity)
         {
             uow = new UnitOfWork();
             uow.ProyectoRepository.Insert(entity);
@@ -73,7 +74,7 @@ namespace WebApi.Controllers
 
 
         [HttpPut]
-        public override Proyecto Update(Proyecto entity)
+        public ActionResult<Proyecto> Update(Proyecto entity)
         {
             uow = new UnitOfWork();
             uow.ProyectoRepository.Update(entity);

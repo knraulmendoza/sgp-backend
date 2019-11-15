@@ -13,8 +13,8 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        [HttpDelete]
-        public override Beneficiario Delete(long id)
+        [HttpDelete("{id}")]
+        public ActionResult<Beneficiario> Delete(long id)
         {
             uow = new UnitOfWork();
             Beneficiario res = uow.BeneficicarioRepository.GetByID(id);
@@ -25,7 +25,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public override ActionResult<IEnumerable<Beneficiario>> GetAll()
+        public ActionResult<IEnumerable<Beneficiario>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.BeneficicarioRepository.Get();
@@ -34,7 +34,7 @@ namespace WebApi.Controllers
         }
         
         [HttpGet("{id}")]
-        public override Beneficiario Get(long id)
+        public ActionResult<Beneficiario> Get(long id)
         {
             uow = new UnitOfWork();
             Beneficiario res = uow.BeneficicarioRepository.GetByID(id);
@@ -42,7 +42,7 @@ namespace WebApi.Controllers
             return res;
         }
         [HttpPost]
-        public override Beneficiario Insert(Beneficiario entity)
+        public ActionResult<Beneficiario> Insert(Beneficiario entity)
         {
             uow = new UnitOfWork();
             uow.BeneficicarioRepository.Insert(entity);
@@ -51,7 +51,7 @@ namespace WebApi.Controllers
             return entity;
         }
         [HttpPut]
-        public override Beneficiario Update(Beneficiario entity)
+        public ActionResult<Beneficiario> Update(Beneficiario entity)
         {
             uow = new UnitOfWork();
             uow.BeneficicarioRepository.Update(entity);

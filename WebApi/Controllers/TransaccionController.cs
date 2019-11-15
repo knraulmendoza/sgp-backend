@@ -8,12 +8,31 @@ using System.Linq;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TransaccionController : GenericController<Transaccion>
     {
         private UnitOfWork uow;
 
-        public override Transaccion Delete(long id)
+        public TransaccionController(){
+            uow = new UnitOfWork();
+            if(uow.TransaccionRepository.Get().ToList().Count == 0){
+                uow.TransaccionRepository.Insert(new Transaccion{
+                    Fecha = new System.DateTime(),
+                    Monto = 5000,
+                    Tipo =  TransaccionType.EGRESO
+                });
+                uow.TransaccionRepository.Insert(new Transaccion{
+                    Fecha = new System.DateTime(),
+                    Monto = 4000,
+                    Tipo =  TransaccionType.EGRESO
+                });
+            }
+            uow.Save();
+            uow.Dispose();
+        }
+
+        [HttpDelete]
+        public ActionResult<Transaccion> Delete(long id)
         {
             uow = new UnitOfWork();
             Transaccion res = uow.TransaccionRepository.GetByID(id);
@@ -23,7 +42,8 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override Transaccion Get(long id)
+        [HttpGet("{id}")]
+        public ActionResult<Transaccion> Get(long id)
         {
             uow = new UnitOfWork();
             Transaccion res = uow.TransaccionRepository.GetByID(id);
@@ -31,7 +51,8 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public override ActionResult<IEnumerable<Transaccion>> GetAll()
+        [HttpGet]
+        public ActionResult<IEnumerable<Transaccion>> GetAll()
         {
             uow = new UnitOfWork();
             var res = uow.TransaccionRepository.Get();
@@ -39,7 +60,8 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        public override Transaccion Insert(Transaccion entity)
+        [HttpPost]
+        public ActionResult<Transaccion> Insert(Transaccion entity)
         {
             uow = new UnitOfWork();
             uow.TransaccionRepository.Insert(entity);
@@ -48,7 +70,8 @@ namespace WebApi.Controllers
             return entity;
         }
 
-        public override Transaccion Update(Transaccion entity)
+        [HttpPut]
+        public ActionResult<Transaccion> Update(Transaccion entity)
         {
             uow = new UnitOfWork();
             uow.TransaccionRepository.Update(entity);

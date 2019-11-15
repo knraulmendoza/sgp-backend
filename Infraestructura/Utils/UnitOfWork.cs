@@ -26,6 +26,7 @@ namespace Infraestructura.Utils
         private ProyectoRepository proyectoRepository = null;
         private RegistroPresupuestalRepository registroPresupuestalRepository = null;
         private TransaccionRepository transaccionRepository = null;
+        private TransaccionUnariaRepository transaccionUnariaRepository = null;
         private PropuestaRepository propuestaRepository = null;
         private BeneficicarioRepository beneficicarioRepository = null;
         private IngresoOnceavaRepository ingresoOnceavaRepository = null;
@@ -222,6 +223,18 @@ namespace Infraestructura.Utils
                     transaccionRepository = new TransaccionRepository(context);
                 }
                 return transaccionRepository;
+            }
+        }
+
+        public TransaccionUnariaRepository TransaccionUnariaRepository
+        {
+            get
+            {
+                if (transaccionUnariaRepository == null)
+                {
+                    transaccionUnariaRepository = new TransaccionUnariaRepository(context);
+                }
+                return transaccionUnariaRepository;
             }
         }
 

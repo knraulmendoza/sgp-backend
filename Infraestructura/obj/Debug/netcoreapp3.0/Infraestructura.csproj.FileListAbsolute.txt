@@ -31,6 +31,7 @@ C:\Users\USUARIO\Source\Repos\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.
 A:\Universidad\SEMESTRE 10\PROCESOS AGILES\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.csprojAssemblyReference.cache
 A:\Universidad\SEMESTRE 10\PROCESOS AGILES\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.AssemblyInfoInputs.cache
 A:\Universidad\SEMESTRE 10\PROCESOS AGILES\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.AssemblyInfo.cs
+<<<<<<< HEAD
 C:\Users\USUARIO\Documents\GitHub\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Infraestructura.deps.json
 C:\Users\USUARIO\Documents\GitHub\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Infraestructura.runtimeconfig.json
 C:\Users\USUARIO\Documents\GitHub\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Infraestructura.runtimeconfig.dev.json
@@ -44,3 +45,18 @@ C:\Users\USUARIO\Documents\GitHub\sgp-backend\Infraestructura\obj\Debug\netcorea
 C:\Users\USUARIO\Documents\GitHub\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.csproj.CopyComplete
 C:\Users\USUARIO\Documents\GitHub\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.dll
 C:\Users\USUARIO\Documents\GitHub\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.pdb
+=======
+D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.dll
+D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.pdb
+D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Infraestructura.deps.json
+D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Infraestructura.runtimeconfig.json
+D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Infraestructura.runtimeconfig.dev.json
+D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Infraestructura.dll
+D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Infraestructura.pdb
+D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Dominio.dll
+D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\Infraestructura\bin\Debug\netcoreapp3.0\Dominio.pdb
+D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.csprojAssemblyReference.cache
+D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.AssemblyInfoInputs.cache
+D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.AssemblyInfo.cs
+D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\Infraestructura\obj\Debug\netcoreapp3.0\Infraestructura.csproj.CopyComplete
+>>>>>>> e590b789f8b3ab59cad3f1867871bc26dddc486c
