@@ -75,5 +75,9 @@ namespace WebApi.Controllers
             return PDF;
         }
 
+        public IList<Componente> GetComponentesPorDimension(long idDimension)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
