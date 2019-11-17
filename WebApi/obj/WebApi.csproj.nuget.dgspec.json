@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\WebApi\\WebApi.csproj": {}
+    "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj": {
+    "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj",
+        "projectUniqueName": "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj",
         "projectName": "Dominio",
-        "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj",
-        "packagesPath": "C:\\Users\\Araos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\obj\\",
+        "projectPath": "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj",
+        "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Dominio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Araos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -59,20 +59,20 @@
         }
       }
     },
-    "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj": {
+    "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj",
+        "projectUniqueName": "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj",
         "projectName": "Infraestructura",
-        "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj",
-        "packagesPath": "C:\\Users\\Araos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\obj\\",
+        "projectPath": "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj",
+        "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Infraestructura\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Araos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,8 +85,8 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj": {
-                "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj"
+              "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj": {
+                "projectPath": "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj"
               }
             }
           }
@@ -148,20 +148,20 @@
         }
       }
     },
-    "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\WebApi\\WebApi.csproj": {
+    "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\WebApi\\WebApi.csproj",
-        "packagesPath": "C:\\Users\\Araos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\WebApi\\obj\\",
+        "projectPath": "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\WebApi\\WebApi.csproj",
+        "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Araos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -174,11 +174,11 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj": {
-                "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj"
+              "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj": {
+                "projectPath": "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Dominio\\Dominio.csproj"
               },
-              "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj": {
-                "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj"
+              "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj": {
+                "projectPath": "C:\\Users\\USUARIO\\Documents\\GitHub\\sgp-backend\\Infraestructura\\Infraestructura.csproj"
               }
             }
           }
@@ -208,7 +208,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.0.0, )"
+              "version": "(, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",

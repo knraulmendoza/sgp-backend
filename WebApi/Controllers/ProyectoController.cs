@@ -14,33 +14,7 @@ namespace WebApi.Controllers
     {
         private UnitOfWork uow;
 
-        public ProyectoController(){
-            uow = new UnitOfWork();
-            if(uow.ProyectoRepository.Get().ToList().Count == 0){
-                uow.ProyectoRepository.Insert(new Proyecto{
-                    Nombre = "Proyecto 1",
-                    FechaEjecucion = new System.DateTime(),
-                    PresupuestoAprobado = 10000,
-                    ProyectoState = ProyectoState.CONTRATADO
-                });
-                uow.ProyectoRepository.Insert(new Proyecto{
-                    Nombre = "Proyecto 2",
-                    FechaEjecucion = new System.DateTime(),
-                    PresupuestoAprobado = 20000,
-                    ProyectoState = ProyectoState.CONTRATADO
-                });
-                uow.ProyectoRepository.Insert(new Proyecto{
-                    Nombre = "Proyecto 3",
-                    FechaEjecucion = new System.DateTime(),
-                    PresupuestoAprobado = 15000,
-                    ProyectoState = ProyectoState.ACEPTADO
-                });
-            }
-            uow.Save();
-            uow.Dispose();
-        }
-
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public ActionResult<Proyecto> Delete(long id)
         {
             uow = new UnitOfWork();
@@ -69,7 +43,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        [HttpGet("egresos/{idProyecto}")]
+        [Route("/Egresos/{idProyecto}")]
         public IList<TransaccionUnaria> GetGastosProyectos(long idProyecto)
         {
             uow = new UnitOfWork();
@@ -79,7 +53,6 @@ namespace WebApi.Controllers
             return egresos.ToList();
         }
 
-        [HttpGet("estado/{proyectoState}")]
         public ICollection<Proyecto> GetProyectosPorEstado(ProyectoState proyectoState)
         {
             uow = new UnitOfWork();
@@ -98,6 +71,7 @@ namespace WebApi.Controllers
             uow.Dispose();
             return entity;
         }
+
 
         [HttpPut]
         public ActionResult<Proyecto> Update(Proyecto entity)
