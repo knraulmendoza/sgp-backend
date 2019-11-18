@@ -8,6 +8,10 @@ namespace Infraestructura.Utils
 {
     public class UnitOfWork : IDisposable
     {
+        public UnitOfWork()
+        {
+        }
+
         private readonly SgpContext context = new SgpContext();
 
         private List<GenericRepository<BaseEntity>> repositorios;

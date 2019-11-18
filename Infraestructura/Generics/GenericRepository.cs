@@ -53,9 +53,10 @@ namespace Infraestructura
             return dbSet.Find(id);
         }
 
-        public virtual void Insert(TEntity entity)
+        public virtual TEntity Insert(TEntity entity)
         {
-            dbSet.Add(entity);
+            var r =dbSet.Add(entity);
+            return r.Entity;
         }
 
         public virtual void Delete(long id)

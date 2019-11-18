@@ -75,7 +75,21 @@ namespace WebApi.Controllers{
         public ActionResult<TransaccionUnaria> Insert(TransaccionUnaria entity)
         {
             uow = new UnitOfWork();
-            uow.TransaccionUnariaRepository.Insert(entity);
+            var detalle = uow.TransaccionUnariaRepository.Insert(entity);
+            uow.EgresoRepository.Insert(new Egreso()
+            {
+                Fecha = entity.Fecha,
+                Monto = entity.Monto,
+                ProyectoDeDestino = entity.Proyecto,
+                Detalle = detalle,
+                Concepto = entity.Concepto,
+                Tipo = MovimientoType.EGRESO
+            });
+            var proyecto = from p in uow.ProyectoRepository.Get()
+                            where p.Id == entity.ProyectoId
+                            select p;
+            proyecto.FirstOrDefault().PresupuestoEjecutado += entity.Monto;
+            uow.ProyectoRepository.Update(proyecto.FirstOrDefault());
             uow.Save();
             uow.Dispose();
             return entity;

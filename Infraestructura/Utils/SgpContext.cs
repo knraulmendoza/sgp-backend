@@ -12,13 +12,13 @@ namespace Infraestructura.Utils
         {
             System.Console.WriteLine("Configurando DbContext");
             // Database.SetInitializer<SgpContext>(new CreateDatabaseIfNotExists<SgpContext>());
-            optionsBuilder.UseSqlServer("Server=DESKTOP-RB14CRB;Database=sgp;Trusted_Connection=True;");
-            //optionsBuilder.UseSqlite(@"Data Source=D:\Documents\Datos\9no Semestre\Procesos Agiles\sgp-backend\sgp.db");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-RB14CRB;Database=sgp;Trusted_Connection=True;");
+            optionsBuilder.UseSqlite(@"Data Source=sgps.db");
             
             // optionsBuilder.UseSqlServer("Server=DESKTOP-RB14CRB;Database=sgp;Trusted_Connection=True;");
-            string urlBase = "D:/";
-            urlBase = Path.Combine(urlBase, "sgp.db");
-            optionsBuilder.UseSqlite(@"Data Source=" + urlBase);
+            //string urlBase = "D:/";
+            //urlBase = Path.Combine(urlBase, "sgp.db");
+            //optionsBuilder.UseSqlite(@"Data Source=" + urlBase);
         }
         
         protected override void OnModelCreating(ModelBuilder model)

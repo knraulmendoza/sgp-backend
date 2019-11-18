@@ -43,8 +43,8 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        [Route("/Egresos/{idProyecto}")]
-        public IList<TransaccionUnaria> GetGastosProyectos(long idProyecto)
+        [HttpGet("Egresos/{idProyecto}")]
+        public ActionResult<IList<TransaccionUnaria>> GetGastosProyectos(long idProyecto)
         {
             uow = new UnitOfWork();
             var egresos = uow.ProyectoRepository
@@ -53,7 +53,7 @@ namespace WebApi.Controllers
             return egresos.ToList();
         }
 
-        public ICollection<Proyecto> GetProyectosPorEstado(ProyectoState proyectoState)
+        public ActionResult<ICollection<Proyecto>> GetProyectosPorEstado(ProyectoState proyectoState)
         {
             uow = new UnitOfWork();
             var proyectos = uow.ProyectoRepository.Get(p => p.ProyectoState == proyectoState);

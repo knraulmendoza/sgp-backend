@@ -62,7 +62,16 @@ namespace Dominio.Entities
 
         public void Construir()
         {
+            Fondos = new Dictionary<string, decimal>();
 
+            Fondos.Add("Fondo 1", 100000000);
+            Fondos.Add("Fondo 2", 200000000);
+            Fondos.Add("Fondo 3", 400000000);
+
+            foreach (var fondo in Fondos)
+            {
+                PresupuestoTotal += fondo.Value;
+            }
         }
     }
 }
