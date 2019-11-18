@@ -50,6 +50,7 @@ namespace WebApi.Controllers
             var egresos = uow.ProyectoRepository
                             .GetByID(idProyecto).TransaccionesUnarias
                             .Where(t => t.Tipo == TransaccionType.EGRESO);
+                            uow.Dispose();
             return egresos.ToList();
         }
 
@@ -59,9 +60,20 @@ namespace WebApi.Controllers
             uow = new UnitOfWork();
             var ingreso = uow.ProyectoRepository
                             .GetByID(idProyecto).TransaccionesUnarias
-                            .Where(t => t.Tipo == TransaccionType.INGRESO);
+                            .Where(t => t.Tipo == TransaccionType.INGRESO);  
+                            uow.Dispose();                          
+
             return ingreso.ToList();
         }
+        [HttpGet]
+        public ActionResult<IList<proyecto>> GetProyectoSinRp()
+        {
+            uow= new UnitOfWork();
+            var res = uow.ProyectoRepository.Get(p => p.ProyectoState == ProyectoState.EN_ESPERA).ToList();
+            uow.Dispose();
+            return res;
+        }
+
 
         public ActionResult<ICollection<Proyecto>> GetProyectosPorEstado(ProyectoState proyectoState)
         {
