@@ -31,7 +31,6 @@ namespace Dominio.Entities
                 Fecha = DateTime.Now,
                 Tipo = tipo,
                 Monto = monto,
-                Detalle = detalle
             });
 
             RecalcularPresupuesto();

@@ -8,7 +8,7 @@ using System.Linq;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class EstrategiaController : GenericController<Estrategia>
     {
         private UnitOfWork uow;
@@ -28,9 +28,10 @@ namespace WebApi.Controllers
         public ActionResult<Estrategia> Get(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<Estrategia> res = uow.EstrategiaRepository.Get(a => a.Id == id);
+            Estrategia res = uow.EstrategiaRepository.GetByID(id);
+            res.Programas = uow.ProgramaRepository.Get(p => p.EstrategiaId == res.Id).ToList();
             uow.Dispose();
-            return res.ToList().FirstOrDefault();
+            return res;
         }
 
         [HttpGet]

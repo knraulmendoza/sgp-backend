@@ -1,5 +1,6 @@
 ﻿using Controllers.Generics;
 using Dominio.Entities;
+using Dominio.Entities.States;
 using Infraestructura.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -72,6 +73,15 @@ namespace WebApi.Controllers
             uow.Save();
             uow.Dispose();
             return PDF;
+        }
+
+        [HttpGet("estado/{state}")]
+        public ActionResult<IList<Propuesta>> GetPropuestasPorEstado(PropuestaState state)
+        {
+            uow = new UnitOfWork();
+            var propuestas = uow.PropuestaRepository.Get(p => p.PropuestaState == state);
+            uow.Dispose();
+            return propuestas.ToList();
         }
 
         public IList<Componente> GetComponentesPorDimension(long idDimension)

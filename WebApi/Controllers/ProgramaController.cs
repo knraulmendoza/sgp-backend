@@ -8,7 +8,7 @@ using System.Linq;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ProgramaController : GenericController<Programa>
     {
         private UnitOfWork uow;

@@ -8,7 +8,7 @@ using System.Linq;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class DimensionController : GenericController<Dimension>
     {
         private UnitOfWork uow;
@@ -23,12 +23,12 @@ namespace WebApi.Controllers
             return res;
         }
 
-
         [HttpGet("{id}")]
         public ActionResult<Dimension> Get(long id)
         {
             uow = new UnitOfWork();
             Dimension res = uow.DimensionRepository.GetByID(id);
+            res.Componentes = uow.ComponenteRepository.Get(c => c.DimensionId == res.Id).ToList();
             uow.Dispose();
             return res;
         }

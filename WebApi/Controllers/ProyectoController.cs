@@ -30,6 +30,7 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             Proyecto res = uow.ProyectoRepository.GetByID(id);
+            res.Propuesta = uow.PropuestaRepository.GetByID(res.PropuestaId);
             uow.Dispose();
             return res;
         }
@@ -39,12 +40,16 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             IEnumerable<Proyecto> res = uow.ProyectoRepository.Get();
+            foreach (Proyecto proyecto in res)
+            {
+                proyecto.Propuesta = uow.PropuestaRepository.GetByID(proyecto.PropuestaId);
+            }
             uow.Dispose();
             return res.ToList();
         }
 
-        [HttpGet("Egresos/{idProyecto}")]
-        public ActionResult<IList<TransaccionUnaria>> GetGastosProyectos(long idProyecto)
+        [HttpGet("egresos/{id}")]
+        public ActionResult<IList<TransaccionUnaria>> GetGastosProyectos(long id)
         {
             uow = new UnitOfWork();
             var egresos = uow.ProyectoRepository
@@ -65,20 +70,16 @@ namespace WebApi.Controllers
 
             return ingreso.ToList();
         }
-        [HttpGet]
-        public ActionResult<IList<proyecto>> GetProyectoSinRp()
-        {
-            uow= new UnitOfWork();
-            var res = uow.ProyectoRepository.Get(p => p.ProyectoState == ProyectoState.EN_ESPERA).ToList();
-            uow.Dispose();
-            return res;
-        }
-
-
-        public ActionResult<ICollection<Proyecto>> GetProyectosPorEstado(ProyectoState proyectoState)
+    
+        [HttpGet("estado/{proyectoState}")]
+        public ActionResult<IList<Proyecto>> GetProyectosPorEstado(ProyectoState proyectoState)
         {
             uow = new UnitOfWork();
-            var proyectos = uow.ProyectoRepository.Get(p => p.ProyectoState == proyectoState);
+            IEnumerable<Proyecto> proyectos = uow.ProyectoRepository.Get(p => p.ProyectoState == proyectoState);
+            foreach (Proyecto proyecto in proyectos)
+            {
+                proyecto.Propuesta = uow.PropuestaRepository.GetByID(proyecto.PropuestaId);
+            }
             uow.Save();
             uow.Dispose();
             return proyectos.ToList();
@@ -88,12 +89,14 @@ namespace WebApi.Controllers
         public ActionResult<Proyecto> Insert(Proyecto entity)
         {
             uow = new UnitOfWork();
+            Propuesta propuesta = uow.PropuestaRepository.GetByID(entity.PropuestaId);
+            propuesta.FechaDeAprobacion = System.DateTime.Now;
+            uow.PropuestaRepository.Update(propuesta);
             uow.ProyectoRepository.Insert(entity);
             uow.Save();
             uow.Dispose();
             return entity;
         }
-
 
         [HttpPut]
         public ActionResult<Proyecto> Update(Proyecto entity)
