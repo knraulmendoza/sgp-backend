@@ -53,7 +53,7 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             var egresos = uow.ProyectoRepository
-                            .GetByID(idProyecto).TransaccionesUnarias
+                            .GetByID(id).TransaccionesUnarias
                             .Where(t => t.Tipo == TransaccionType.EGRESO);
                             uow.Dispose();
             return egresos.ToList();

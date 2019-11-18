@@ -440,7 +440,7 @@ namespace Infraestructura.Migrations
                     b.Property<decimal>("Monto")
                         .HasColumnType("TEXT");
 
-                    b.Property<long?>("ProyectoDeDestinoId")
+                    b.Property<long>("ProyectoDeDestinoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Tipo")
@@ -1003,6 +1003,9 @@ namespace Infraestructura.Migrations
                     b.Property<decimal>("Monto")
                         .HasColumnType("TEXT");
 
+                    b.Property<long>("ProyectoId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Tipo")
                         .HasColumnType("INTEGER");
 
@@ -1060,13 +1063,10 @@ namespace Infraestructura.Migrations
                 {
                     b.HasBaseType("Dominio.Entities.Transaccion");
 
-                    b.Property<long?>("ProyectoDeDestinoId")
+                    b.Property<long>("IdProyectoDestino")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long?>("ProyectoId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasIndex("ProyectoDeDestinoId");
+                    b.HasIndex("IdProyectoDestino");
 
                     b.HasIndex("ProyectoId");
 
@@ -1080,11 +1080,8 @@ namespace Infraestructura.Migrations
                     b.Property<string>("Concepto")
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("ProyectoId")
-                        .HasColumnName("TransaccionUnaria_ProyectoId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasIndex("ProyectoId");
+                    b.HasIndex("ProyectoId")
+                        .HasName("IX_Transaccion_ProyectoId1");
 
                     b.HasDiscriminator().HasValue("TransaccionUnaria");
                 });
@@ -1129,7 +1126,9 @@ namespace Infraestructura.Migrations
                 {
                     b.HasOne("Dominio.Entities.Proyecto", "ProyectoDeDestino")
                         .WithMany()
-                        .HasForeignKey("ProyectoDeDestinoId");
+                        .HasForeignKey("ProyectoDeDestinoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Dominio.Entities.Estrategia", b =>
@@ -1230,11 +1229,15 @@ namespace Infraestructura.Migrations
                 {
                     b.HasOne("Dominio.Entities.Proyecto", "ProyectoDeDestino")
                         .WithMany()
-                        .HasForeignKey("ProyectoDeDestinoId");
+                        .HasForeignKey("IdProyectoDestino")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Dominio.Entities.Proyecto", "Proyecto")
                         .WithMany("TransaccionesBinarias")
-                        .HasForeignKey("ProyectoId");
+                        .HasForeignKey("ProyectoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Dominio.Entities.TransaccionUnaria", b =>
@@ -1242,6 +1245,7 @@ namespace Infraestructura.Migrations
                     b.HasOne("Dominio.Entities.Proyecto", "Proyecto")
                         .WithMany("TransaccionesUnarias")
                         .HasForeignKey("ProyectoId")
+                        .HasConstraintName("FK_Transaccion_Proyectos_ProyectoId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

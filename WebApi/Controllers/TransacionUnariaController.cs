@@ -59,13 +59,13 @@ namespace WebApi.Controllers{
             {
                 Fecha = entity.Fecha,
                 Monto = entity.Monto,
-                ProyectoDeDestino = entity.Proyecto,
+                ProyectoDeDestinoId = entity.ProyectoId,
                 // Detalle no existe en la entidad Egreso
                 // Detalle = detalle,
                 Concepto = entity.Concepto,
                 Tipo = MovimientoType.EGRESO
             });
-            Proyecto proyecto =uow.ProyectoRepository.GetByID(entity.ProyectoId);
+            Proyecto proyecto = uow.ProyectoRepository.GetByID(entity.ProyectoId);
             proyecto.PresupuestoEjecutado += entity.Monto;
             uow.ProyectoRepository.Update(proyecto);
             uow.Save();

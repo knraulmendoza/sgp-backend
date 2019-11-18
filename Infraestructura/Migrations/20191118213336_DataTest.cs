@@ -303,7 +303,7 @@ namespace Infraestructura.Migrations
                     Fecha = table.Column<DateTime>(nullable: false),
                     Tipo = table.Column<int>(nullable: false),
                     Concepto = table.Column<string>(nullable: true),
-                    ProyectoDeDestinoId = table.Column<long>(nullable: true)
+                    ProyectoDeDestinoId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -313,7 +313,7 @@ namespace Infraestructura.Migrations
                         column: x => x.ProyectoDeDestinoId,
                         principalTable: "Proyectos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -350,31 +350,30 @@ namespace Infraestructura.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Fecha = table.Column<DateTime>(nullable: false),
                     Monto = table.Column<decimal>(nullable: false),
+                    ProyectoId = table.Column<long>(nullable: false),
                     Tipo = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
-                    ProyectoId = table.Column<long>(nullable: true),
-                    ProyectoDeDestinoId = table.Column<long>(nullable: true),
-                    TransaccionUnaria_ProyectoId = table.Column<long>(nullable: true),
+                    IdProyectoDestino = table.Column<long>(nullable: true),
                     Concepto = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transaccion", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Transaccion_Proyectos_ProyectoDeDestinoId",
-                        column: x => x.ProyectoDeDestinoId,
+                        name: "FK_Transaccion_Proyectos_IdProyectoDestino",
+                        column: x => x.IdProyectoDestino,
                         principalTable: "Proyectos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Transaccion_Proyectos_ProyectoId",
                         column: x => x.ProyectoId,
                         principalTable: "Proyectos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Transaccion_Proyectos_TransaccionUnaria_ProyectoId",
-                        column: x => x.TransaccionUnaria_ProyectoId,
+                        name: "FK_Transaccion_Proyectos_ProyectoId1",
+                        column: x => x.ProyectoId,
                         principalTable: "Proyectos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -897,9 +896,9 @@ namespace Infraestructura.Migrations
                 column: "PropuestaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transaccion_ProyectoDeDestinoId",
+                name: "IX_Transaccion_IdProyectoDestino",
                 table: "Transaccion",
-                column: "ProyectoDeDestinoId");
+                column: "IdProyectoDestino");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transaccion_ProyectoId",
@@ -907,9 +906,9 @@ namespace Infraestructura.Migrations
                 column: "ProyectoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transaccion_TransaccionUnaria_ProyectoId",
+                name: "IX_Transaccion_ProyectoId1",
                 table: "Transaccion",
-                column: "TransaccionUnaria_ProyectoId");
+                column: "ProyectoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
