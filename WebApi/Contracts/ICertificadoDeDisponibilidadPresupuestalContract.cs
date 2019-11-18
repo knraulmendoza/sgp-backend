@@ -3,7 +3,7 @@ using Dominio.Entities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 
-public interface CertificadoDeDisponibilidadPresupuestalContract
+public interface ICertificadoDeDisponibilidadPresupuestalContract
 {
     // Route[("api/[controller]/{idProyecto}/generar-cdp")]
     ActionResult<CertificadoDeDisponibilidadPresupuestal> GenerarCertificadoDeDisponibilidadPresupuestal(long Proyecto, IDictionary<string, decimal> fondosYPresupuestos);
