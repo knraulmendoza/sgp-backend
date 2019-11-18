@@ -65,11 +65,9 @@ namespace WebApi.Controllers{
                 Concepto = entity.Concepto,
                 Tipo = MovimientoType.EGRESO
             });
-            var proyecto = from p in uow.ProyectoRepository.Get()
-                            where p.Id == entity.ProyectoId
-                            select p;
-            proyecto.FirstOrDefault().PresupuestoEjecutado += entity.Monto;
-            uow.ProyectoRepository.Update(proyecto.FirstOrDefault());
+            Proyecto proyecto =uow.ProyectoRepository.GetByID(entity.ProyectoId);
+            proyecto.PresupuestoEjecutado += entity.Monto;
+            uow.ProyectoRepository.Update(proyecto);
             uow.Save();
             uow.Dispose();
             return entity;
