@@ -19,13 +19,15 @@ namespace WebApi.Controllers{
                     Fecha = new System.DateTime(),
                     Monto = 5000,
                     Tipo =  TransaccionType.EGRESO,
-                    Concepto = "Pago servicios"
+                    Concepto = "Pago servicios",
+                    ProyectoId = 1
                 });
                 uow.TransaccionUnariaRepository.Insert(new TransaccionUnaria{
                     Fecha = new System.DateTime(),
                     Monto = 10000,
                     Tipo =  TransaccionType.EGRESO,
-                    Concepto = "Pago Deudas"
+                    Concepto = "Pago Deudas",
+                    ProyectoId = 1
                 });
             }
             uow.Save();
@@ -59,6 +61,14 @@ namespace WebApi.Controllers{
             var res = uow.TransaccionUnariaRepository.Get();
             uow.Dispose();
             return res.ToList();
+        }
+
+        [HttpGet("gastos/{idProyecto}")]
+        public IList<TransaccionUnaria> GetGastosProyectos(long idProyecto)
+        {
+            uow = new UnitOfWork();
+            var egresos = uow.TransaccionUnariaRepository.Get(t => t.ProyectoId == idProyecto);
+            return egresos.ToList();
         }
 
         [HttpPost]
