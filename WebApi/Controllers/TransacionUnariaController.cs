@@ -12,29 +12,6 @@ namespace WebApi.Controllers{
     public class TransaccionUnariaController : GenericController<TransaccionUnaria>
     {
         private UnitOfWork uow;
-        public TransaccionUnariaController(){
-            uow = new UnitOfWork();
-            if(uow.TransaccionUnariaRepository.Get().ToList().Count == 0){
-                uow.TransaccionUnariaRepository.Insert(new TransaccionUnaria{
-                    ProyectoId = 1,
-                    Fecha = new System.DateTime(),
-                    Monto = 5000,
-                    Tipo =  TransaccionType.EGRESO,
-                    Concepto = "Pago servicios",
-                    ProyectoId = 1
-                });
-                uow.TransaccionUnariaRepository.Insert(new TransaccionUnaria{
-                    ProyectoId = 2,
-                    Fecha = new System.DateTime(),
-                    Monto = 10000,
-                    Tipo =  TransaccionType.EGRESO,
-                    Concepto = "Pago Deudas",
-                    ProyectoId = 1
-                });
-            }
-            uow.Save();
-            uow.Dispose();
-        }
 
         [HttpDelete("{id}")]
         public ActionResult<TransaccionUnaria> Delete(long id)
@@ -83,7 +60,8 @@ namespace WebApi.Controllers{
                 Fecha = entity.Fecha,
                 Monto = entity.Monto,
                 ProyectoDeDestino = entity.Proyecto,
-                Detalle = detalle,
+                // Detalle no existe en la entidad Egreso
+                // Detalle = detalle,
                 Concepto = entity.Concepto,
                 Tipo = MovimientoType.EGRESO
             });
