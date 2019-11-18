@@ -16,12 +16,14 @@ namespace WebApi.Controllers{
             uow = new UnitOfWork();
             if(uow.TransaccionUnariaRepository.Get().ToList().Count == 0){
                 uow.TransaccionUnariaRepository.Insert(new TransaccionUnaria{
+                    ProyectoId = 1,
                     Fecha = new System.DateTime(),
                     Monto = 5000,
                     Tipo =  TransaccionType.EGRESO,
                     Concepto = "Pago servicios"
                 });
                 uow.TransaccionUnariaRepository.Insert(new TransaccionUnaria{
+                    ProyectoId = 2,
                     Fecha = new System.DateTime(),
                     Monto = 10000,
                     Tipo =  TransaccionType.EGRESO,

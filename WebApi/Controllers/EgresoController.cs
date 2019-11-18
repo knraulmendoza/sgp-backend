@@ -9,7 +9,7 @@ using WebApi.Contracts;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class EgresoController : GenericController<Egreso>, EgresoContract
     {
         private UnitOfWork uow;

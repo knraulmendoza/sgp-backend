@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infraestructura.Migrations
 {
-    public partial class TestData : Migration
+    public partial class DataTest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -294,6 +294,29 @@ namespace Infraestructura.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Egresos",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Monto = table.Column<decimal>(nullable: false),
+                    Fecha = table.Column<DateTime>(nullable: false),
+                    Tipo = table.Column<int>(nullable: false),
+                    Concepto = table.Column<string>(nullable: true),
+                    ProyectoDeDestinoId = table.Column<long>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Egresos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Egresos_Proyectos_ProyectoDeDestinoId",
+                        column: x => x.ProyectoDeDestinoId,
+                        principalTable: "Proyectos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProyectoComunidad",
                 columns: table => new
                 {
@@ -354,7 +377,7 @@ namespace Infraestructura.Migrations
                         column: x => x.TransaccionUnaria_ProyectoId,
                         principalTable: "Proyectos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -404,6 +427,71 @@ namespace Infraestructura.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Comunidad",
+                columns: new[] { "Id", "Descripcion", "Nombre" },
+                values: new object[] { 1L, "", "Atanquez" });
+
+            migrationBuilder.InsertData(
+                table: "Comunidad",
+                columns: new[] { "Id", "Descripcion", "Nombre" },
+                values: new object[] { 13L, "", "Rancho de la Goya" });
+
+            migrationBuilder.InsertData(
+                table: "Comunidad",
+                columns: new[] { "Id", "Descripcion", "Nombre" },
+                values: new object[] { 12L, "", "Murillo" });
+
+            migrationBuilder.InsertData(
+                table: "Comunidad",
+                columns: new[] { "Id", "Descripcion", "Nombre" },
+                values: new object[] { 11L, "", "Pueblo Bello" });
+
+            migrationBuilder.InsertData(
+                table: "Comunidad",
+                columns: new[] { "Id", "Descripcion", "Nombre" },
+                values: new object[] { 9L, "", "Mojao" });
+
+            migrationBuilder.InsertData(
+                table: "Comunidad",
+                columns: new[] { "Id", "Descripcion", "Nombre" },
+                values: new object[] { 8L, "", "Río Seco" });
+
+            migrationBuilder.InsertData(
+                table: "Comunidad",
+                columns: new[] { "Id", "Descripcion", "Nombre" },
+                values: new object[] { 10L, "", "Los Haticos" });
+
+            migrationBuilder.InsertData(
+                table: "Comunidad",
+                columns: new[] { "Id", "Descripcion", "Nombre" },
+                values: new object[] { 6L, "", "Las Florez" });
+
+            migrationBuilder.InsertData(
+                table: "Comunidad",
+                columns: new[] { "Id", "Descripcion", "Nombre" },
+                values: new object[] { 5L, "", "Pontón" });
+
+            migrationBuilder.InsertData(
+                table: "Comunidad",
+                columns: new[] { "Id", "Descripcion", "Nombre" },
+                values: new object[] { 4L, "", "La Mina" });
+
+            migrationBuilder.InsertData(
+                table: "Comunidad",
+                columns: new[] { "Id", "Descripcion", "Nombre" },
+                values: new object[] { 3L, "", "Chemesquemena" });
+
+            migrationBuilder.InsertData(
+                table: "Comunidad",
+                columns: new[] { "Id", "Descripcion", "Nombre" },
+                values: new object[] { 2L, "", "Guatapurí" });
+
+            migrationBuilder.InsertData(
+                table: "Comunidad",
+                columns: new[] { "Id", "Descripcion", "Nombre" },
+                values: new object[] { 7L, "", "Ramalito" });
+
+            migrationBuilder.InsertData(
                 table: "Dimension",
                 columns: new[] { "Id", "Descripcion", "Nombre" },
                 values: new object[] { 1L, null, "CONSOLIDACIÓN TERRITORIAL DEL PUEBLO INDÍGENA KANKUAMO PARA LA PROTECCION DE LA MADRE NATURALEZA" });
@@ -417,6 +505,26 @@ namespace Infraestructura.Migrations
                 table: "Dimension",
                 columns: new[] { "Id", "Descripcion", "Nombre" },
                 values: new object[] { 3L, null, "RESTABLECIMIENTO DE LOS DERECHOS COLECTIVOS E INDIVIDUALES DEL PUEBLO KANKUAMO" });
+
+            migrationBuilder.InsertData(
+                table: "Documento",
+                columns: new[] { "Id", "Nombre", "RawData", "RespaldoFisicoDigitalizado" },
+                values: new object[] { 3L, "Documento 3", new byte[] {  }, "" });
+
+            migrationBuilder.InsertData(
+                table: "Documento",
+                columns: new[] { "Id", "Nombre", "RawData", "RespaldoFisicoDigitalizado" },
+                values: new object[] { 1L, "Documento 1", new byte[] {  }, "" });
+
+            migrationBuilder.InsertData(
+                table: "Documento",
+                columns: new[] { "Id", "Nombre", "RawData", "RespaldoFisicoDigitalizado" },
+                values: new object[] { 2L, "Documento 2", new byte[] {  }, "" });
+
+            migrationBuilder.InsertData(
+                table: "Documento",
+                columns: new[] { "Id", "Nombre", "RawData", "RespaldoFisicoDigitalizado" },
+                values: new object[] { 4L, "Documento 4", new byte[] {  }, "" });
 
             migrationBuilder.InsertData(
                 table: "Componente",
@@ -477,6 +585,26 @@ namespace Infraestructura.Migrations
                 table: "Componente",
                 columns: new[] { "Id", "Descripcion", "DimensionId", "Nombre" },
                 values: new object[] { 12L, null, 3L, "Fortalecimiento cultural para la recuperación de los roles del pueblo Kankuamo, como mecanismo para la apropiación cultural y territorial" });
+
+            migrationBuilder.InsertData(
+                table: "Propuestas",
+                columns: new[] { "Id", "DocumentoId", "FechaDeAprovacion", "FechaDePresentacion", "FechaDeRegistro", "Nombre", "NumeroDeFamilias", "PresupuestoEstimado" },
+                values: new object[] { 1L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Propuesta 1", 1500, 1520000m });
+
+            migrationBuilder.InsertData(
+                table: "Propuestas",
+                columns: new[] { "Id", "DocumentoId", "FechaDeAprovacion", "FechaDePresentacion", "FechaDeRegistro", "Nombre", "NumeroDeFamilias", "PresupuestoEstimado", "PropuestaState" },
+                values: new object[] { 2L, 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Propuesta 2", 2600, 2000000m, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Propuestas",
+                columns: new[] { "Id", "DocumentoId", "FechaDeAprovacion", "FechaDePresentacion", "FechaDeRegistro", "Nombre", "NumeroDeFamilias", "PresupuestoEstimado" },
+                values: new object[] { 3L, 3L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Propuesta 3", 1000, 1800000m });
+
+            migrationBuilder.InsertData(
+                table: "Propuestas",
+                columns: new[] { "Id", "DocumentoId", "FechaDeAprovacion", "FechaDePresentacion", "FechaDeRegistro", "Nombre", "NumeroDeFamilias", "PresupuestoEstimado" },
+                values: new object[] { 4L, 4L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Propuesta 4", 1380, 1750000m });
 
             migrationBuilder.InsertData(
                 table: "Estrategia",
@@ -653,6 +781,26 @@ namespace Infraestructura.Migrations
                 columns: new[] { "Id", "Descripcion", "EstrategiaId", "Nombre" },
                 values: new object[] { 19L, "", 16L, "Incentivar y Reactivar la Productividad en la población Kankuama en situación de desplazamiento, para fortalecer procesos de estabilización socioeconómica y retorno digno." });
 
+            migrationBuilder.InsertData(
+                table: "Proyectos",
+                columns: new[] { "Id", "FechaCierre", "FechaDeCierrePrevista", "FechaEjecucion", "Nombre", "PresupuestoAprobado", "PresupuestoEjecutado", "ProgramaId", "PropuestaId", "ProyectoState" },
+                values: new object[] { 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Proyecto 1", 1520000m, 1500000m, 1L, 1L, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Proyectos",
+                columns: new[] { "Id", "FechaCierre", "FechaDeCierrePrevista", "FechaEjecucion", "Nombre", "PresupuestoAprobado", "PresupuestoEjecutado", "ProgramaId", "PropuestaId", "ProyectoState" },
+                values: new object[] { 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Proyecto 2", 2000000m, 1900000m, 2L, 2L, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Proyectos",
+                columns: new[] { "Id", "FechaCierre", "FechaDeCierrePrevista", "FechaEjecucion", "Nombre", "PresupuestoAprobado", "PresupuestoEjecutado", "ProgramaId", "PropuestaId", "ProyectoState" },
+                values: new object[] { 3L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Proyecto 3", 1800000m, 1700000m, 3L, 3L, 2 });
+
+            migrationBuilder.InsertData(
+                table: "Proyectos",
+                columns: new[] { "Id", "FechaCierre", "FechaDeCierrePrevista", "FechaEjecucion", "Nombre", "PresupuestoAprobado", "PresupuestoEjecutado", "ProgramaId", "PropuestaId", "ProyectoState" },
+                values: new object[] { 4L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Proyecto 4", 2200000m, 2000000m, 4L, 4L, 4 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Actividades_ProyectoId",
                 table: "Actividades",
@@ -697,6 +845,11 @@ namespace Infraestructura.Migrations
                 name: "IX_DocumentoPresupuestal_CompromisoId",
                 table: "DocumentoPresupuestal",
                 column: "CompromisoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Egresos_ProyectoDeDestinoId",
+                table: "Egresos",
+                column: "ProyectoDeDestinoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Estrategia_ComponenteId",
@@ -766,6 +919,9 @@ namespace Infraestructura.Migrations
 
             migrationBuilder.DropTable(
                 name: "DocumentoPresupuestal");
+
+            migrationBuilder.DropTable(
+                name: "Egresos");
 
             migrationBuilder.DropTable(
                 name: "IngresoOnceava");

@@ -49,14 +49,12 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        [HttpGet("egresos/{idProyecto}")]
-        public ActionResult<IList<TransaccionUnaria>> GetGastosProyectos(long idProyecto)
+        [HttpGet("egresos/{id}")]
+        public ActionResult<IList<TransaccionUnaria>> GetGastosProyectos(long id)
         {
             uow = new UnitOfWork();
-            var egresos = uow.ProyectoRepository
-                            .GetByID(idProyecto).TransaccionesUnarias
-                            .Where(t => t.Tipo == TransaccionType.EGRESO);
-            return egresos.ToList();
+            IEnumerable<TransaccionUnaria> transaccions = uow.TransaccionUnariaRepository.Get(t => t.ProyectoId == id);
+            return transaccions.ToList();
         }
 
         [HttpGet("estado/{proyectoState}")]

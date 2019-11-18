@@ -15,8 +15,6 @@ namespace Dominio.Entities
         public List<ProyectoComunidad> ProyectosComunidads { get; set; }
         public DateTime FechaEjecucion { get; set; }
         public List<CertificadoDeDisponibilidadPresupuestal> CertificadosDeDisponibilidaPresupuestales { get; set; }
-        /* Comentada por problemas de relación n a n */
-        // public List<TransaccionBinaria> TransaccionesBinarias { get; set; }
         public List<TransaccionUnaria> TransaccionesUnarias { get; set; }
         public List<TransaccionBinaria> TransaccionesBinarias { get; set; }
         public DateTime FechaCierre { get; set; }

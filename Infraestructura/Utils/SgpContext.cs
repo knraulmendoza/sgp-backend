@@ -31,10 +31,10 @@ namespace Infraestructura.Utils
             model.Entity<Proyecto>()
                 .HasMany(t => t.TransaccionesBinarias)
                 .WithOne(t => t.Proyecto);
-            
+
             model.Entity<Propuesta>()
                 .Property(p => p.PropuestaState).HasDefaultValue(PropuestaState.ESPERA);
-            
+
             model.Entity<Proyecto>()
                 .Property(p => p.ProyectoState).HasDefaultValue(ProyectoState.VIABLE);
 
@@ -53,6 +53,86 @@ namespace Infraestructura.Utils
                 {
                     Id = 3,
                     Nombre = "RESTABLECIMIENTO DE LOS DERECHOS COLECTIVOS E INDIVIDUALES DEL PUEBLO KANKUAMO"
+                }
+            );
+            model.Entity<Comunidad>().HasData(
+                new Comunidad
+                {
+                    Id = 1,
+                    Nombre = "Atanquez",
+                    Descripcion = ""
+                },
+                new Comunidad
+                {
+                    Id = 2,
+                    Nombre = "Guatapurí",
+                    Descripcion = ""
+                },
+                new Comunidad
+                {
+                    Id = 3,
+                    Nombre = "Chemesquemena",
+                    Descripcion = ""
+                },
+                new Comunidad
+                {
+                    Id = 4,
+                    Nombre = "La Mina",
+                    Descripcion = ""
+                },
+                new Comunidad
+                {
+                    Id = 5,
+                    Nombre = "Pontón",
+                    Descripcion = ""
+                },
+                new Comunidad
+                {
+                    Id = 6,
+                    Nombre = "Las Florez",
+                    Descripcion = ""
+                },
+                new Comunidad
+                {
+                    Id = 7,
+                    Nombre = "Ramalito",
+                    Descripcion = ""
+                },
+                new Comunidad
+                {
+                    Id = 8,
+                    Nombre = "Río Seco",
+                    Descripcion = ""
+                },
+                new Comunidad
+                {
+                    Id = 9,
+                    Nombre = "Mojao",
+                    Descripcion = ""
+                },
+                new Comunidad
+                {
+                    Id = 10,
+                    Nombre = "Los Haticos",
+                    Descripcion = ""
+                },
+                new Comunidad
+                {
+                    Id = 11,
+                    Nombre = "Pueblo Bello",
+                    Descripcion = ""
+                },
+                new Comunidad
+                {
+                    Id = 12,
+                    Nombre = "Murillo",
+                    Descripcion = ""
+                },
+                new Comunidad
+                {
+                    Id = 13,
+                    Nombre = "Rancho de la Goya",
+                    Descripcion = ""
                 }
             );
             model.Entity<Componente>().HasData(
@@ -378,6 +458,140 @@ namespace Infraestructura.Utils
                     EstrategiaId = 16
                 }
             );
+            model.Entity<Documento>().HasData(
+                new Documento
+                {
+                    Id = 1,
+                    Nombre = "Documento 1",
+                    RawData = new byte[0],
+                    RespaldoFisicoDigitalizado = ""
+                },
+                new Documento
+                {
+                    Id = 2,
+                    Nombre = "Documento 2",
+                    RawData = new byte[0],
+                    RespaldoFisicoDigitalizado = ""
+                },
+                new Documento
+                {
+                    Id = 3,
+                    Nombre = "Documento 3",
+                    RawData = new byte[0],
+                    RespaldoFisicoDigitalizado = ""
+                },
+                new Documento
+                {
+                    Id = 4,
+                    Nombre = "Documento 4",
+                    RawData = new byte[0],
+                    RespaldoFisicoDigitalizado = ""
+                }
+            );
+            model.Entity<Propuesta>().HasData(
+                new Propuesta
+                {
+                    Id = 1,
+                    PropuestaState = PropuestaState.ESPERA,
+                    FechaDePresentacion = new System.DateTime(),
+                    FechaDeAprovacion = new System.DateTime(),
+                    DocumentoId = 1,
+                    NumeroDeFamilias = 1500,
+                    Nombre = "Propuesta 1",
+                    PresupuestoEstimado = 1520000,
+                    FechaDeRegistro = new System.DateTime()
+                },
+                new Propuesta
+                {
+                    Id = 2,
+                    PropuestaState = PropuestaState.ACEPTADO,
+                    FechaDePresentacion = new System.DateTime(),
+                    FechaDeAprovacion = new System.DateTime(),
+                    DocumentoId = 2,
+                    NumeroDeFamilias = 2600,
+                    Nombre = "Propuesta 2",
+                    PresupuestoEstimado = 2000000,
+                    FechaDeRegistro = new System.DateTime()
+                },
+                new Propuesta
+                {
+                    Id = 3,
+                    PropuestaState = 0,
+                    FechaDePresentacion = new System.DateTime(),
+                    FechaDeAprovacion = new System.DateTime(),
+                    DocumentoId = 3,
+                    NumeroDeFamilias = 1000,
+                    Nombre = "Propuesta 3",
+                    PresupuestoEstimado = 1800000,
+                    FechaDeRegistro = new System.DateTime()
+                },
+                new Propuesta
+                {
+                    Id = 4,
+                    PropuestaState = 0,
+                    FechaDePresentacion = new System.DateTime(),
+                    FechaDeAprovacion = new System.DateTime(),
+                    DocumentoId = 4,
+                    NumeroDeFamilias = 1380,
+                    Nombre = "Propuesta 4",
+                    PresupuestoEstimado = 1750000,
+                    FechaDeRegistro = new System.DateTime()
+                }
+            );
+            model.Entity<Proyecto>().HasData(
+                new Proyecto
+                {
+                    Id = 1,
+                    PropuestaId = 1,
+                    ProyectoState = ProyectoState.VIABLE,
+                    Nombre = "Proyecto 1",
+                    PresupuestoAprobado = 1520000,
+                    PresupuestoEjecutado = 1500000,
+                    FechaEjecucion = new System.DateTime(),
+                    FechaCierre = new System.DateTime(),
+                    FechaDeCierrePrevista = new System.DateTime(),
+                    ProgramaId = 1
+                },
+                new Proyecto
+                {
+                    Id = 2,
+                    PropuestaId = 2,
+                    ProyectoState = ProyectoState.VIABLE,
+                    Nombre = "Proyecto 2",
+                    PresupuestoAprobado = 2000000,
+                    PresupuestoEjecutado = 1900000,
+                    FechaEjecucion = new System.DateTime(),
+                    FechaCierre = new System.DateTime(),
+                    FechaDeCierrePrevista = new System.DateTime(),
+                    ProgramaId = 2
+                },
+                new Proyecto
+                {
+                    Id = 3,
+                    PropuestaId = 3,
+                    ProyectoState = ProyectoState.ACEPTADO,
+                    Nombre = "Proyecto 3",
+                    PresupuestoAprobado = 1800000,
+                    PresupuestoEjecutado = 1700000,
+                    FechaEjecucion = new System.DateTime(),
+                    FechaCierre = new System.DateTime(),
+                    FechaDeCierrePrevista = new System.DateTime(),
+                    ProgramaId = 3
+                },
+                new Proyecto
+                {
+                    Id = 4,
+                    PropuestaId = 4,
+                    ProyectoState = ProyectoState.CONTRATADO,
+                    Nombre = "Proyecto 4",
+                    PresupuestoAprobado = 2200000,
+                    PresupuestoEjecutado = 2000000,
+                    FechaEjecucion = new System.DateTime(),
+                    FechaCierre = new System.DateTime(),
+                    FechaDeCierrePrevista = new System.DateTime(),
+                    ProgramaId = 4
+                }
+            );
         }
 
         public DbSet<Beneficiario> Beneficiarios { get; set; }
@@ -391,6 +605,7 @@ namespace Infraestructura.Utils
         public DbSet<Convenio> Convenio { get; set; }
         public DbSet<Dimension> Dimension { get; set; }
         public DbSet<DocumentoPresupuestal> DocumentoPresupuestal { get; set; }
+        public DbSet<Egreso> Egresos { get; set; }
         public DbSet<Estrategia> Estrategia { get; set; }
         public DbSet<Programa> Programa { get; set; }
         public DbSet<RegistroPresupuestal> RegistroPresupuestal { get; set; }

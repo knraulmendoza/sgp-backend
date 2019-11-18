@@ -210,6 +210,86 @@ namespace Infraestructura.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Comunidad");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Descripcion = "",
+                            Nombre = "Atanquez"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Descripcion = "",
+                            Nombre = "Guatapurí"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Descripcion = "",
+                            Nombre = "Chemesquemena"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Descripcion = "",
+                            Nombre = "La Mina"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Descripcion = "",
+                            Nombre = "Pontón"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            Descripcion = "",
+                            Nombre = "Las Florez"
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            Descripcion = "",
+                            Nombre = "Ramalito"
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            Descripcion = "",
+                            Nombre = "Río Seco"
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            Descripcion = "",
+                            Nombre = "Mojao"
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            Descripcion = "",
+                            Nombre = "Los Haticos"
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            Descripcion = "",
+                            Nombre = "Pueblo Bello"
+                        },
+                        new
+                        {
+                            Id = 12L,
+                            Descripcion = "",
+                            Nombre = "Murillo"
+                        },
+                        new
+                        {
+                            Id = 13L,
+                            Descripcion = "",
+                            Nombre = "Rancho de la Goya"
+                        });
                 });
 
             modelBuilder.Entity("Dominio.Entities.Convenio", b =>
@@ -290,6 +370,36 @@ namespace Infraestructura.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Documento");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Nombre = "Documento 1",
+                            RawData = new byte[] {  },
+                            RespaldoFisicoDigitalizado = ""
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Nombre = "Documento 2",
+                            RawData = new byte[] {  },
+                            RespaldoFisicoDigitalizado = ""
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Nombre = "Documento 3",
+                            RawData = new byte[] {  },
+                            RespaldoFisicoDigitalizado = ""
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Nombre = "Documento 4",
+                            RawData = new byte[] {  },
+                            RespaldoFisicoDigitalizado = ""
+                        });
                 });
 
             modelBuilder.Entity("Dominio.Entities.DocumentoPresupuestal", b =>
@@ -313,6 +423,34 @@ namespace Infraestructura.Migrations
                     b.ToTable("DocumentoPresupuestal");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("DocumentoPresupuestal");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.Egreso", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Concepto")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Monto")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("ProyectoDeDestinoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProyectoDeDestinoId");
+
+                    b.ToTable("Egresos");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Estrategia", b =>
@@ -678,6 +816,56 @@ namespace Infraestructura.Migrations
                     b.HasIndex("DocumentoId");
 
                     b.ToTable("Propuestas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            DocumentoId = 1L,
+                            FechaDeAprovacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDePresentacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDeRegistro = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Propuesta 1",
+                            NumeroDeFamilias = 1500,
+                            PresupuestoEstimado = 1520000m,
+                            PropuestaState = 0
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            DocumentoId = 2L,
+                            FechaDeAprovacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDePresentacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDeRegistro = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Propuesta 2",
+                            NumeroDeFamilias = 2600,
+                            PresupuestoEstimado = 2000000m,
+                            PropuestaState = 1
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            DocumentoId = 3L,
+                            FechaDeAprovacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDePresentacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDeRegistro = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Propuesta 3",
+                            NumeroDeFamilias = 1000,
+                            PresupuestoEstimado = 1800000m,
+                            PropuestaState = 0
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            DocumentoId = 4L,
+                            FechaDeAprovacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDePresentacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDeRegistro = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Propuesta 4",
+                            NumeroDeFamilias = 1380,
+                            PresupuestoEstimado = 1750000m,
+                            PropuestaState = 0
+                        });
                 });
 
             modelBuilder.Entity("Dominio.Entities.Proyecto", b =>
@@ -722,6 +910,60 @@ namespace Infraestructura.Migrations
                     b.HasIndex("PropuestaId");
 
                     b.ToTable("Proyectos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            FechaCierre = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDeCierrePrevista = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaEjecucion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Proyecto 1",
+                            PresupuestoAprobado = 1520000m,
+                            PresupuestoEjecutado = 1500000m,
+                            ProgramaId = 1L,
+                            PropuestaId = 1L,
+                            ProyectoState = 1
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            FechaCierre = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDeCierrePrevista = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaEjecucion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Proyecto 2",
+                            PresupuestoAprobado = 2000000m,
+                            PresupuestoEjecutado = 1900000m,
+                            ProgramaId = 2L,
+                            PropuestaId = 2L,
+                            ProyectoState = 1
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            FechaCierre = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDeCierrePrevista = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaEjecucion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Proyecto 3",
+                            PresupuestoAprobado = 1800000m,
+                            PresupuestoEjecutado = 1700000m,
+                            ProgramaId = 3L,
+                            PropuestaId = 3L,
+                            ProyectoState = 2
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            FechaCierre = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDeCierrePrevista = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaEjecucion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nombre = "Proyecto 4",
+                            PresupuestoAprobado = 2200000m,
+                            PresupuestoEjecutado = 2000000m,
+                            ProgramaId = 4L,
+                            PropuestaId = 4L,
+                            ProyectoState = 4
+                        });
                 });
 
             modelBuilder.Entity("Dominio.Entities.ProyectoComunidad", b =>
@@ -838,7 +1080,7 @@ namespace Infraestructura.Migrations
                     b.Property<string>("Concepto")
                         .HasColumnType("TEXT");
 
-                    b.Property<long?>("ProyectoId")
+                    b.Property<long>("ProyectoId")
                         .HasColumnName("TransaccionUnaria_ProyectoId")
                         .HasColumnType("INTEGER");
 
@@ -881,6 +1123,13 @@ namespace Infraestructura.Migrations
                     b.HasOne("Dominio.Entities.Convenio", "Convenio")
                         .WithMany()
                         .HasForeignKey("ConvenioId");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.Egreso", b =>
+                {
+                    b.HasOne("Dominio.Entities.Proyecto", "ProyectoDeDestino")
+                        .WithMany()
+                        .HasForeignKey("ProyectoDeDestinoId");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Estrategia", b =>
@@ -992,7 +1241,9 @@ namespace Infraestructura.Migrations
                 {
                     b.HasOne("Dominio.Entities.Proyecto", "Proyecto")
                         .WithMany("TransaccionesUnarias")
-                        .HasForeignKey("ProyectoId");
+                        .HasForeignKey("ProyectoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
