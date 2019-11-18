@@ -144,6 +144,7 @@ namespace Infraestructura.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    PropuestaState = table.Column<int>(nullable: false, defaultValue: 0),
                     FechaDePresentacion = table.Column<DateTime>(nullable: false),
                     FechaDeAprovacion = table.Column<DateTime>(nullable: false),
                     DocumentoId = table.Column<long>(nullable: false),
@@ -212,7 +213,7 @@ namespace Infraestructura.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     PropuestaId = table.Column<long>(nullable: false),
-                    ProyectoState = table.Column<int>(nullable: false),
+                    ProyectoState = table.Column<int>(nullable: false, defaultValue: 1),
                     Nombre = table.Column<string>(nullable: true),
                     PresupuestoAprobado = table.Column<decimal>(nullable: false),
                     PresupuestoEjecutado = table.Column<decimal>(nullable: false),

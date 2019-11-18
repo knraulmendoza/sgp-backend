@@ -30,6 +30,8 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             Proyecto res = uow.ProyectoRepository.GetByID(id);
+            res.Propuesta = uow.PropuestaRepository.GetByID(res.PropuestaId);
+            res.Programa = uow.ProgramaRepository.GetByID(res.ProgramaId);
             uow.Dispose();
             return res;
         }
@@ -41,13 +43,13 @@ namespace WebApi.Controllers
             IEnumerable<Proyecto> res = uow.ProyectoRepository.Get();
             foreach (Proyecto proyecto in res)
             {
-                proyecto.Propuesta = uow.PropuestaRepository.GetByID(proyecto.Id);
+                proyecto.Propuesta = uow.PropuestaRepository.GetByID(proyecto.PropuestaId);
             }
             uow.Dispose();
             return res.ToList();
         }
 
-        [HttpGet("api/{controller}/egresos/{idProyecto}")]
+        [HttpGet("egresos/{idProyecto}")]
         public ActionResult<IList<TransaccionUnaria>> GetGastosProyectos(long idProyecto)
         {
             uow = new UnitOfWork();
@@ -57,11 +59,15 @@ namespace WebApi.Controllers
             return egresos.ToList();
         }
 
-        [HttpGet("api/{controller}/estado/{proyectoState}")]
+        [HttpGet("estado/{proyectoState}")]
         public ActionResult<IList<Proyecto>> GetProyectosPorEstado(ProyectoState proyectoState)
         {
             uow = new UnitOfWork();
-            var proyectos = uow.ProyectoRepository.Get(p => p.ProyectoState == proyectoState);
+            IEnumerable<Proyecto> proyectos = uow.ProyectoRepository.Get(p => p.ProyectoState == proyectoState);
+            foreach (Proyecto proyecto in proyectos)
+            {
+                proyecto.Propuesta = uow.PropuestaRepository.GetByID(proyecto.PropuestaId);
+            }
             uow.Save();
             uow.Dispose();
             return proyectos.ToList();

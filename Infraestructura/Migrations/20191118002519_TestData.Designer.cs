@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructura.Migrations
 {
     [DbContext(typeof(SgpContext))]
-    [Migration("20191117235102_TestData")]
+    [Migration("20191118002519_TestData")]
     partial class TestData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -670,6 +670,11 @@ namespace Infraestructura.Migrations
                     b.Property<decimal>("PresupuestoEstimado")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("PropuestaState")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(0);
+
                     b.HasKey("Id");
 
                     b.HasIndex("DocumentoId");
@@ -708,7 +713,9 @@ namespace Infraestructura.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ProyectoState")
-                        .HasColumnType("INTEGER");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(1);
 
                     b.HasKey("Id");
 

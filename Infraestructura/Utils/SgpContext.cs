@@ -33,7 +33,7 @@ namespace Infraestructura.Utils
                 .WithOne(t => t.Proyecto);
             
             model.Entity<Propuesta>()
-                .Property(p => p.Estado).HasDefaultValue(PropuestaState.ESPERA);
+                .Property(p => p.PropuestaState).HasDefaultValue(PropuestaState.ESPERA);
             
             model.Entity<Proyecto>()
                 .Property(p => p.ProyectoState).HasDefaultValue(ProyectoState.VIABLE);

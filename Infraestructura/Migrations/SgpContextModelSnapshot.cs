@@ -668,6 +668,11 @@ namespace Infraestructura.Migrations
                     b.Property<decimal>("PresupuestoEstimado")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("PropuestaState")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(0);
+
                     b.HasKey("Id");
 
                     b.HasIndex("DocumentoId");
@@ -706,7 +711,9 @@ namespace Infraestructura.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ProyectoState")
-                        .HasColumnType("INTEGER");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(1);
 
                     b.HasKey("Id");
 

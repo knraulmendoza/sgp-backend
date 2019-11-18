@@ -8,7 +8,7 @@ namespace Dominio.Entities
 {
     public class Propuesta : BaseEntity
     {
-        public PropuestaState Estado { get; set; }
+        public PropuestaState PropuestaState { get; set; }
         public DateTime FechaDePresentacion { get; set; }
         public DateTime FechaDeAprovacion { get; set; }
         public long DocumentoId { get; set; }
