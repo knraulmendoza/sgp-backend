@@ -146,7 +146,7 @@ namespace Infraestructura.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     PropuestaState = table.Column<int>(nullable: false, defaultValue: 0),
                     FechaDePresentacion = table.Column<DateTime>(nullable: false),
-                    FechaDeAprovacion = table.Column<DateTime>(nullable: false),
+                    FechaDeAprobacion = table.Column<DateTime>(nullable: false),
                     DocumentoId = table.Column<long>(nullable: false),
                     NumeroDeFamilias = table.Column<int>(nullable: false),
                     Nombre = table.Column<string>(nullable: true),
@@ -588,22 +588,22 @@ namespace Infraestructura.Migrations
 
             migrationBuilder.InsertData(
                 table: "Propuestas",
-                columns: new[] { "Id", "DocumentoId", "FechaDeAprovacion", "FechaDePresentacion", "FechaDeRegistro", "Nombre", "NumeroDeFamilias", "PresupuestoEstimado" },
+                columns: new[] { "Id", "DocumentoId", "FechaDeAprobacion", "FechaDePresentacion", "FechaDeRegistro", "Nombre", "NumeroDeFamilias", "PresupuestoEstimado" },
                 values: new object[] { 1L, 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Propuesta 1", 1500, 1520000m });
 
             migrationBuilder.InsertData(
                 table: "Propuestas",
-                columns: new[] { "Id", "DocumentoId", "FechaDeAprovacion", "FechaDePresentacion", "FechaDeRegistro", "Nombre", "NumeroDeFamilias", "PresupuestoEstimado", "PropuestaState" },
+                columns: new[] { "Id", "DocumentoId", "FechaDeAprobacion", "FechaDePresentacion", "FechaDeRegistro", "Nombre", "NumeroDeFamilias", "PresupuestoEstimado", "PropuestaState" },
                 values: new object[] { 2L, 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Propuesta 2", 2600, 2000000m, 1 });
 
             migrationBuilder.InsertData(
                 table: "Propuestas",
-                columns: new[] { "Id", "DocumentoId", "FechaDeAprovacion", "FechaDePresentacion", "FechaDeRegistro", "Nombre", "NumeroDeFamilias", "PresupuestoEstimado" },
+                columns: new[] { "Id", "DocumentoId", "FechaDeAprobacion", "FechaDePresentacion", "FechaDeRegistro", "Nombre", "NumeroDeFamilias", "PresupuestoEstimado" },
                 values: new object[] { 3L, 3L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Propuesta 3", 1000, 1800000m });
 
             migrationBuilder.InsertData(
                 table: "Propuestas",
-                columns: new[] { "Id", "DocumentoId", "FechaDeAprovacion", "FechaDePresentacion", "FechaDeRegistro", "Nombre", "NumeroDeFamilias", "PresupuestoEstimado" },
+                columns: new[] { "Id", "DocumentoId", "FechaDeAprobacion", "FechaDePresentacion", "FechaDeRegistro", "Nombre", "NumeroDeFamilias", "PresupuestoEstimado" },
                 values: new object[] { 4L, 4L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Propuesta 4", 1380, 1750000m });
 
             migrationBuilder.InsertData(

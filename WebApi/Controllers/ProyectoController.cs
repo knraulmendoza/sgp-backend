@@ -31,7 +31,6 @@ namespace WebApi.Controllers
             uow = new UnitOfWork();
             Proyecto res = uow.ProyectoRepository.GetByID(id);
             res.Propuesta = uow.PropuestaRepository.GetByID(res.PropuestaId);
-            res.Programa = uow.ProgramaRepository.GetByID(res.ProgramaId);
             uow.Dispose();
             return res;
         }
@@ -75,6 +74,9 @@ namespace WebApi.Controllers
         public ActionResult<Proyecto> Insert(Proyecto entity)
         {
             uow = new UnitOfWork();
+            Propuesta propuesta = uow.PropuestaRepository.GetByID(entity.PropuestaId);
+            propuesta.FechaDeAprobacion = System.DateTime.Now;
+            uow.PropuestaRepository.Update(propuesta);
             uow.ProyectoRepository.Insert(entity);
             uow.Save();
             uow.Dispose();

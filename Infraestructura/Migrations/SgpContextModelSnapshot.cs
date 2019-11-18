@@ -788,7 +788,7 @@ namespace Infraestructura.Migrations
                     b.Property<long>("DocumentoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("FechaDeAprovacion")
+                    b.Property<DateTime>("FechaDeAprobacion")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("FechaDePresentacion")
@@ -822,7 +822,7 @@ namespace Infraestructura.Migrations
                         {
                             Id = 1L,
                             DocumentoId = 1L,
-                            FechaDeAprovacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDeAprobacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FechaDePresentacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FechaDeRegistro = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Propuesta 1",
@@ -834,7 +834,7 @@ namespace Infraestructura.Migrations
                         {
                             Id = 2L,
                             DocumentoId = 2L,
-                            FechaDeAprovacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDeAprobacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FechaDePresentacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FechaDeRegistro = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Propuesta 2",
@@ -846,7 +846,7 @@ namespace Infraestructura.Migrations
                         {
                             Id = 3L,
                             DocumentoId = 3L,
-                            FechaDeAprovacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDeAprobacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FechaDePresentacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FechaDeRegistro = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Propuesta 3",
@@ -858,7 +858,7 @@ namespace Infraestructura.Migrations
                         {
                             Id = 4L,
                             DocumentoId = 4L,
-                            FechaDeAprovacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaDeAprobacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FechaDePresentacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FechaDeRegistro = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Propuesta 4",
