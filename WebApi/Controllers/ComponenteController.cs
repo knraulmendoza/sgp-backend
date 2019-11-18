@@ -8,7 +8,7 @@ using System.Linq;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ComponenteController : GenericController<Componente>
     {
         private UnitOfWork uow;
@@ -29,6 +29,7 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             Componente res = uow.ComponenteRepository.GetByID(id);
+            res.Estrategias = uow.EstrategiaRepository.Get(e => e.ComponenteId == res.Id).ToList();
             uow.Dispose();
             return res;
         }
