@@ -52,8 +52,11 @@ namespace WebApi.Controllers
         public ActionResult<IList<TransaccionUnaria>> GetGastosProyectos(long id)
         {
             uow = new UnitOfWork();
-            IEnumerable<TransaccionUnaria> transaccions = uow.TransaccionUnariaRepository.Get(t => t.ProyectoId == id);
-            return transaccions.ToList();
+            var egresos = uow.ProyectoRepository
+                            .GetByID(idProyecto).TransaccionesUnarias
+                            .Where(t => t.Tipo == TransaccionType.EGRESO);
+                            uow.Dispose();
+            return egresos.ToList();
         }
 
         [HttpGet("{idProyecto}")]
@@ -62,10 +65,12 @@ namespace WebApi.Controllers
             uow = new UnitOfWork();
             var ingreso = uow.ProyectoRepository
                             .GetByID(idProyecto).TransaccionesUnarias
-                            .Where(t => t.Tipo == TransaccionType.INGRESO);
+                            .Where(t => t.Tipo == TransaccionType.INGRESO);  
+                            uow.Dispose();                          
+
             return ingreso.ToList();
         }
-
+    
         [HttpGet("estado/{proyectoState}")]
         public ActionResult<IList<Proyecto>> GetProyectosPorEstado(ProyectoState proyectoState)
         {
