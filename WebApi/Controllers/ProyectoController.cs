@@ -52,11 +52,8 @@ namespace WebApi.Controllers
         public ActionResult<IList<TransaccionUnaria>> GetGastosProyectos(long id)
         {
             uow = new UnitOfWork();
-            var egresos = uow.ProyectoRepository
-                            .GetByID(id).TransaccionesUnarias
-                            .Where(t => t.Tipo == TransaccionType.EGRESO);
-                            uow.Dispose();
-            return egresos.ToList();
+            IEnumerable<TransaccionUnaria> transaccions = uow.TransaccionUnariaRepository.Get(t => t.ProyectoId == id);
+            return transaccions.ToList();
         }
 
         [HttpGet("{idProyecto}")]
