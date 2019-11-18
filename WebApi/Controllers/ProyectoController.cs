@@ -53,6 +53,16 @@ namespace WebApi.Controllers
             return egresos.ToList();
         }
 
+        [HttpGet("{idProyecto}")]
+        public ActionResult<IList<TransaccionUnaria>> GetIngresoProyectos(long idProyecto)
+        {
+            uow = new UnitOfWork();
+            var ingreso = uow.ProyectoRepository
+                            .GetByID(idProyecto).TransaccionesUnarias
+                            .Where(t => t.Tipo == TransaccionType.INGRESO);
+            return ingreso.ToList();
+        }
+
         public ActionResult<ICollection<Proyecto>> GetProyectosPorEstado(ProyectoState proyectoState)
         {
             uow = new UnitOfWork();
