@@ -39,12 +39,16 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             IEnumerable<Proyecto> res = uow.ProyectoRepository.Get();
+            foreach (Proyecto proyecto in res)
+            {
+                proyecto.Propuesta = uow.PropuestaRepository.GetByID(proyecto.Id);
+            }
             uow.Dispose();
             return res.ToList();
         }
 
-        [Route("/Egresos/{idProyecto}")]
-        public IList<TransaccionUnaria> GetGastosProyectos(long idProyecto)
+        [HttpGet("api/{controller}/egresos/{idProyecto}")]
+        public ActionResult<IList<TransaccionUnaria>> GetGastosProyectos(long idProyecto)
         {
             uow = new UnitOfWork();
             var egresos = uow.ProyectoRepository
@@ -53,7 +57,8 @@ namespace WebApi.Controllers
             return egresos.ToList();
         }
 
-        public ICollection<Proyecto> GetProyectosPorEstado(ProyectoState proyectoState)
+        [HttpGet("api/{controller}/estado/{proyectoState}")]
+        public ActionResult<IList<Proyecto>> GetProyectosPorEstado(ProyectoState proyectoState)
         {
             uow = new UnitOfWork();
             var proyectos = uow.ProyectoRepository.Get(p => p.ProyectoState == proyectoState);
@@ -71,7 +76,6 @@ namespace WebApi.Controllers
             uow.Dispose();
             return entity;
         }
-
 
         [HttpPut]
         public ActionResult<Proyecto> Update(Proyecto entity)

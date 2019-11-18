@@ -6,10 +6,10 @@ namespace WebApi.Contracts
 {
     public interface ProyectoContract
     {
-        [Route("api/{controller}/estado/{proyectoState}")]
-        ICollection<Proyecto> GetProyectosPorEstado(ProyectoState proyectoState);
+        // [HttpGet("api/{controller}/estado/{proyectoState}")]
+        ActionResult<IList<Proyecto>> GetProyectosPorEstado(ProyectoState proyectoState);
 
-        [Route("api/{controller}/egresos/{idProyecto}")]
-        IList<TransaccionUnaria> GetGastosProyectos(long idProyecto);
+        // [HttpGet("api/{controller}/egresos/{idProyecto}")]
+        ActionResult<IList<TransaccionUnaria>> GetGastosProyectos(long idProyecto);
     }
 }
