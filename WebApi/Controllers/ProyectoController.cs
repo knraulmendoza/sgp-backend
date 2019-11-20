@@ -84,6 +84,41 @@ namespace WebApi.Controllers
                 return new ActionResult<IEnumerable<TransaccionUnaria>>(r);
             }
         }
+
+         [HttpGet("ingresobinario/{idProyecto}")]
+       public ActionResult<IEnumerable<TransaccionBinaria>> GetIngresosProyectosBinario(long id)
+        {
+            uow = new UnitOfWork();
+            var proyecto = uow.ProyectoRepository.Get(filter: p => p.Id == id, includeProperties: "TransaccionBinarias").FirstOrDefault(); // uow.TransaccionUnariaRepository.Get(t => t.ProyectoId == id);
+            if (proyecto == null)
+            {
+                return new NotFoundResult();
+            }
+            else
+            {
+                var r = from t in proyecto.TransaccionesBinarias
+                        where t.Tipo == TransaccionType.INGRESO
+                        select t;
+                return new ActionResult<IEnumerable<TransaccionBinaria>>(r);
+            }
+        }
+         [HttpGet("Egresosbinario/{idProyecto}")]
+       public ActionResult<IEnumerable<TransaccionBinaria>> GetEgresosProyectosBinario(long id)
+        {
+            uow = new UnitOfWork();
+            var proyecto = uow.ProyectoRepository.Get(filter: p => p.Id == id, includeProperties: "TransaccionBinarias").FirstOrDefault(); // uow.TransaccionUnariaRepository.Get(t => t.ProyectoId == id);
+            if (proyecto == null)
+            {
+                return new NotFoundResult();
+            }
+            else
+            {
+                var r = from t in proyecto.TransaccionesBinarias
+                        where t.Tipo == TransaccionType.EGRESO
+                        select t;
+                return new ActionResult<IEnumerable<TransaccionBinaria>>(r);
+            }
+        }
     
         [HttpGet("estado/{proyectoState}")]
         public ActionResult<IList<Proyecto>> GetProyectosPorEstado(ProyectoState proyectoState)
@@ -99,6 +134,7 @@ namespace WebApi.Controllers
             return proyectos.ToList();
         }
 
+  
         [HttpPost]
         public ActionResult<Proyecto> Insert(Proyecto entity)
         {
