@@ -66,7 +66,7 @@ namespace Infraestructura.Utils
         {
             get
             {
-                if (CertificadoDeDisponibilidadPresupuestalRepository == null)
+                if (CDPRepository == null)
                 {
                     CDPRepository = new CertificadoDeDisponibilidadPresupuestalRepository(context);
                 }
