@@ -10,6 +10,6 @@ namespace WebApi.Contracts
         ActionResult<IList<Proyecto>> GetProyectosPorEstado(ProyectoState proyectoState);
 
         // [HttpGet("api/{controller}/egresos/{idProyecto}")]
-        ActionResult<IList<TransaccionUnaria>> GetGastosProyectos(long idProyecto);
+        //ActionResult<IEnumerable<TransaccionUnaria>> GetGastosProyectos(long idProyecto);
     }
 }

@@ -42,19 +42,18 @@ namespace WebApi.Controllers{
             return res.ToList();
         }
 
-        [HttpGet("gastos/{idProyecto}")]
-        public IList<TransaccionUnaria> GetGastosProyectos(long idProyecto)
+        [HttpGet("egresos/{id}")]
+        public ActionResult<IList<TransaccionUnaria>> GetGastosProyectos(long id)
         {
             uow = new UnitOfWork();
-            var egresos = uow.TransaccionUnariaRepository.Get(t => t.ProyectoId == idProyecto);
-            return egresos.ToList();
+            IEnumerable<TransaccionUnaria> transaccions = uow.TransaccionUnariaRepository.Get(t => t.ProyectoId == id);
+            return transaccions.ToList();
         }
 
         [HttpPost]
         public ActionResult<TransaccionUnaria> Insert(TransaccionUnaria entity)
-        {
+        {              
             uow = new UnitOfWork();
-            var detalle = uow.TransaccionUnariaRepository.Insert(entity);
             uow.EgresoRepository.Insert(new Egreso()
             {
                 Fecha = entity.Fecha,
@@ -65,12 +64,22 @@ namespace WebApi.Controllers{
                 Concepto = entity.Concepto,
                 Tipo = MovimientoType.EGRESO
             });
-            Proyecto proyecto = uow.ProyectoRepository.GetByID(entity.ProyectoId);
-            proyecto.PresupuestoEjecutado += entity.Monto;
+            uow.TransaccionUnariaRepository.Insert(entity);
+            uow.Save();
+            uow.Dispose();
+            ingresarGasto(entity.ProyectoId, entity.Monto);
+            return entity;
+        }
+
+        public bool ingresarGasto(long id, decimal Monto){
+            uow = new UnitOfWork();
+            Proyecto proyecto = new Proyecto();   
+            proyecto = uow.ProyectoRepository.GetByID(id);
+            proyecto.PresupuestoEjecutado += Monto;
             uow.ProyectoRepository.Update(proyecto);
             uow.Save();
             uow.Dispose();
-            return entity;
+            return true;
         }
 
         [HttpPut("{id}")]
