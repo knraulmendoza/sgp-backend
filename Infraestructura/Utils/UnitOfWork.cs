@@ -27,11 +27,12 @@ namespace Infraestructura.Utils
         private DocumentoPresupuestalRepository documentoPresupuestalRepository = null;
         private EstrategiaRepository estrategiaRepository = null;
         private ProgramaRepository programaRepository = null;
+        private PropuestaRepository propuestaRepository = null;
         private ProyectoRepository proyectoRepository = null;
+        private ProyectoComunidadRepository proyectoComunidadRepository = null;
         private RegistroPresupuestalRepository registroPresupuestalRepository = null;
         private TransaccionRepository transaccionRepository = null;
         private TransaccionUnariaRepository transaccionUnariaRepository = null;
-        private PropuestaRepository propuestaRepository = null;
         private BeneficicarioRepository beneficicarioRepository = null;
         private IngresoOnceavaRepository ingresoOnceavaRepository = null;
 
@@ -202,6 +203,18 @@ namespace Infraestructura.Utils
                     proyectoRepository = new ProyectoRepository(context);
                 }
                 return proyectoRepository;
+            }
+        }
+
+        public ProyectoComunidadRepository ProyectoComunidadRepository
+        {
+            get
+            {
+                if (proyectoComunidadRepository == null)
+                {
+                    proyectoComunidadRepository = new ProyectoComunidadRepository(context);
+                }
+                return proyectoComunidadRepository;
             }
         }
 

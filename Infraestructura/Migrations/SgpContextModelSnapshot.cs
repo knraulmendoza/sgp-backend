@@ -65,15 +65,10 @@ namespace Infraestructura.Migrations
                     b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
-                    b.Property<long?>("PropuestaId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<long?>("ProyectoId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PropuestaId");
 
                     b.HasIndex("ProyectoId");
 
@@ -984,7 +979,7 @@ namespace Infraestructura.Migrations
 
                     b.HasIndex("ProyectoId");
 
-                    b.ToTable("ProyectoComunidad");
+                    b.ToTable("ProyectoComunidads");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Transaccion", b =>
@@ -1097,10 +1092,6 @@ namespace Infraestructura.Migrations
 
             modelBuilder.Entity("Dominio.Entities.Beneficiario", b =>
                 {
-                    b.HasOne("Dominio.Entities.Propuesta", null)
-                        .WithMany("Beneficiarios")
-                        .HasForeignKey("PropuestaId");
-
                     b.HasOne("Dominio.Entities.Proyecto", null)
                         .WithMany("Beneficiarios")
                         .HasForeignKey("ProyectoId");

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infraestructura.Migrations
 {
-    public partial class DataTest : Migration
+    public partial class FixProjects : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -273,18 +273,11 @@ namespace Infraestructura.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Codigo = table.Column<string>(nullable: true),
                     Nombre = table.Column<string>(nullable: true),
-                    PropuestaId = table.Column<long>(nullable: true),
                     ProyectoId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Beneficiarios", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Beneficiarios_Propuestas_PropuestaId",
-                        column: x => x.PropuestaId,
-                        principalTable: "Propuestas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Beneficiarios_Proyectos_ProyectoId",
                         column: x => x.ProyectoId,
@@ -317,7 +310,7 @@ namespace Infraestructura.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProyectoComunidad",
+                name: "ProyectoComunidads",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
@@ -327,15 +320,15 @@ namespace Infraestructura.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProyectoComunidad", x => x.Id);
+                    table.PrimaryKey("PK_ProyectoComunidads", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProyectoComunidad_Comunidad_ComunidadId",
+                        name: "FK_ProyectoComunidads_Comunidad_ComunidadId",
                         column: x => x.ComunidadId,
                         principalTable: "Comunidad",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProyectoComunidad_Proyectos_ProyectoId",
+                        name: "FK_ProyectoComunidads_Proyectos_ProyectoId",
                         column: x => x.ProyectoId,
                         principalTable: "Proyectos",
                         principalColumn: "Id",
@@ -806,11 +799,6 @@ namespace Infraestructura.Migrations
                 column: "ProyectoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Beneficiarios_PropuestaId",
-                table: "Beneficiarios",
-                column: "PropuestaId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Beneficiarios_ProyectoId",
                 table: "Beneficiarios",
                 column: "ProyectoId");
@@ -876,13 +864,13 @@ namespace Infraestructura.Migrations
                 column: "DocumentoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProyectoComunidad_ComunidadId",
-                table: "ProyectoComunidad",
+                name: "IX_ProyectoComunidads_ComunidadId",
+                table: "ProyectoComunidads",
                 column: "ComunidadId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProyectoComunidad_ProyectoId",
-                table: "ProyectoComunidad",
+                name: "IX_ProyectoComunidads_ProyectoId",
+                table: "ProyectoComunidads",
                 column: "ProyectoId");
 
             migrationBuilder.CreateIndex(
@@ -926,7 +914,7 @@ namespace Infraestructura.Migrations
                 name: "IngresoOnceava");
 
             migrationBuilder.DropTable(
-                name: "ProyectoComunidad");
+                name: "ProyectoComunidads");
 
             migrationBuilder.DropTable(
                 name: "Transaccion");
