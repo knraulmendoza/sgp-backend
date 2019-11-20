@@ -9,13 +9,10 @@ namespace WebApi.Controllers
     [Route("[controller]")]
     public class FondosController
     {
-        [HttpGet("/Fondo/Fondos")]
+        [HttpGet("/Api/Fondo/Fondos")]
         public IDictionary<string, decimal> GetFondos() => FondoGlobal.GetInstance().Fondos;
 
         [HttpGet("/Fondo/PresupuestoTotal")]
-        public decimal GetPresupuesto()
-        {
-            return FondoGlobal.GetInstance().PresupuestoTotal;
-        }
+        public decimal GetPresupuesto() => FondoGlobal.GetInstance().PresupuestoTotal;
     }
 }
