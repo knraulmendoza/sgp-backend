@@ -49,40 +49,20 @@ namespace WebApi.Controllers
         }
 
         
-        [HttpGet("egresos/{id}")]
-        public ActionResult<IEnumerable<TransaccionUnaria>> GetGastosProyectos(long id)
+      [HttpGet("egresos/{id}")]
+        public ActionResult<IList<TransaccionUnaria>> GetGastosProyectos(long id)
         {
             uow = new UnitOfWork();
-            var proyecto = uow.ProyectoRepository.Get(filter: p => p.Id == id, includeProperties: "TransaccionesUnarias").FirstOrDefault(); // uow.TransaccionUnariaRepository.Get(t => t.ProyectoId == id);
-            if (proyecto == null)
-            {
-                return new NotFoundResult();
-            }
-            else
-            {
-                var r = from t in proyecto.TransaccionesUnarias
-                        where t.Tipo == TransaccionType.EGRESO
-                        select t;
-                return new ActionResult<IEnumerable<TransaccionUnaria>>(r);
-            }
+            IEnumerable<TransaccionUnaria> transaccions = uow.TransaccionUnariaRepository.Get(t => t.ProyectoId == id && t.Tipo==TransaccionType.EGRESO);
+            return transaccions.ToList();
         }
 
-        [HttpGet("ingreso/{idProyecto}")]
-       public ActionResult<IEnumerable<TransaccionUnaria>> GetIngresosProyectos(long id)
+       [HttpGet("ingreso/{id}")]
+        public ActionResult<IList<TransaccionUnaria>> GetIngresoProyectos(long id)
         {
             uow = new UnitOfWork();
-            var proyecto = uow.ProyectoRepository.Get(filter: p => p.Id == id, includeProperties: "TransaccionesUnarias").FirstOrDefault(); // uow.TransaccionUnariaRepository.Get(t => t.ProyectoId == id);
-            if (proyecto == null)
-            {
-                return new NotFoundResult();
-            }
-            else
-            {
-                var r = from t in proyecto.TransaccionesUnarias
-                        where t.Tipo == TransaccionType.INGRESO
-                        select t;
-                return new ActionResult<IEnumerable<TransaccionUnaria>>(r);
-            }
+            IEnumerable<TransaccionUnaria> transaccions = uow.TransaccionUnariaRepository.Get(t => t.ProyectoId == id && t.Tipo==TransaccionType.INGRESO);
+            return transaccions.ToList();
         }
 
          [HttpGet("ingresobinario/{idProyecto}")]

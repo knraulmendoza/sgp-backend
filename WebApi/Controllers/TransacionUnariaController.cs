@@ -52,34 +52,43 @@ namespace WebApi.Controllers{
 
         [HttpPost]
         public ActionResult<TransaccionUnaria> Insert(TransaccionUnaria entity)
-        {              
-            uow = new UnitOfWork();
-            uow.EgresoRepository.Insert(new Egreso()
-            {
-                Fecha = entity.Fecha,
-                Monto = entity.Monto,
-                ProyectoDeDestinoId = entity.ProyectoId,
-                // Detalle no existe en la entidad Egreso
-                // Detalle = detalle,
-                Concepto = entity.Concepto,
-                Tipo = MovimientoType.EGRESO
-            });
-            uow.TransaccionUnariaRepository.Insert(entity);
-            uow.Save();
-            uow.Dispose();
-            ingresarGasto(entity.ProyectoId, entity.Monto);
-            return entity;
+        {
+            if(ingresarGasto(entity.ProyectoId, entity.Monto)){
+                uow = new UnitOfWork();
+                uow.EgresoRepository.Insert(new Egreso()
+                {
+                    Fecha = entity.Fecha,
+                    Monto = entity.Monto,
+                    ProyectoDeDestinoId = entity.ProyectoId,
+                    // Detalle no existe en la entidad Egreso
+                    // Detalle = detalle,
+                    Concepto = entity.Concepto,
+                    Tipo = MovimientoType.EGRESO
+                });
+                uow.TransaccionUnariaRepository.Insert(entity);
+                uow.Save();
+                uow.Dispose();
+                
+                return entity;
+            }else{
+                return null;
+            }
         }
 
-        public bool ingresarGasto(long id, decimal Monto){
+        private bool ingresarGasto(long id, decimal Monto){
             uow = new UnitOfWork();
+            bool bandera = true;
             Proyecto proyecto = new Proyecto();   
             proyecto = uow.ProyectoRepository.GetByID(id);
-            proyecto.PresupuestoEjecutado += Monto;
-            uow.ProyectoRepository.Update(proyecto);
+            if((proyecto.PresupuestoAprobado - proyecto.PresupuestoEjecutado) > Monto){
+                proyecto.PresupuestoEjecutado += Monto;
+                uow.ProyectoRepository.Update(proyecto);
+            }else{
+                bandera = false;
+            }
             uow.Save();
             uow.Dispose();
-            return true;
+            return bandera;
         }
 
         [HttpPut("{id}")]
