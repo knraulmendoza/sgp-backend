@@ -13,7 +13,9 @@ namespace Dominio.Entities
         public DateTime FechaDeAprobacion { get; set; }
         public long DocumentoId { get; set; }
         public Documento Documento { get; set; }
+        /* Esta relación no va
         public IList<Beneficiario> Beneficiarios { get; set; }
+         */
         public int NumeroDeFamilias { get; set; }
         public string Nombre { get; set; }
         public decimal PresupuestoEstimado { get; set; }

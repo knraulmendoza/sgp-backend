@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using WebApi.Contracts;
+/* Estados para la propuesta */
+using Dominio.Entities.States;
 
 namespace WebApi.Controllers
 {
@@ -29,8 +31,8 @@ namespace WebApi.Controllers
         public ActionResult<Proyecto> Get(long id)
         {
             uow = new UnitOfWork();
-            Proyecto res = uow.ProyectoRepository.GetByID(id);
-            res.Propuesta = uow.PropuestaRepository.GetByID(res.PropuestaId);
+            Proyecto res = uow.ProyectoRepository.Get(p => p.Id == id, includeProperties: "Beneficiarios,Propuesta")
+                .FirstOrDefault();
             uow.Dispose();
             return res;
         }
@@ -39,11 +41,7 @@ namespace WebApi.Controllers
         public ActionResult<IEnumerable<Proyecto>> GetAll()
         {
             uow = new UnitOfWork();
-            IEnumerable<Proyecto> res = uow.ProyectoRepository.Get();
-            foreach (Proyecto proyecto in res)
-            {
-                proyecto.Propuesta = uow.PropuestaRepository.GetByID(proyecto.PropuestaId);
-            }
+            IEnumerable<Proyecto> res = uow.ProyectoRepository.Get(includeProperties: "Propuesta");
             uow.Dispose();
             return res.ToList();
         }
@@ -104,11 +102,7 @@ namespace WebApi.Controllers
         public ActionResult<IList<Proyecto>> GetProyectosPorEstado(ProyectoState proyectoState)
         {
             uow = new UnitOfWork();
-            IEnumerable<Proyecto> proyectos = uow.ProyectoRepository.Get(p => p.ProyectoState == proyectoState);
-            foreach (Proyecto proyecto in proyectos)
-            {
-                proyecto.Propuesta = uow.PropuestaRepository.GetByID(proyecto.PropuestaId);
-            }
+            IEnumerable<Proyecto> proyectos = uow.ProyectoRepository.Get(p => p.ProyectoState == proyectoState, includeProperties: "Propuesta,Beneficiarios");
             uow.Save();
             uow.Dispose();
             return proyectos.ToList();
@@ -121,11 +115,12 @@ namespace WebApi.Controllers
             uow = new UnitOfWork();
             Propuesta propuesta = uow.PropuestaRepository.GetByID(entity.PropuestaId);
             propuesta.FechaDeAprobacion = System.DateTime.Now;
-            uow.PropuestaRepository.Update(propuesta);
+            propuesta.PropuestaState = PropuestaState.ACEPTADO;
             uow.ProyectoRepository.Insert(entity);
+            uow.PropuestaRepository.Update(propuesta);
             uow.Save();
             uow.Dispose();
-            return entity;
+            return this.Get(entity.Id);
         }
 
         [HttpPut]
