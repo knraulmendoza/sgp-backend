@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Dominio.Entities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
+using static Dominio.Entities.FondoGlobal;
 
 public interface ICertificadoDeDisponibilidadPresupuestalContract
 {
@@ -13,6 +14,6 @@ public interface ICertificadoDeDisponibilidadPresupuestalContract
     IEnumerable<Proyecto> GetListarProyectos(string estado);
 
     // Route[("api/[controller]/listarFondos")]
-	IDictionary<string, decimal> GetListarFondos();
+	IEnumerable<Fondo> GetListarFondos();
     
 }

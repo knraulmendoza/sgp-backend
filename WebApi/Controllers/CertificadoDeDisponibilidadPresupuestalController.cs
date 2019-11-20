@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static Dominio.Entities.FondoGlobal;
 
 namespace WebApi.Controllers
 {
@@ -25,14 +26,19 @@ namespace WebApi.Controllers
             return res;
         }
 
-        public ActionResult<CertificadoDeDisponibilidadPresupuestal> GenerarCertificadoDeDisponibilidadPresupuestal(long idProyecto, IDictionary<string, decimal> fondosYPresupuestos)
+        [HttpPost("GenerarCertificado")]
+        public ActionResult<CertificadoDeDisponibilidadPresupuestal> GenerarCertificadoDeDisponibilidadPresupuestal(long idProyecto, IDictionary<string, decimal> fondos)
         {
             uow = new UnitOfWork();
             var proyecto = uow.ProyectoRepository.GetByID(idProyecto);
+            if (proyecto == null)
+            {
+                return new NotFoundResult();
+            }
             var certificado = new CertificadoDeDisponibilidadPresupuestal() {
                 Codigo = Guid.NewGuid().ToString(),
                 FechaDeExpedicion = DateTime.Now,
-                FechaDeVencimiento = DateTime.Now,
+                FechaDeVencimiento = proyecto.FechaCierre,
                 RegistroPresupuestal = default
             };
             proyecto.CertificadosDeDisponibilidaPresupuestales.Add(certificado);
@@ -60,7 +66,7 @@ namespace WebApi.Controllers
             return res.ToList();
         }
 
-        public IDictionary<string, decimal> GetListarFondos()
+        public IEnumerable<Fondo> GetListarFondos()
         {
             return FondoGlobal.GetInstance().Fondos;
         }
