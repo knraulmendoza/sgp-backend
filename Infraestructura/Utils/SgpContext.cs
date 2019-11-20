@@ -599,7 +599,7 @@ namespace Infraestructura.Utils
         public DbSet<Proyecto> Proyectos { get; set; }
         public DbSet<ProyectoComunidad> ProyectoComunidads { get; set; }
         public DbSet<Actividad> Actividades { get; set; }
-        public DbSet<CertificadoDeDisponibilidadPresupuestal> CDPs { get; set; }
+        public DbSet<CDP> CDPs { get; set; }
         public DbSet<Componente> Componente { get; set; }
         public DbSet<Compromiso> Compromiso { get; set; }
         public DbSet<Comunidad> Comunidad { get; set; }

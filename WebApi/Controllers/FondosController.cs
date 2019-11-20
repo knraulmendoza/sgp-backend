@@ -7,13 +7,13 @@ using static Dominio.Entities.FondoGlobal;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("Api/[controller]")]
     public class FondosController
     {
-        [HttpGet("/Api/Fondo/Fondos")]
+        [HttpGet]
         public IEnumerable<Fondo> GetFondos() => FondoGlobal.GetInstance().Fondos;
 
-        [HttpGet("/Fondo/PresupuestoTotal")]
+        [HttpGet("PresupuestoTotal")]
         public decimal GetPresupuesto() => FondoGlobal.GetInstance().PresupuestoTotal;
     }
 }
