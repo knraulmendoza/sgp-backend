@@ -31,7 +31,7 @@ namespace WebApi.Controllers
         public ActionResult<Proyecto> Get(long id)
         {
             uow = new UnitOfWork();
-            Proyecto res = uow.ProyectoRepository.Get(p => p.Id == id, includeProperties: "Beneficiarios,Propuesta")
+            Proyecto res = uow.ProyectoRepository.Get(p => p.Id == id, includeProperties: "Beneficiarios,Propuesta,CDPs")
                 .FirstOrDefault();
             uow.Dispose();
             return res;
@@ -41,7 +41,7 @@ namespace WebApi.Controllers
         public ActionResult<IEnumerable<Proyecto>> GetAll()
         {
             uow = new UnitOfWork();
-            IEnumerable<Proyecto> res = uow.ProyectoRepository.Get(includeProperties: "Propuesta");
+            IEnumerable<Proyecto> res = uow.ProyectoRepository.Get(includeProperties: "Beneficiarios,Propuesta,CDPs");
             uow.Dispose();
             return res.ToList();
         }

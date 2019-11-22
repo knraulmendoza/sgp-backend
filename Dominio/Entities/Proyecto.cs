@@ -14,7 +14,7 @@ namespace Dominio.Entities
         public decimal PresupuestoEjecutado { get; set; }
         public List<ProyectoComunidad> ProyectosComunidads { get; set; }
         public DateTime FechaEjecucion { get; set; }
-        public List<CertificadoDeDisponibilidadPresupuestal> CertificadosDeDisponibilidaPresupuestales { get; set; }
+        public List<CDP> CDPs { get; set; }
         public List<TransaccionUnaria> TransaccionesUnarias { get; set; }
         public List<TransaccionBinaria> TransaccionesBinarias { get; set; }
         public DateTime FechaCierre { get; set; }

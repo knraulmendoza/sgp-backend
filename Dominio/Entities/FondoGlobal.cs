@@ -1,15 +1,24 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dominio.Entities
 {
     public class FondoGlobal
     {
+        [NotMapped]
+        public class Fondo
+        {
+            public string Nombre { get; set; }
+
+            public decimal Presupuesto { get; set; }
+        }
+
         public decimal PresupuestoTotal { get; set; }
 
         public IList<Movimiento> Movimientos { get; set; }
 
-        public IDictionary<string, decimal> Fondos { get; set; }
+        public ICollection<Fondo> Fondos { get; set; }
 
         public static readonly Lazy<FondoGlobal> instance = new Lazy<FondoGlobal>(() => new FondoGlobal());
 
@@ -18,15 +27,19 @@ namespace Dominio.Entities
             Construir();
         }
 
-        public void GenerarMovimiento(MovimientoType tipo, decimal monto, string nombreDelFondo, IDetalleDelMovimiento detalle)
+        public void GenerarMovimiento(MovimientoType tipo, Fondo fondo, decimal monto, IDetalleDelMovimiento detalle)
         {
-            if (tipo == MovimientoType.EGRESO) {
-                Fondos[nombreDelFondo] -= monto;
-            } else {
-                Fondos[nombreDelFondo] += monto;
+            if (tipo == MovimientoType.EGRESO)
+            {
+                fondo.Presupuesto -= monto;
+            }
+            else
+            {
+                fondo.Presupuesto += monto;
             }
 
-            Movimientos.Add(new Movimiento() {
+            Movimientos.Add(new Movimiento()
+            {
                 Concepto = detalle.Concepto,
                 Fecha = DateTime.Now,
                 Tipo = tipo,
@@ -61,15 +74,28 @@ namespace Dominio.Entities
 
         public void Construir()
         {
-            Fondos = new Dictionary<string, decimal>();
-
-            Fondos.Add("Fondo 1", 100000000);
-            Fondos.Add("Fondo 2", 200000000);
-            Fondos.Add("Fondo 3", 400000000);
+            Fondos = new List<Fondo>()
+            {
+                new Fondo()
+                {
+                    Nombre = "Fondo 1",
+                    Presupuesto = 1000000000
+                },
+                new Fondo()
+                {
+                    Nombre = "Fondo 2",
+                    Presupuesto = 200000000
+                },
+                new Fondo()
+                {
+                    Nombre = "Fondo 3",
+                    Presupuesto = 400000000
+                }
+            };
 
             foreach (var fondo in Fondos)
             {
-                PresupuestoTotal += fondo.Value;
+                PresupuestoTotal += fondo.Presupuesto;
             }
         }
     }

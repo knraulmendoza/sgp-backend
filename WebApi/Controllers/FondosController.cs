@@ -2,17 +2,18 @@ using System.Collections.Generic;
 using Dominio.Entities;
 using Infraestructura.Utils;
 using Microsoft.AspNetCore.Mvc;
+using static Dominio.Entities.FondoGlobal;
 
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("Api/[controller]")]
     public class FondosController
     {
-        [HttpGet("/Api/Fondo/Fondos")]
-        public IDictionary<string, decimal> GetFondos() => FondoGlobal.GetInstance().Fondos;
+        [HttpGet]
+        public IEnumerable<Fondo> GetFondos() => FondoGlobal.GetInstance().Fondos;
 
-        [HttpGet("/Fondo/PresupuestoTotal")]
+        [HttpGet("PresupuestoTotal")]
         public decimal GetPresupuesto() => FondoGlobal.GetInstance().PresupuestoTotal;
     }
 }

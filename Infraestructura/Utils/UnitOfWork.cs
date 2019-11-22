@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Dominio;
+using Dominio.Entities;
 using Infraestructura.Datos.Repositorios;
 
 namespace Infraestructura.Utils
@@ -17,7 +18,7 @@ namespace Infraestructura.Utils
         private List<GenericRepository<BaseEntity>> repositorios;
 
         private ActividadRepository actividadRepository = null;
-        private CertificadoDeDisponibilidadPresupuestalRepository CDPRepository = null;
+        private CDPRepository _CDPRepository = null;
         private ComponenteRepository componenteRepository = null;
         private CompromisoRepository compromisoRepository = null;
         private ComunidadRepository comunidadRepository = null;
@@ -63,15 +64,15 @@ namespace Infraestructura.Utils
             }
         }
 
-        public CertificadoDeDisponibilidadPresupuestalRepository CertificadoDeDisponibilidadPresupuestalRepository
+        public CDPRepository CDPRepository
         {
             get
             {
-                if (CDPRepository == null)
+                if (_CDPRepository == null)
                 {
-                    CDPRepository = new CertificadoDeDisponibilidadPresupuestalRepository(context);
+                    _CDPRepository = new CDPRepository(context);
                 }
-                return CDPRepository;
+                return _CDPRepository;
             }
         }
 

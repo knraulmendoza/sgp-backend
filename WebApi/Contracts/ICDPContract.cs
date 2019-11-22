@@ -2,17 +2,18 @@ using System.Collections.Generic;
 using Dominio.Entities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
+using static Dominio.Entities.FondoGlobal;
 
-public interface ICertificadoDeDisponibilidadPresupuestalContract
+public interface ICDPContract
 {
     // Route[("api/[controller]/{idProyecto}/generar-cdp")]
-    ActionResult<CertificadoDeDisponibilidadPresupuestal> GenerarCertificadoDeDisponibilidadPresupuestal(long Proyecto, IDictionary<string, decimal> fondosYPresupuestos);
+    ActionResult<CDP> GenerarCDP(long Proyecto, IEnumerable<KeyValuePair<string, decimal>> fondos);
 
     // [HttpGet]
     // Route[("api/[controller]/{estado}/listarProyectos")]
     IEnumerable<Proyecto> GetListarProyectos(string estado);
 
     // Route[("api/[controller]/listarFondos")]
-	IDictionary<string, decimal> GetListarFondos();
+	IEnumerable<Fondo> GetListarFondos();
     
 }

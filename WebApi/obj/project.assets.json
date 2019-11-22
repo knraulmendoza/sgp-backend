@@ -155,6 +155,19 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {}
         }
       },
+      "Microsoft.AspNetCore.JsonPatch/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.6.0",
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Mvc.Abstractions/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -193,6 +206,23 @@
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Core.dll": {}
         }
+      },
+      "Microsoft.AspNetCore.Mvc.NewtonsoftJson/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.JsonPatch": "3.0.0",
+          "Newtonsoft.Json": "12.0.2",
+          "Newtonsoft.Json.Bson": "1.0.2"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Microsoft.AspNetCore.ResponseCaching.Abstractions/2.2.0": {
         "type": "package",
@@ -599,6 +629,27 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "Newtonsoft.Json/12.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Newtonsoft.Json.Bson/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
         }
       },
       "runtime.native.System.Data.SqlClient.sni/4.4.0": {
@@ -1074,6 +1125,19 @@
         "microsoft.aspnetcore.http.features.nuspec"
       ]
     },
+    "Microsoft.AspNetCore.JsonPatch/3.0.0": {
+      "sha512": "LQVXEPxV4jIUiVHHUgBzZxOePSdD7wxV1ndtjg1a76JMqoK3siFka2pVfJXwRq0G4hxbYVWxvamqO733wUhQiA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.jsonpatch/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.xml",
+        "microsoft.aspnetcore.jsonpatch.3.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.jsonpatch.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Mvc.Abstractions/2.2.0": {
       "sha512": "ET6uZpfVbGR1NjCuLaLy197cQ3qZUjzl7EG5SL4GfJH/c9KRE89MMBrQegqWsh0w1iRUB/zQaK0anAjxa/pz4g==",
       "type": "package",
@@ -1098,6 +1162,19 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Core.xml",
         "microsoft.aspnetcore.mvc.core.2.2.5.nupkg.sha512",
         "microsoft.aspnetcore.mvc.core.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Mvc.NewtonsoftJson/3.0.0": {
+      "sha512": "euuKDPev8bb87dzyyDd252jxafKkCNCU0Yh1ujLq7DT7g4sUwUsq1bVnow9isaYFFx+DBWSywUcL8ngSra0QHg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.mvc.newtonsoftjson/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netcoreapp3.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll",
+        "lib/netcoreapp3.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.xml",
+        "microsoft.aspnetcore.mvc.newtonsoftjson.3.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.mvc.newtonsoftjson.nuspec"
       ]
     },
     "Microsoft.AspNetCore.ResponseCaching.Abstractions/2.2.0": {
@@ -1650,6 +1727,57 @@
         "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "Newtonsoft.Json/12.0.2": {
+      "sha512": "rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
+      "type": "package",
+      "path": "newtonsoft.json/12.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.12.0.2.nupkg.sha512",
+        "newtonsoft.json.nuspec"
+      ]
+    },
+    "Newtonsoft.Json.Bson/1.0.2": {
+      "sha512": "QYFyxhaABwmq3p/21VrZNYvCg3DaEoN/wUuw5nmfAf0X3HLjgupwhkEWdgfb9nvGAUIv3osmZoD3kKl4jxEmYQ==",
+      "type": "package",
+      "path": "newtonsoft.json.bson/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net45/Newtonsoft.Json.Bson.dll",
+        "lib/net45/Newtonsoft.Json.Bson.pdb",
+        "lib/net45/Newtonsoft.Json.Bson.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.pdb",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.pdb",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.xml",
+        "newtonsoft.json.bson.1.0.2.nupkg.sha512",
+        "newtonsoft.json.bson.nuspec"
       ]
     },
     "runtime.native.System.Data.SqlClient.sni/4.4.0": {
@@ -2295,6 +2423,7 @@
       "Infraestructura >= 1.0.0",
       "Microsoft.AspNetCore.Cors >= 2.2.0",
       "Microsoft.AspNetCore.Mvc.Core >= 2.2.5",
+      "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.0.0",
       "Microsoft.EntityFrameworkCore.Analyzers >= 3.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 3.0.0",
       "Microsoft.EntityFrameworkCore.Sqlite >= 3.0.0"
@@ -2307,11 +2436,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\webapi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\WebApi\\WebApi.csproj",
+      "projectPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\webapi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\Araos\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\WebApi\\obj\\",
+      "outputPath": "C:\\Users\\Araos\\Documents\\GitHub\\sgp-backend\\webapi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -2353,6 +2482,10 @@
           "Microsoft.AspNetCore.Mvc.Core": {
             "target": "Package",
             "version": "[2.2.5, )"
+          },
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+            "target": "Package",
+            "version": "[3.0.0, )"
           },
           "Microsoft.EntityFrameworkCore.Analyzers": {
             "target": "Package",
