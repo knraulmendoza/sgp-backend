@@ -36,7 +36,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost("Generar")]
-        public ActionResult<CDP> GenerarCDP([FromBody]Values values)
+        public ActionResult<Object> GenerarCDP([FromBody]Values values)
         {
             uow = new UnitOfWork();
             var proyecto = uow.ProyectoRepository.Get(filter: p => p.Id == values.IdProyecto, includeProperties: "CDPs").FirstOrDefault();
@@ -46,9 +46,16 @@ namespace WebApi.Controllers
             }
             foreach (var fondo in FondoGlobal.GetInstance().Fondos)
             {
-                if (fondo.Presupuesto < values.Fondos[fondo.Nombre])
+                try {   
+                    if (fondo.Presupuesto < values.Fondos[fondo.Nombre])
+                    {
+                        return new {
+                            código = "CDP-45",
+                            mensaje = "El fondo no tiene suficiente presupuesto"
+                        };
+                    }
+                } catch (KeyNotFoundException e)
                 {
-                    return null;
                 }
             }
             var certificado = new CDP()
@@ -65,7 +72,7 @@ namespace WebApi.Controllers
                 uow.TransaccionUnariaRepository.Insert(new TransaccionUnaria()
                 {
                     Concepto = "Se generó el " + (totalCdps + 1) + " CDP",
-                    Fecha = DateTime.Now,
+                    Fecha = DateTime.Now.Date,
                     Monto = fondo.Value,
                     Proyecto = proyecto,
                     ProyectoId = proyecto.Id
