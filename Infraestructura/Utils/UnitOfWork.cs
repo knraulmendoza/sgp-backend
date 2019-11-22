@@ -33,6 +33,7 @@ namespace Infraestructura.Utils
         private RegistroPresupuestalRepository registroPresupuestalRepository = null;
         private TransaccionRepository transaccionRepository = null;
         private TransaccionUnariaRepository transaccionUnariaRepository = null;
+        private TransaccionBinariaRepository transaccionBinariaRepository = null;
         private BeneficicarioRepository beneficicarioRepository = null;
         private IngresoOnceavaRepository ingresoOnceavaRepository = null;
 
@@ -255,6 +256,16 @@ namespace Infraestructura.Utils
             }
         }
 
+        public TransaccionBinariaRepository TransaccionBinariaRepository{
+            get
+            {
+                if(transaccionBinariaRepository == null)
+                {
+                    transaccionBinariaRepository = new TransaccionBinariaRepository(context);
+                }
+                return transaccionBinariaRepository;
+            }
+        }
         public IngresoOnceavaRepository IngresoOnceavaRepository
         {
             get
