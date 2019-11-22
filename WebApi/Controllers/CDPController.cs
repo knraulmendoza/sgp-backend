@@ -65,6 +65,7 @@ namespace WebApi.Controllers
                 FechaDeVencimiento = proyecto.FechaCierre,
                 RegistroPresupuestal = default
             };
+            uow.CDPRepository.Insert(certificado);
             proyecto.CDPs.Add(certificado);
             uow.ProyectoRepository.Update(proyecto);
             int totalCdps = proyecto.CDPs.Count;
