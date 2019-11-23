@@ -14,7 +14,7 @@ namespace Infraestructura.Utils
             System.Console.WriteLine("Configurando DbContext");
             // Database.SetInitializer<SgpContext>(new CreateDatabaseIfNotExists<SgpContext>());
             //optionsBuilder.UseSqlServer("Server=DESKTOP-RB14CRB;Database=sgp;Trusted_Connection=True;");
-            optionsBuilder.UseSqlite(@"Data Source=sgps.db");
+            optionsBuilder.UseSqlite(@"Data Source=D:/sgps.db");
             
             // optionsBuilder.UseSqlServer("Server=DESKTOP-RB14CRB;Database=sgp;Trusted_Connection=True;");
             //string urlBase = "D:/";
