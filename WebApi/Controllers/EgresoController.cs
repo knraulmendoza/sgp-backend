@@ -37,12 +37,17 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             var res = uow.EgresoRepository.Get();
+            uow.Dispose();
             return res.ToList();
         }
 
+        [HttpGet("proyecto/{idProyecto}")]
         public IList<Egreso> GetGastosProyectos(long idProyecto)
         {
-            throw new System.NotImplementedException();
+            uow = new UnitOfWork();
+            IEnumerable<Egreso> egreso = uow.EgresoRepository.Get(e => e.ProyectoId == idProyecto);
+            uow.Dispose();
+            return egreso.ToList();
         }
 
         [HttpGet("/estado/{proyectoState}")]
@@ -54,10 +59,38 @@ namespace WebApi.Controllers
         [HttpPost]
         public ActionResult<Egreso> Insert(Egreso entity)
         {
+            if(ingresarGasto(entity.ProyectoId, entity.Monto)){
+                uow = new UnitOfWork();
+                uow.EgresoRepository.Insert(new Egreso()
+                {
+                    Fecha = entity.Fecha,
+                    Monto = entity.Monto,
+                    ProyectoId = entity.ProyectoId,
+                    Concepto = entity.Concepto,
+                    Tipo = MovimientoType.EGRESO
+                });
+                uow.Save();
+                uow.Dispose();                
+                return entity;
+            }else{
+                return null;
+            }
+        }
+
+        private bool ingresarGasto(long id, decimal Monto){
             uow = new UnitOfWork();
-            uow.EgresoRepository.Insert(entity);
+            bool bandera = true;
+            Proyecto proyecto = new Proyecto();   
+            proyecto = uow.ProyectoRepository.GetByID(id);
+            if((proyecto.PresupuestoAprobado - proyecto.PresupuestoEjecutado) > Monto){
+                proyecto.PresupuestoEjecutado += Monto;
+                uow.ProyectoRepository.Update(proyecto);
+            }else{
+                bandera = false;
+            }
+            uow.Save();
             uow.Dispose();
-            return entity;
+            return bandera;
         }
 
         [HttpPut]
@@ -65,6 +98,8 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             uow.EgresoRepository.Update(entity);
+            uow.Save();
+            uow.Dispose();
             return entity;
         }
     }

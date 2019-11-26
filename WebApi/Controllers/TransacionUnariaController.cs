@@ -55,16 +55,6 @@ namespace WebApi.Controllers{
         {
             if(ingresarGasto(entity.ProyectoId, entity.Monto)){
                 uow = new UnitOfWork();
-                uow.EgresoRepository.Insert(new Egreso()
-                {
-                    Fecha = entity.Fecha,
-                    Monto = entity.Monto,
-                    ProyectoDeDestinoId = entity.ProyectoId,
-                    // Detalle no existe en la entidad Egreso
-                    // Detalle = detalle,
-                    Concepto = entity.Concepto,
-                    Tipo = MovimientoType.EGRESO
-                });
                 uow.TransaccionUnariaRepository.Insert(entity);
                 uow.Save();
                 uow.Dispose();
