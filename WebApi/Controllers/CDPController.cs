@@ -44,7 +44,16 @@ namespace WebApi.Controllers
             var proyecto = uow.ProyectoRepository.Get(filter: p => p.Id == values.IdProyecto, includeProperties: "CDPs").FirstOrDefault();
             if (proyecto == null)
             {
-                return new NotFoundResult();
+                return new {
+                    código = "CDP-44",
+                    mensaje = "Este proyecto no está registrado"
+                };
+            }
+            if (uow.CDPRepository.Get(cdp => cdp.Codigo == values.IdCDP).FirstOrDefault() != null) {
+                return new {
+                        código = "CDP-43",
+                        mensaje = "Un CDP con este código ya está registrado"
+                    };
             }
             foreach (var fondo in FondoGlobal.GetInstance().Fondos)
             {
