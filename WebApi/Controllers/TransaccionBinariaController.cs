@@ -47,11 +47,38 @@ namespace WebApi.Controllers
         [HttpPost]
         public ActionResult<TransaccionBinaria> Insert(TransaccionBinaria entity)
         {
+            if(validar(entity.ProyectoId, entity.Monto, entity.IdProyectoDestino)){
+                uow = new UnitOfWork();
+                uow.TransaccionBinariaRepository.Insert(entity);
+                uow.Save();
+                uow.Dispose();
+            }else{
+                return null;
+            }
+            return entity;
+        }
+
+        private bool validar(long proyectoId, decimal monto, long proyectoDeDestino){
+            bool bandera = false;
+            decimal presupuesto = 0;
             uow = new UnitOfWork();
-            uow.TransaccionBinariaRepository.Insert(entity);
+            Proyecto proyecto = uow.ProyectoRepository.GetByID(proyectoId);
+            if(proyecto != null){
+                if(proyecto.ProyectoState == ProyectoState.CONTRATADO){
+                    presupuesto = proyecto.PresupuestoAprobado-proyecto.PresupuestoEjecutado;
+                    if(presupuesto>=monto){
+                        proyecto.PresupuestoAprobado -= monto;
+                        uow.ProyectoRepository.Update(proyecto);
+                        Proyecto proyecto2 = uow.ProyectoRepository.GetByID(proyectoDeDestino);
+                        proyecto2.PresupuestoAprobado += monto;
+                        uow.ProyectoRepository.Update(proyecto2);
+                        bandera =  true;
+                    }
+                }
+            }
             uow.Save();
             uow.Dispose();
-            return entity;
+            return bandera;
         }
 
         [HttpPut("{id}")]
