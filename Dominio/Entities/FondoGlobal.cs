@@ -22,9 +22,9 @@ namespace Dominio.Entities
 
         public static readonly Lazy<FondoGlobal> instance = new Lazy<FondoGlobal>(() => new FondoGlobal());
 
-        private FondoGlobal()
+        public FondoGlobal()
         {
-            Construir();
+            //Construir();
         }
 
         public void GenerarMovimiento(MovimientoType tipo, Fondo fondo, decimal monto, IDetalleDelMovimiento detalle)
@@ -66,6 +66,18 @@ namespace Dominio.Entities
             }
             PresupuestoTotal = nuevoPresupuesto;
         }
+        public void recalcular(MovimientoType tipo,decimal monto)
+        {
+            decimal nuevoPresupuesto = 0;
+            
+                if (tipo == MovimientoType.INGRESO){
+                    nuevoPresupuesto += monto;
+                }else{
+                    nuevoPresupuesto -= monto;
+                }
+            PresupuestoTotal = nuevoPresupuesto;
+        }
+
 
         public void AgregarMovimiento(Movimiento movimiento)
         {

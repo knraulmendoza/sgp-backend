@@ -4,7 +4,10 @@ using Infraestructura.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using static Dominio.Entities.FondoGlobal;
 using System;
+
+
 
 namespace WebApi.Controllers{
     [ApiController]
@@ -80,6 +83,40 @@ namespace WebApi.Controllers{
             uow.Dispose();
             return bandera;
         }
+        [HttpPost("Ingreso")]
+        public ActionResult<TransaccionUnaria> InsertIngreso(TransaccionUnaria entity)
+        {
+            if(IngresoPresupuesto(entity.ProyectoId, entity.Monto )){
+                uow = new UnitOfWork();
+                uow.TransaccionUnariaRepository.Insert(entity);
+                uow.Save();
+                uow.Dispose();
+                
+                return entity;
+            }else{
+                return null;
+            }
+        }
+
+        private bool IngresoPresupuesto(long id, decimal Monto){
+             uow= new UnitOfWork();
+             bool bandera = true;
+             Proyecto proyecto = new Proyecto(); 
+             FondoGlobal Fondo = new FondoGlobal();
+             //MovimientoType M = new MovimientoType();
+             proyecto = uow.ProyectoRepository.GetByID(id);
+             if(Fondo.PresupuestoTotal>Monto){
+              proyecto.PresupuestoAprobado+=Monto;
+              uow.ProyectoRepository.Update(proyecto);
+              Fondo.recalcular(MovimientoType.INGRESO,Monto);
+              
+             }else{
+                bandera = false;
+            }
+            uow.Save();
+            uow.Dispose();
+            return bandera;
+           }
 
         [HttpPut("{id}")]
         public ActionResult<TransaccionUnaria> Update(TransaccionUnaria entity)
