@@ -15,6 +15,17 @@ namespace WebApi.Controllers{
     public class TransaccionUnariaController : GenericController<TransaccionUnaria>
     {
         private UnitOfWork uow;
+        public class Values
+        {
+            public long IdProyecto { get; set; }
+            
+            public decimal Monto {get; set;}
+            public IDictionary<string, decimal> Fondos { get; set; }
+
+           // public List<TransaccionUnaria> TransaccionesUnarias { get; set; }
+
+            public Values() { }
+        }
 
         [HttpDelete("{id}")]
         public ActionResult<TransaccionUnaria> Delete(long id)
@@ -83,40 +94,49 @@ namespace WebApi.Controllers{
             uow.Dispose();
             return bandera;
         }
-        [HttpPost("Ingreso")]
-        public ActionResult<TransaccionUnaria> InsertIngreso(TransaccionUnaria entity)
-        {
-            if(IngresoPresupuesto(entity.ProyectoId, entity.Monto )){
-                uow = new UnitOfWork();
-                uow.TransaccionUnariaRepository.Insert(entity);
-                uow.Save();
-                uow.Dispose();
-                
-                return entity;
-            }else{
+        
+        [HttpGet("Prueba/{Monto}")]
+        public Fondo getFondo(decimal Monto){
+            //uow = new UnitOfWork();
+             foreach (var fondo in FondoGlobal.GetInstance().Fondos)
+            {
+                if(fondo.Presupuesto > Monto){
+                          return fondo;
+                      }
+                         }
                 return null;
-            }
+
+                }
+        [HttpPost]
+        public ActionResult<Object> IngresoPresupuesto([FromBody]Values values){
+                    
+             uow = new UnitOfWork();
+             Proyecto proyecto = new Proyecto();   
+             proyecto = uow.ProyectoRepository.GetByID(values.IdProyecto);
+             foreach (var fondo in FondoGlobal.GetInstance().Fondos){
+                if(fondo.Presupuesto > values.Monto || FondoGlobal.GetInstance().PresupuestoTotal>values.Monto){
+
+                         proyecto.PresupuestoEjecutado += values.Monto;
+                         uow.ProyectoRepository.Update(proyecto);
+                         //getFondo(values.Monto);
+                         FondoGlobal.instance.Value.GenerarMovimiento(MovimientoType.EGRESO,getFondo(values.Monto),values.Monto);
+                         var transaccion=uow.TransaccionUnariaRepository.Insert(new TransaccionUnaria{
+                           Fecha = new System.DateTime(),
+                           Monto = values.Monto,
+                           ProyectoId = values.IdProyecto,
+                           Tipo =  TransaccionType.EGRESO
+                             });
+                         uow.Save();
+                        uow.Dispose();
+                        return transaccion;
+
+                      }
+                         }
+
+            return null;
         }
 
-        private bool IngresoPresupuesto(long id, decimal Monto){
-             uow= new UnitOfWork();
-             bool bandera = true;
-             Proyecto proyecto = new Proyecto(); 
-             FondoGlobal Fondo = new FondoGlobal();
-             //MovimientoType M = new MovimientoType();
-             proyecto = uow.ProyectoRepository.GetByID(id);
-             if(Fondo.PresupuestoTotal>Monto){
-              proyecto.PresupuestoAprobado+=Monto;
-              uow.ProyectoRepository.Update(proyecto);
-              Fondo.recalcular(MovimientoType.INGRESO,Monto);
-              
-             }else{
-                bandera = false;
-            }
-            uow.Save();
-            uow.Dispose();
-            return bandera;
-           }
+       
 
         [HttpPut("{id}")]
         public ActionResult<TransaccionUnaria> Update(TransaccionUnaria entity)
