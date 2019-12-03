@@ -4,7 +4,10 @@ using Infraestructura.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using static Dominio.Entities.FondoGlobal;
 using System;
+
+
 
 namespace WebApi.Controllers{
     [ApiController]
@@ -12,6 +15,7 @@ namespace WebApi.Controllers{
     public class TransaccionUnariaController : GenericController<TransaccionUnaria>
     {
         private UnitOfWork uow;
+  
 
         [HttpDelete("{id}")]
         public ActionResult<TransaccionUnaria> Delete(long id)
@@ -55,16 +59,6 @@ namespace WebApi.Controllers{
         {
             if(ingresarGasto(entity.ProyectoId, entity.Monto)){
                 uow = new UnitOfWork();
-                uow.EgresoRepository.Insert(new Egreso()
-                {
-                    Fecha = entity.Fecha,
-                    Monto = entity.Monto,
-                    ProyectoDeDestinoId = entity.ProyectoId,
-                    // Detalle no existe en la entidad Egreso
-                    // Detalle = detalle,
-                    Concepto = entity.Concepto,
-                    Tipo = MovimientoType.EGRESO
-                });
                 uow.TransaccionUnariaRepository.Insert(entity);
                 uow.Save();
                 uow.Dispose();
@@ -90,6 +84,69 @@ namespace WebApi.Controllers{
             uow.Dispose();
             return bandera;
         }
+        
+       
+        [HttpPost]
+        public ActionResult<TransaccionUnaria> IngresoPresupuesto(long IdProyecto,decimal Monto,Fondo fondo){
+                    
+             uow = new UnitOfWork();
+             Proyecto proyecto = new Proyecto();   
+             proyecto = uow.ProyectoRepository.GetByID(IdProyecto);
+             //foreach (var fondo in FondoGlobal.GetInstance().Fondos){
+             
+                if(fondo.Presupuesto > Monto || FondoGlobal.GetInstance().PresupuestoTotal>Monto){
+
+                         proyecto.PresupuestoEjecutado += Monto;
+                         uow.ProyectoRepository.Update(proyecto);
+                         //getFondo(values.Monto);
+                         FondoGlobal.instance.Value.GenerarMovimiento(MovimientoType.INGRESO,fondo,Monto);
+                         var transaccion=uow.TransaccionUnariaRepository.Insert(new TransaccionUnaria{
+                           Fecha = new System.DateTime(),
+                           Monto = Monto,
+                           ProyectoId = IdProyecto,
+                           Tipo =  TransaccionType.INGRESO
+                             });
+                         uow.Save();
+                        uow.Dispose();
+                        return transaccion;
+
+                      }
+                         
+
+            return null;
+        }
+
+      [HttpPost]
+        public ActionResult<TransaccionUnaria> EgresoPresupuesto(long IdProyecto,decimal Monto,Fondo fondo){
+                    
+             uow = new UnitOfWork();
+             Proyecto proyecto = new Proyecto();   
+             proyecto = uow.ProyectoRepository.GetByID(IdProyecto);
+             //foreach (var fondo in FondoGlobal.GetInstance().Fondos){
+             
+                if(fondo.Presupuesto > Monto || FondoGlobal.GetInstance().PresupuestoTotal>Monto){
+
+                         proyecto.PresupuestoAprobado -= Monto;
+                         uow.ProyectoRepository.Update(proyecto);
+                         //getFondo(values.Monto);
+                         FondoGlobal.instance.Value.GenerarMovimiento(MovimientoType.EGRESO,fondo,Monto);
+                         var transaccion=uow.TransaccionUnariaRepository.Insert(new TransaccionUnaria{
+                           Fecha = new System.DateTime(),
+                           Monto = Monto,
+                           ProyectoId = IdProyecto,
+                           Tipo =  TransaccionType.EGRESO
+                             });
+                         uow.Save();
+                        uow.Dispose();
+                        return transaccion;
+
+                      }
+                         
+
+            return null;
+        }
+
+       
 
         [HttpPut("{id}")]
         public ActionResult<TransaccionUnaria> Update(TransaccionUnaria entity)

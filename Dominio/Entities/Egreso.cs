@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dominio.Entities
 {
     public class Egreso : Movimiento
     {
-        public long ProyectoDeDestinoId { get; set; }
-        public Proyecto ProyectoDeDestino { get; set; }
+        [ForeignKey("Proyecto")]
+        public long ProyectoId { get; set; }
+        public Proyecto Proyecto { get; set; }
         public Egreso() { }
     }
 }
