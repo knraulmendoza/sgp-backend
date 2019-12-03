@@ -12,6 +12,8 @@ namespace Dominio.Entities
             public string Nombre { get; set; }
 
             public decimal Presupuesto { get; set; }
+
+            public ICollection<Movimiento> Movimientos { get; set; }
         }
 
         public decimal PresupuestoTotal { get; set; }
@@ -19,6 +21,15 @@ namespace Dominio.Entities
         public IList<Movimiento> Movimientos { get; set; }
 
         public ICollection<Fondo> Fondos { get; set; }
+
+        public Fondo GetFondo(string nombreFondo)
+        {
+            foreach (Fondo fondo in Fondos)
+            {
+                if (fondo.Nombre == nombreFondo) return fondo;
+            }
+            return null;
+        }
 
         public static readonly Lazy<FondoGlobal> instance = new Lazy<FondoGlobal>(() => new FondoGlobal());
 
@@ -74,6 +85,7 @@ namespace Dominio.Entities
 
         public void Construir()
         {
+
             Fondos = new List<Fondo>()
             {
                 new Fondo()

@@ -15,5 +15,11 @@ namespace WebApi.Controllers
 
         [HttpGet("PresupuestoTotal")]
         public decimal GetPresupuesto() => FondoGlobal.GetInstance().PresupuestoTotal;
+
+        [HttpGet("UltimasTransacciones")]
+        public IEnumerable<Fondo, IEnumerable<Movimiento>> GetFondosConLosDiezUltimosMovimientos() {
+            
+        }
     }
+
 }
