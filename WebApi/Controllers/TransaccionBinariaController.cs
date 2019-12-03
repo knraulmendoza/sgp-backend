@@ -64,19 +64,19 @@ namespace WebApi.Controllers
             uow = new UnitOfWork();
             Proyecto proyecto = uow.ProyectoRepository.GetByID(proyectoId);
             if(proyecto != null){
-                if(proyecto.ProyectoState == ProyectoState.CONTRATADO){
+                if(proyecto.ProyectoState == ProyectoState.ACEPTADO){
                     presupuesto = proyecto.PresupuestoAprobado-proyecto.PresupuestoEjecutado;
                     if(presupuesto>=monto){
                         proyecto.PresupuestoAprobado -= monto;
                         uow.ProyectoRepository.Update(proyecto);
                         Proyecto proyecto2 = uow.ProyectoRepository.GetByID(proyectoDeDestino);
                         proyecto2.PresupuestoAprobado += monto;
-                        uow.ProyectoRepository.Update(proyecto2);
+                        uow.ProyectoRepository.Update(proyecto2); 
+                        uow.Save(); 
                         bandera =  true;
                     }
                 }
             }
-            uow.Save();
             uow.Dispose();
             return bandera;
         }
