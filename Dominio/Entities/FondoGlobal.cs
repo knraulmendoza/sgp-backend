@@ -85,7 +85,6 @@ namespace Dominio.Entities
 
         public void Construir()
         {
-
             Fondos = new List<Fondo>()
             {
                 new Fondo()
