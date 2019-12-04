@@ -10,6 +10,7 @@ namespace Dominio.Entities
         public Propuesta Propuesta { get; set; }
         public ProyectoState ProyectoState { get; set; }
         public string Nombre { get; set; }
+        public string Codigo { get; set; }
         public decimal PresupuestoAprobado { get; set; }
         public decimal PresupuestoEjecutado { get; set; }
         public List<ProyectoComunidad> ProyectosComunidads { get; set; }

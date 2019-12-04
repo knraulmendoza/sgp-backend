@@ -119,6 +119,9 @@ namespace WebApi.Controllers
             uow.ProyectoRepository.Insert(entity);
             uow.PropuestaRepository.Update(propuesta);
             uow.Save();
+            entity.Codigo = "OIK" + entity.Id;
+            uow.ProyectoRepository.Update(entity);
+            uow.Save();
             uow.Dispose();
             return this.Get(entity.Id);
         }
