@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infraestructura.Migrations
 {
-    public partial class FixProjects : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -215,6 +215,7 @@ namespace Infraestructura.Migrations
                     PropuestaId = table.Column<long>(nullable: false),
                     ProyectoState = table.Column<int>(nullable: false, defaultValue: 1),
                     Nombre = table.Column<string>(nullable: true),
+                    Codigo = table.Column<string>(nullable: true),
                     PresupuestoAprobado = table.Column<decimal>(nullable: false),
                     PresupuestoEjecutado = table.Column<decimal>(nullable: false),
                     FechaEjecucion = table.Column<DateTime>(nullable: false),
@@ -296,14 +297,15 @@ namespace Infraestructura.Migrations
                     Fecha = table.Column<DateTime>(nullable: false),
                     Tipo = table.Column<int>(nullable: false),
                     Concepto = table.Column<string>(nullable: true),
-                    ProyectoDeDestinoId = table.Column<long>(nullable: false)
+                    Procedencia = table.Column<string>(nullable: true),
+                    ProyectoId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Egresos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Egresos_Proyectos_ProyectoDeDestinoId",
-                        column: x => x.ProyectoDeDestinoId,
+                        name: "FK_Egresos_Proyectos_ProyectoId",
+                        column: x => x.ProyectoId,
                         principalTable: "Proyectos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -775,23 +777,23 @@ namespace Infraestructura.Migrations
 
             migrationBuilder.InsertData(
                 table: "Proyectos",
-                columns: new[] { "Id", "FechaCierre", "FechaDeCierrePrevista", "FechaEjecucion", "Nombre", "PresupuestoAprobado", "PresupuestoEjecutado", "ProgramaId", "PropuestaId", "ProyectoState" },
-                values: new object[] { 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Proyecto 1", 1520000m, 1500000m, 1L, 1L, 1 });
+                columns: new[] { "Id", "Codigo", "FechaCierre", "FechaDeCierrePrevista", "FechaEjecucion", "Nombre", "PresupuestoAprobado", "PresupuestoEjecutado", "ProgramaId", "PropuestaId", "ProyectoState" },
+                values: new object[] { 1L, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Proyecto 1", 1520000m, 1500000m, 1L, 1L, 1 });
 
             migrationBuilder.InsertData(
                 table: "Proyectos",
-                columns: new[] { "Id", "FechaCierre", "FechaDeCierrePrevista", "FechaEjecucion", "Nombre", "PresupuestoAprobado", "PresupuestoEjecutado", "ProgramaId", "PropuestaId", "ProyectoState" },
-                values: new object[] { 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Proyecto 2", 2000000m, 1900000m, 2L, 2L, 1 });
+                columns: new[] { "Id", "Codigo", "FechaCierre", "FechaDeCierrePrevista", "FechaEjecucion", "Nombre", "PresupuestoAprobado", "PresupuestoEjecutado", "ProgramaId", "PropuestaId", "ProyectoState" },
+                values: new object[] { 2L, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Proyecto 2", 2000000m, 1900000m, 2L, 2L, 1 });
 
             migrationBuilder.InsertData(
                 table: "Proyectos",
-                columns: new[] { "Id", "FechaCierre", "FechaDeCierrePrevista", "FechaEjecucion", "Nombre", "PresupuestoAprobado", "PresupuestoEjecutado", "ProgramaId", "PropuestaId", "ProyectoState" },
-                values: new object[] { 3L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Proyecto 3", 1800000m, 1700000m, 3L, 3L, 2 });
+                columns: new[] { "Id", "Codigo", "FechaCierre", "FechaDeCierrePrevista", "FechaEjecucion", "Nombre", "PresupuestoAprobado", "PresupuestoEjecutado", "ProgramaId", "PropuestaId", "ProyectoState" },
+                values: new object[] { 3L, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Proyecto 3", 1800000m, 1700000m, 3L, 3L, 2 });
 
             migrationBuilder.InsertData(
                 table: "Proyectos",
-                columns: new[] { "Id", "FechaCierre", "FechaDeCierrePrevista", "FechaEjecucion", "Nombre", "PresupuestoAprobado", "PresupuestoEjecutado", "ProgramaId", "PropuestaId", "ProyectoState" },
-                values: new object[] { 4L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Proyecto 4", 2200000m, 2000000m, 4L, 4L, 4 });
+                columns: new[] { "Id", "Codigo", "FechaCierre", "FechaDeCierrePrevista", "FechaEjecucion", "Nombre", "PresupuestoAprobado", "PresupuestoEjecutado", "ProgramaId", "PropuestaId", "ProyectoState" },
+                values: new object[] { 4L, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Proyecto 4", 2200000m, 2000000m, 4L, 4L, 4 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Actividades_ProyectoId",
@@ -834,9 +836,9 @@ namespace Infraestructura.Migrations
                 column: "CompromisoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Egresos_ProyectoDeDestinoId",
+                name: "IX_Egresos_ProyectoId",
                 table: "Egresos",
-                column: "ProyectoDeDestinoId");
+                column: "ProyectoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Estrategia_ComponenteId",

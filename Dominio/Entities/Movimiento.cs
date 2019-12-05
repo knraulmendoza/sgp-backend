@@ -12,7 +12,7 @@ namespace Dominio.Entities
 
         public string Concepto { get; set; }
 
-        public IDetalleDelMovimiento Detalle { get; set; }
+        // public IDetalleDelMovimiento Detalle { get; set; }
 
         public string Procedencia { get; set; }
 

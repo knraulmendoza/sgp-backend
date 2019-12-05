@@ -435,7 +435,10 @@ namespace Infraestructura.Migrations
                     b.Property<decimal>("Monto")
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("ProyectoDeDestinoId")
+                    b.Property<string>("Procedencia")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("ProyectoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Tipo")
@@ -443,7 +446,7 @@ namespace Infraestructura.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProyectoDeDestinoId");
+                    b.HasIndex("ProyectoId");
 
                     b.ToTable("Egresos");
                 });
@@ -869,6 +872,9 @@ namespace Infraestructura.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Codigo")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("FechaCierre")
                         .HasColumnType("TEXT");
 
@@ -1115,9 +1121,9 @@ namespace Infraestructura.Migrations
 
             modelBuilder.Entity("Dominio.Entities.Egreso", b =>
                 {
-                    b.HasOne("Dominio.Entities.Proyecto", "ProyectoDeDestino")
+                    b.HasOne("Dominio.Entities.Proyecto", "Proyecto")
                         .WithMany()
-                        .HasForeignKey("ProyectoDeDestinoId")
+                        .HasForeignKey("ProyectoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

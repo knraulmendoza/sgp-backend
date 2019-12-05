@@ -112,6 +112,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public ActionResult<Proyecto> Insert(Proyecto entity)
         {
+            if (entity is null) return new NotFoundResult();
             uow = new UnitOfWork();
             Propuesta propuesta = uow.PropuestaRepository.GetByID(entity.PropuestaId);
             propuesta.FechaDeAprobacion = System.DateTime.Now;
@@ -119,11 +120,18 @@ namespace WebApi.Controllers
             uow.ProyectoRepository.Insert(entity);
             uow.PropuestaRepository.Update(propuesta);
             uow.Save();
-            entity.Codigo = "OIK" + entity.Id;
+            Programa programa = uow.ProgramaRepository.GetByID(entity.ProgramaId);
+            Estrategia estrategia = uow.EstrategiaRepository.GetByID(programa.EstrategiaId);
+            Componente componente = uow.ComponenteRepository.GetByID(estrategia.ComponenteId);
+            // SGP-RIK-01-003
+            string codigo = componente.Id < 10 ? "0" + componente.Id : componente.Id.ToString();
+            codigo += "-";
+            codigo += entity.Id < 10 ? "00" + entity.Id : entity.Id < 100 ? "0" + entity.Id : entity.Id.ToString();
+            entity.Codigo = "SGP-RIK-" + codigo;
             uow.ProyectoRepository.Update(entity);
             uow.Save();
             uow.Dispose();
-            return this.Get(entity.Id);
+            return new OkObjectResult(this.Get(entity.Id));
         }
 
         [HttpPut]

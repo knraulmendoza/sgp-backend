@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructura.Migrations
 {
     [DbContext(typeof(SgpContext))]
-    [Migration("20191120051737_FixProjects")]
-    partial class FixProjects
+    [Migration("20191205033955_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -437,7 +437,10 @@ namespace Infraestructura.Migrations
                     b.Property<decimal>("Monto")
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("ProyectoDeDestinoId")
+                    b.Property<string>("Procedencia")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("ProyectoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Tipo")
@@ -445,7 +448,7 @@ namespace Infraestructura.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProyectoDeDestinoId");
+                    b.HasIndex("ProyectoId");
 
                     b.ToTable("Egresos");
                 });
@@ -871,6 +874,9 @@ namespace Infraestructura.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Codigo")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("FechaCierre")
                         .HasColumnType("TEXT");
 
@@ -1013,7 +1019,7 @@ namespace Infraestructura.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Transaccion");
                 });
 
-            modelBuilder.Entity("Dominio.Entities.CertificadoDeDisponibilidadPresupuestal", b =>
+            modelBuilder.Entity("Dominio.Entities.CDP", b =>
                 {
                     b.HasBaseType("Dominio.Entities.DocumentoPresupuestal");
 
@@ -1030,7 +1036,7 @@ namespace Infraestructura.Migrations
 
                     b.HasIndex("RegistroPresupuestalId");
 
-                    b.HasDiscriminator().HasValue("CertificadoDeDisponibilidadPresupuestal");
+                    b.HasDiscriminator().HasValue("CDP");
                 });
 
             modelBuilder.Entity("Dominio.Entities.RegistroPresupuestal", b =>
@@ -1117,9 +1123,9 @@ namespace Infraestructura.Migrations
 
             modelBuilder.Entity("Dominio.Entities.Egreso", b =>
                 {
-                    b.HasOne("Dominio.Entities.Proyecto", "ProyectoDeDestino")
+                    b.HasOne("Dominio.Entities.Proyecto", "Proyecto")
                         .WithMany()
-                        .HasForeignKey("ProyectoDeDestinoId")
+                        .HasForeignKey("ProyectoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -1196,10 +1202,10 @@ namespace Infraestructura.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Dominio.Entities.CertificadoDeDisponibilidadPresupuestal", b =>
+            modelBuilder.Entity("Dominio.Entities.CDP", b =>
                 {
                     b.HasOne("Dominio.Entities.Proyecto", null)
-                        .WithMany("CertificadosDeDisponibilidaPresupuestales")
+                        .WithMany("CDPs")
                         .HasForeignKey("ProyectoId");
 
                     b.HasOne("Dominio.Entities.RegistroPresupuestal", "RegistroPresupuestal")
