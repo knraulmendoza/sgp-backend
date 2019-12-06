@@ -15,6 +15,16 @@ namespace WebApi.Controllers{
     public class TransaccionUnariaController : GenericController<TransaccionUnaria>
     {
         private UnitOfWork uow;
+          public class Values
+        {
+            public long IdProyecto { get; set; }
+
+            public decimal Monto { get; set; }
+
+            public string NombreFondos { get; set; }
+
+            public Values() { }
+        }
   
 
         [HttpDelete("{id}")]
@@ -87,23 +97,25 @@ namespace WebApi.Controllers{
         
        
         [HttpPost]
-        public ActionResult<TransaccionUnaria> IngresoPresupuesto(long IdProyecto,decimal Monto,Fondo fondo){
+        public ActionResult<TransaccionUnaria> IngresoPresupuesto([FromBody]Values values){
                     
              uow = new UnitOfWork();
              Proyecto proyecto = new Proyecto();   
-             proyecto = uow.ProyectoRepository.GetByID(IdProyecto);
-             //foreach (var fondo in FondoGlobal.GetInstance().Fondos){
+             proyecto = uow.ProyectoRepository.GetByID(values.IdProyecto);
              
-                if(fondo.Presupuesto > Monto || FondoGlobal.GetInstance().PresupuestoTotal>Monto){
+             //foreach (var fondo in FondoGlobal.GetInstance().Fondos){
+                Fondo fondo=FondoGlobal.instance.Value.GetFondo(values.NombreFondos);
+                
+                if(fondo.Presupuesto > values.Monto || FondoGlobal.GetInstance().PresupuestoTotal>values.Monto){
 
-                         proyecto.PresupuestoEjecutado += Monto;
+                         proyecto.PresupuestoEjecutado += values.Monto;
                          uow.ProyectoRepository.Update(proyecto);
                          //getFondo(values.Monto);
-                         FondoGlobal.instance.Value.GenerarMovimiento(MovimientoType.INGRESO,fondo,Monto);
+                         FondoGlobal.instance.Value.GenerarMovimiento(MovimientoType.INGRESO,fondo,values.Monto);
                          var transaccion=uow.TransaccionUnariaRepository.Insert(new TransaccionUnaria{
                            Fecha = new System.DateTime(),
-                           Monto = Monto,
-                           ProyectoId = IdProyecto,
+                           Monto = values.Monto,
+                           ProyectoId = values.IdProyecto,
                            Tipo =  TransaccionType.INGRESO
                              });
                          uow.Save();
@@ -117,23 +129,24 @@ namespace WebApi.Controllers{
         }
 
       [HttpPost]
-        public ActionResult<TransaccionUnaria> EgresoPresupuesto(long IdProyecto,decimal Monto,Fondo fondo){
+        public ActionResult<TransaccionUnaria> EgresoPresupuesto([FromBody]Values values){
                     
              uow = new UnitOfWork();
              Proyecto proyecto = new Proyecto();   
-             proyecto = uow.ProyectoRepository.GetByID(IdProyecto);
+             proyecto = uow.ProyectoRepository.GetByID(values.IdProyecto);
              //foreach (var fondo in FondoGlobal.GetInstance().Fondos){
-             
-                if(fondo.Presupuesto > Monto || FondoGlobal.GetInstance().PresupuestoTotal>Monto){
+             var Nombre= "Fondo 1";
+             Fondo fondo=FondoGlobal.instance.Value.GetFondo(Nombre);
+                if(proyecto.PresupuestoAprobado>values.Monto){
 
-                         proyecto.PresupuestoAprobado -= Monto;
+                         proyecto.PresupuestoAprobado -= values.Monto;
                          uow.ProyectoRepository.Update(proyecto);
                          //getFondo(values.Monto);
-                         FondoGlobal.instance.Value.GenerarMovimiento(MovimientoType.EGRESO,fondo,Monto);
+                         FondoGlobal.instance.Value.GenerarMovimiento(MovimientoType.EGRESO,fondo,values.Monto);
                          var transaccion=uow.TransaccionUnariaRepository.Insert(new TransaccionUnaria{
                            Fecha = new System.DateTime(),
-                           Monto = Monto,
-                           ProyectoId = IdProyecto,
+                           Monto = values.Monto,
+                           ProyectoId = values.IdProyecto,
                            Tipo =  TransaccionType.EGRESO
                              });
                          uow.Save();
