@@ -108,7 +108,7 @@ namespace WebApi.Controllers{
                 
                 if(fondo.Presupuesto > values.Monto ){
 
-                         proyecto.PresupuestoEjecutado += values.Monto;
+                         proyecto.PresupuestoAprobado += values.Monto;
                          uow.ProyectoRepository.Update(proyecto);
                          //getFondo(values.Monto);
                          FondoGlobal.instance.Value.GenerarMovimiento(MovimientoType.EGRESO,fondo,values.Monto);
