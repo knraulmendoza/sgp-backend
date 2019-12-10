@@ -37,8 +37,8 @@ namespace Dominio.Entities
         {
             Movimientos = new List<Movimiento>();
             Construir();
+            Movimientos =new List<Movimiento>();
         }
-
         public void GenerarMovimiento(MovimientoType tipo, Fondo fondo, decimal monto)
         {
             if (tipo == MovimientoType.EGRESO)

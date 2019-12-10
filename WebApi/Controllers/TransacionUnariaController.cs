@@ -95,8 +95,7 @@ namespace WebApi.Controllers{
             return bandera;
         }
         
-       
-        [HttpPost("Ingreso")]
+        [HttpPost("PostIngreso")]
         public ActionResult<TransaccionUnaria> IngresoPresupuesto([FromBody]Values values){
                     
              uow = new UnitOfWork();
@@ -106,12 +105,12 @@ namespace WebApi.Controllers{
              //foreach (var fondo in FondoGlobal.GetInstance().Fondos){
                 Fondo fondo=FondoGlobal.instance.Value.GetFondo(values.NombreFondos);
                 
-                if(fondo.Presupuesto > values.Monto || FondoGlobal.GetInstance().PresupuestoTotal>values.Monto){
+                if(fondo.Presupuesto > values.Monto ){
 
-                         proyecto.PresupuestoEjecutado += values.Monto;
+                         proyecto.PresupuestoAprobado += values.Monto;
                          uow.ProyectoRepository.Update(proyecto);
                          //getFondo(values.Monto);
-                         FondoGlobal.instance.Value.GenerarMovimiento(MovimientoType.INGRESO,fondo,values.Monto);
+                         FondoGlobal.instance.Value.GenerarMovimiento(MovimientoType.EGRESO,fondo,values.Monto);
                          var transaccion=uow.TransaccionUnariaRepository.Insert(new TransaccionUnaria{
                            Fecha = new System.DateTime(),
                            Monto = values.Monto,
@@ -128,7 +127,7 @@ namespace WebApi.Controllers{
             return null;
         }
 
-      [HttpPost]
+      [HttpPost("PostEgreso")]
         public ActionResult<TransaccionUnaria> EgresoPresupuesto([FromBody]Values values){
                     
              uow = new UnitOfWork();
@@ -142,7 +141,7 @@ namespace WebApi.Controllers{
                          proyecto.PresupuestoAprobado -= values.Monto;
                          uow.ProyectoRepository.Update(proyecto);
                          //getFondo(values.Monto);
-                         FondoGlobal.instance.Value.GenerarMovimiento(MovimientoType.EGRESO,fondo,values.Monto);
+                         FondoGlobal.instance.Value.GenerarMovimiento(MovimientoType.INGRESO,fondo,values.Monto);
                          var transaccion=uow.TransaccionUnariaRepository.Insert(new TransaccionUnaria{
                            Fecha = new System.DateTime(),
                            Monto = values.Monto,

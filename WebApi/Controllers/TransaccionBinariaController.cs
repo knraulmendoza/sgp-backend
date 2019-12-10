@@ -65,7 +65,7 @@ namespace WebApi.Controllers
             Proyecto proyecto = uow.ProyectoRepository.GetByID(proyectoId);
             if(proyecto != null){
                 if(proyecto.ProyectoState == ProyectoState.ACEPTADO){
-                    presupuesto = proyecto.PresupuestoAprobado-proyecto.PresupuestoEjecutado;
+                    presupuesto = proyecto.PresupuestoAprobado;
                     if(presupuesto>=monto){
                         proyecto.PresupuestoAprobado -= monto;
                         uow.ProyectoRepository.Update(proyecto);
