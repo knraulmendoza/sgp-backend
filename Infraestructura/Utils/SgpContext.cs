@@ -612,5 +612,6 @@ namespace Infraestructura.Utils
         public DbSet<RegistroPresupuestal> RegistroPresupuestal { get; set; }
         public DbSet<Transaccion> Transaccion { get; set; }
         public DbSet<IngresoOnceava> IngresoOnceava { get; set; }
+        public DbSet<User> User {get; set;}
     }
 }

@@ -37,8 +37,8 @@ namespace Infraestructura.Utils
         private TransaccionBinariaRepository transaccionBinariaRepository = null;
         private BeneficicarioRepository beneficicarioRepository = null;
         private IngresoOnceavaRepository ingresoOnceavaRepository = null;
-
         private EgresoRepository egresoRepository = null;
+        private UserRepository userRepository = null;
 
         public BeneficicarioRepository BeneficicarioRepository
         {
@@ -285,6 +285,15 @@ namespace Infraestructura.Utils
                     egresoRepository = new EgresoRepository(context);
                 }
                 return egresoRepository;
+            }
+        }
+
+        public UserRepository UserRepository{
+            get{
+                if(userRepository == null){
+                    userRepository = new UserRepository(context);
+                }
+                return userRepository;
             }
         }
 
