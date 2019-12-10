@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dominio.Entities
 {
@@ -12,6 +13,7 @@ namespace Dominio.Entities
 
         public string Concepto { get; set; }
 
+        [NotMapped]
         public IDetalleDelMovimiento Detalle { get; set; }
 
         public string Procedencia { get; set; }

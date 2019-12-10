@@ -24,9 +24,6 @@ namespace Infraestructura.Utils
 
         protected override void OnModelCreating(ModelBuilder model)
         {
-            model.Entity<Movimiento>()
-                .HasOne(m => m.Detalle);
-
             model.Entity<Proyecto>()
                 .HasMany(t => t.TransaccionesUnarias)
                 .WithOne(t => t.Proyecto);
