@@ -96,7 +96,7 @@ namespace WebApi.Controllers{
         }
         
        
-        [HttpPost]
+        [HttpPost("Ingreso")]
         public ActionResult<TransaccionUnaria> IngresoPresupuesto([FromBody]Values values){
                     
              uow = new UnitOfWork();
