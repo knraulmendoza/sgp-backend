@@ -19,7 +19,7 @@ namespace WebApi.Controllers
         private void construirFondo() {
             UnitOfWork uow = new UnitOfWork();
 
-            
+            uow.MovimientoRepository.Get().ForEach();
         }
 
     }
