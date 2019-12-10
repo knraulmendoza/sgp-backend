@@ -14,6 +14,12 @@ namespace WebApi.Controllers
     [Route("api/[controller]")]
     public class PropuestaController : GenericController<Propuesta>, PropuestaContract
     {
+        public class Reporte    {
+            public int estado {get; set;}
+            public int total {get; set;}
+
+            public Reporte(){}
+        }
         private UnitOfWork uow;
         
         [HttpGet]
@@ -87,6 +93,26 @@ namespace WebApi.Controllers
         public IList<Componente> GetComponentesPorDimension(long idDimension)
         {
             throw new NotImplementedException();
+        }
+
+        [HttpGet("informacion")]
+        public ActionResult<IList<Reporte>> contarPropuestasPorEstado(){
+            List<Reporte> reportes = new List<Reporte>();
+            for(int i = 0; i<=2; i++){
+                reportes.Add(new Reporte{
+                    estado = i,
+                    total = contarPropuesta((PropuestaState)i)
+                });
+            }
+            return reportes;
+        }
+
+        public int contarPropuesta(PropuestaState propuestaState){
+            uow = new UnitOfWork();
+            var propuestas = uow.PropuestaRepository.Get(filter: p => p.PropuestaState == propuestaState);
+            uow.Save();
+            uow.Dispose();
+            return propuestas.Count();
         }
     }
 }
