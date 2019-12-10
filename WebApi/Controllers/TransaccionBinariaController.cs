@@ -90,5 +90,14 @@ namespace WebApi.Controllers
             uow.Dispose();
             return entity;
         }
+
+        [HttpGet("GetTrans/{id}")]
+        public ActionResult<IList<TransaccionBinaria>> GetTransBinariaProyectos(long id)
+        {
+            uow = new UnitOfWork();
+            IEnumerable<TransaccionBinaria> transaccions = uow.TransaccionBinariaRepository.Get(t => t.ProyectoId==id);
+            return transaccions.ToList();
+        }
+
     }
 }
