@@ -35,6 +35,7 @@ namespace Dominio.Entities
 
         private FondoGlobal()
         {
+            Movimientos = new List<Movimiento>();
             Construir();
             Movimientos =new List<Movimiento>();
         }
@@ -85,6 +86,8 @@ namespace Dominio.Entities
 
         public void Construir()
         {
+            
+
             Fondos = new List<Fondo>()
             {
                 new Fondo()

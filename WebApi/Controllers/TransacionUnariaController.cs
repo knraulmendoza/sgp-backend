@@ -95,7 +95,6 @@ namespace WebApi.Controllers{
             return bandera;
         }
         
-       
         [HttpPost("PostIngreso")]
         public ActionResult<TransaccionUnaria> IngresoPresupuesto([FromBody]Values values){
                     
