@@ -15,8 +15,6 @@ namespace Infraestructura.Utils
 
         private readonly SgpContext context = new SgpContext();
 
-        private List<GenericRepository<BaseEntity>> repositorios;
-
         private ActividadRepository actividadRepository = null;
         private CDPRepository _CDPRepository = null;
         private ComponenteRepository componenteRepository = null;
@@ -37,8 +35,20 @@ namespace Infraestructura.Utils
         private TransaccionBinariaRepository transaccionBinariaRepository = null;
         private BeneficicarioRepository beneficicarioRepository = null;
         private IngresoOnceavaRepository ingresoOnceavaRepository = null;
-
         private EgresoRepository egresoRepository = null;
+        private MovimientoRepository movimientoRepository = null;
+
+        public MovimientoRepository MovimientoRepository
+        {
+            get
+            {
+                if (movimientoRepository == null)
+                {
+                    movimientoRepository = new MovimientoRepository(context);
+                }
+                return movimientoRepository;
+            }
+        }
 
         public BeneficicarioRepository BeneficicarioRepository
         {

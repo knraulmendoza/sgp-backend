@@ -18,7 +18,8 @@ namespace WebApi.Controllers
 
         private void construirFondo() {
             UnitOfWork uow = new UnitOfWork();
-            // Construir fondo
+
+            
         }
 
     }

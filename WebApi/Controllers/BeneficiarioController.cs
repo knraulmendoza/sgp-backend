@@ -41,6 +41,17 @@ namespace WebApi.Controllers
             uow.Dispose();
             return res;
         }
+
+        [HttpGet("{codigo}")]
+        public ActionResult<Beneficiario> GetByCodigo(string codigo)
+        {
+            uow = new UnitOfWork();
+            Beneficiario res = uow.BeneficicarioRepository.Get(b => b.Codigo.Equals(codigo)).FirstOrDefault();
+            uow.Save();
+            uow.Dispose();
+            return res;
+        }
+
         [HttpPost]
         public ActionResult<Beneficiario> Insert(Beneficiario entity)
         {
