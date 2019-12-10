@@ -14,6 +14,13 @@ namespace WebApi.Controllers
     [Route("api/[controller]")]
     public class ProyectoController : GenericController<Proyecto>, ProyectoContract
     {
+        public class Reporte    {
+            public int estado {get; set;}
+            public int total {get; set;}
+
+            public Reporte(){}
+        }
+
         private UnitOfWork uow;
 
         [HttpDelete]
@@ -108,6 +115,25 @@ namespace WebApi.Controllers
             return proyectos.ToList();
         }
 
+        [HttpGet("informacion")]
+        public ActionResult<IList<Reporte>> contarProyectosPorEstado(){
+            List<Reporte> reportes = new List<Reporte>();
+            for(int i = 0; i<=6; i++){
+                reportes.Add(new Reporte{
+                    estado = i,
+                    total = contarProyectos((ProyectoState)i)
+                });
+            }
+            return reportes;
+        }
+
+        public int contarProyectos(ProyectoState proyectoState){
+            uow = new UnitOfWork();
+            var proyectos = uow.ProyectoRepository.Get(filter: p => p.ProyectoState == proyectoState);
+            uow.Save();
+            uow.Dispose();
+            return proyectos.Count();
+        }
   
         [HttpPost]
         public ActionResult<Proyecto> Insert(Proyecto entity)
