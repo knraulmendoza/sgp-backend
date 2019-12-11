@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace WebApi.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ConvenioController : GenericController<Convenio>

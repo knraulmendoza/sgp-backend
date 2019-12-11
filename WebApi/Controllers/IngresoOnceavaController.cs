@@ -11,7 +11,7 @@ using static Dominio.Entities.FondoGlobal;
 
 namespace WebApi.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class IngresoOnceavaController : GenericController<IngresoOnceava>

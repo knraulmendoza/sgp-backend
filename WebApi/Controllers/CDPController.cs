@@ -10,7 +10,7 @@ using static Dominio.Entities.FondoGlobal;
 
 namespace WebApi.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [ApiController]
     [Route("Api/Cdp")]
     public class CDPController : GenericController<CDP>

@@ -8,7 +8,7 @@ using static Dominio.Entities.FondoGlobal;
 
 namespace WebApi.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [ApiController]
     [Route("Api/[controller]")]
     public class FondosController

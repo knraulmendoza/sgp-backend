@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace WebApi.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class DocumentoController : GenericWithFileController<Documento>, GenericController<Documento>
