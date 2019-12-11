@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructura.Migrations
 {
     [DbContext(typeof(SgpContext))]
-    [Migration("20191206144451_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20191211163046_InitiatCreate")]
+    partial class InitiatCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -422,37 +422,6 @@ namespace Infraestructura.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("DocumentoPresupuestal");
                 });
 
-            modelBuilder.Entity("Dominio.Entities.Egreso", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Concepto")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("Monto")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Procedencia")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long>("ProyectoId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Tipo")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProyectoId");
-
-                    b.ToTable("Egresos");
-                });
-
             modelBuilder.Entity("Dominio.Entities.Estrategia", b =>
                 {
                     b.Property<long>("Id")
@@ -620,6 +589,38 @@ namespace Infraestructura.Migrations
                     b.HasIndex("SoporteValorId");
 
                     b.ToTable("IngresoOnceava");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.Movimiento", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Concepto")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Monto")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NombreDelFondo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Movimiento");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Movimiento");
                 });
 
             modelBuilder.Entity("Dominio.Entities.Programa", b =>
@@ -1019,6 +1020,35 @@ namespace Infraestructura.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Transaccion");
                 });
 
+            modelBuilder.Entity("Dominio.Entities.User", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
+                });
+
             modelBuilder.Entity("Dominio.Entities.CDP", b =>
                 {
                     b.HasBaseType("Dominio.Entities.DocumentoPresupuestal");
@@ -1060,6 +1090,18 @@ namespace Infraestructura.Migrations
                     b.HasIndex("CompromisoId");
 
                     b.HasDiscriminator().HasValue("RegistroPresupuestal");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.Egreso", b =>
+                {
+                    b.HasBaseType("Dominio.Entities.Movimiento");
+
+                    b.Property<long>("ProyectoId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasIndex("ProyectoId");
+
+                    b.HasDiscriminator().HasValue("Egreso");
                 });
 
             modelBuilder.Entity("Dominio.Entities.TransaccionBinaria", b =>
@@ -1119,15 +1161,6 @@ namespace Infraestructura.Migrations
                     b.HasOne("Dominio.Entities.Convenio", "Convenio")
                         .WithMany()
                         .HasForeignKey("ConvenioId");
-                });
-
-            modelBuilder.Entity("Dominio.Entities.Egreso", b =>
-                {
-                    b.HasOne("Dominio.Entities.Proyecto", "Proyecto")
-                        .WithMany()
-                        .HasForeignKey("ProyectoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Dominio.Entities.Estrategia", b =>
@@ -1222,6 +1255,15 @@ namespace Infraestructura.Migrations
                     b.HasOne("Dominio.Entities.Compromiso", "Compromiso")
                         .WithMany()
                         .HasForeignKey("CompromisoId");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.Egreso", b =>
+                {
+                    b.HasOne("Dominio.Entities.Proyecto", "Proyecto")
+                        .WithMany()
+                        .HasForeignKey("ProyectoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Dominio.Entities.TransaccionBinaria", b =>

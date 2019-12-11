@@ -15,7 +15,7 @@ namespace Infraestructura.Utils
             // Database.SetInitializer<SgpContext>(new CreateDatabaseIfNotExists<SgpContext>());
             //optionsBuilder.UseSqlServer("Server=DESKTOP-RB14CRB;Database=sgp;Trusted_Connection=True;");
             //optionsBuilder.UseSqlite(@"Data Source=sgps.db");
-            
+
             //optionsBuilder.UseSqlServer("Server=DESKTOP-RB14CRB;Database=sgp;Trusted_Connection=True;");
             //string urlBase = "D:/";
             //urlBase = Path.Combine(urlBase, "sgps.db");
@@ -612,6 +612,8 @@ namespace Infraestructura.Utils
         public DbSet<RegistroPresupuestal> RegistroPresupuestal { get; set; }
         public DbSet<Transaccion> Transaccion { get; set; }
         public DbSet<IngresoOnceava> IngresoOnceava { get; set; }
-        public DbSet<User> User {get; set;}
+        public DbSet<User> User { get; set; }
+
+        public DbSet<Movimiento> Movimiento { get; set; }
     }
 }

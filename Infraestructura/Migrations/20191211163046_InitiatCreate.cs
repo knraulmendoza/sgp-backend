@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infraestructura.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitiatCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,6 +65,24 @@ namespace Infraestructura.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Documento", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    Role = table.Column<string>(nullable: true),
+                    Token = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -288,7 +306,7 @@ namespace Infraestructura.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Egresos",
+                name: "Movimiento",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
@@ -297,14 +315,15 @@ namespace Infraestructura.Migrations
                     Fecha = table.Column<DateTime>(nullable: false),
                     Tipo = table.Column<int>(nullable: false),
                     Concepto = table.Column<string>(nullable: true),
-                    Procedencia = table.Column<string>(nullable: true),
-                    ProyectoId = table.Column<long>(nullable: false)
+                    NombreDelFondo = table.Column<string>(nullable: true),
+                    Discriminator = table.Column<string>(nullable: false),
+                    ProyectoId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Egresos", x => x.Id);
+                    table.PrimaryKey("PK_Movimiento", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Egresos_Proyectos_ProyectoId",
+                        name: "FK_Movimiento_Proyectos_ProyectoId",
                         column: x => x.ProyectoId,
                         principalTable: "Proyectos",
                         principalColumn: "Id",
@@ -836,11 +855,6 @@ namespace Infraestructura.Migrations
                 column: "CompromisoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Egresos_ProyectoId",
-                table: "Egresos",
-                column: "ProyectoId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Estrategia_ComponenteId",
                 table: "Estrategia",
                 column: "ComponenteId");
@@ -854,6 +868,11 @@ namespace Infraestructura.Migrations
                 name: "IX_IngresoOnceava_SoporteValorId",
                 table: "IngresoOnceava",
                 column: "SoporteValorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Movimiento_ProyectoId",
+                table: "Movimiento",
+                column: "ProyectoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Programa_EstrategiaId",
@@ -910,16 +929,19 @@ namespace Infraestructura.Migrations
                 name: "DocumentoPresupuestal");
 
             migrationBuilder.DropTable(
-                name: "Egresos");
+                name: "IngresoOnceava");
 
             migrationBuilder.DropTable(
-                name: "IngresoOnceava");
+                name: "Movimiento");
 
             migrationBuilder.DropTable(
                 name: "ProyectoComunidads");
 
             migrationBuilder.DropTable(
                 name: "Transaccion");
+
+            migrationBuilder.DropTable(
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "Beneficiarios");
