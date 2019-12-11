@@ -1,12 +1,14 @@
 using Controllers.Generics;
 using Dominio.Entities;
 using Infraestructura.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class DocumentoController : GenericWithFileController<Documento>, GenericController<Documento>

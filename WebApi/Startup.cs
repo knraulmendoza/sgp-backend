@@ -41,6 +41,7 @@ namespace WebApi
             //    options.UseSqlite(
             //        Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<SgpContext>();
+            services.AddCors();
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
@@ -94,13 +95,13 @@ namespace WebApi
                 .AllowAnyMethod()
             );
             
+
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            app.UseAuthentication();
-            app.UseAuthorization();
         }
     }
 }

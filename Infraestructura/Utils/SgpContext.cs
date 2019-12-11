@@ -19,7 +19,7 @@ namespace Infraestructura.Utils
             //optionsBuilder.UseSqlServer("Server=DESKTOP-RB14CRB;Database=sgp;Trusted_Connection=True;");
             //string urlBase = "D:/";
             //urlBase = Path.Combine(urlBase, "sgps.db");
-            optionsBuilder.UseSqlite(@"Data Source=C:/Users/Araos/Documents/GitHub/sgp-backend/Infraestructura/sgps.db");
+            optionsBuilder.UseSqlite(@"Data Source=D:/sgp.db");
         }
 
         protected override void OnModelCreating(ModelBuilder model)

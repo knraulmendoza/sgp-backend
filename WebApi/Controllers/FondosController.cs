@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using Dominio.Entities;
 using Infraestructura.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static Dominio.Entities.FondoGlobal;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("Api/[controller]")]
     public class FondosController
@@ -19,7 +21,8 @@ namespace WebApi.Controllers
         private void construirFondo() {
             UnitOfWork uow = new UnitOfWork();
 
-            uow.MovimientoRepository.Get().ForEach();
+            // Comentado por dañar el sistema
+            // uow.MovimientoRepository.Get().ForEach();
         }
 
     }

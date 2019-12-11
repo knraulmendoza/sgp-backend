@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructura.Migrations
 {
     [DbContext(typeof(SgpContext))]
-    [Migration("20191206144451_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20191211150142_Autenticacion")]
+    partial class Autenticacion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1017,6 +1017,35 @@ namespace Infraestructura.Migrations
                     b.ToTable("Transaccion");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Transaccion");
+                });
+
+            modelBuilder.Entity("Dominio.Entities.User", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Dominio.Entities.CDP", b =>

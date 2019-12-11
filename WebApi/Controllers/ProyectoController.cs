@@ -7,9 +7,11 @@ using System.Linq;
 using WebApi.Contracts;
 /* Estados para la propuesta */
 using Dominio.Entities.States;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ProyectoController : GenericController<Proyecto>, ProyectoContract

@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using static Dominio.Entities.FondoGlobal;
 using System;
-
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers{
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class TransaccionUnariaController : GenericController<TransaccionUnaria>
