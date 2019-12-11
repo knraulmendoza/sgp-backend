@@ -6,6 +6,7 @@ namespace Dominio.Entities
     {
         [ForeignKey("ProyectoDeDestino")]
         public long IdProyectoDestino { get; set; }
+
         public Proyecto ProyectoDeDestino { get; set; }
 
         public TransaccionBinaria() { }

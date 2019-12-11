@@ -16,7 +16,7 @@ namespace Dominio.Entities
         [NotMapped]
         public IDetalleDelMovimiento Detalle { get; set; }
 
-        public string Procedencia { get; set; }
+        public string NombreDelFondo { get; set; }
 
         public Movimiento() { }
     }

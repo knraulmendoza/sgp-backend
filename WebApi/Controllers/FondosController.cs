@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Dominio.Entities;
 using Infraestructura.Utils;
 using Microsoft.AspNetCore.Authorization;
@@ -18,13 +19,23 @@ namespace WebApi.Controllers
         [HttpGet("PresupuestoTotal")]
         public decimal GetPresupuesto() => FondoGlobal.GetInstance().PresupuestoTotal;
 
-        private void construirFondo() {
+        [HttpGet("Fondos/UltimosMovimientos")]
+        public IDictionary<string, ICollection<Movimiento>> GetFondosConSusÚltimosCincoMovimientos()
+        {
             UnitOfWork uow = new UnitOfWork();
 
-            // Comentado por dañar el sistema
-            // uow.MovimientoRepository.Get().ForEach();
-        }
+            IDictionary<string, ICollection<Movimiento>> fondos = new Dictionary<string, ICollection<Movimiento>>();
 
+            foreach (var fondo in FondoGlobal.GetInstance().Fondos)
+            {
+                fondos.Add(
+                    fondo.Nombre,
+                    uow.MovimientoRepository.Get(m => m.NombreDelFondo == fondo.Nombre).Take(5).ToList()
+                    );
+            }
+
+            return fondos;
+        }
     }
 
 }

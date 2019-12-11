@@ -14,11 +14,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using WebApi.Helpers;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Dominio.Entities;
+using Dominio;
 using System.Text;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using WebApi.Helpers;
 using WebApi.Controllers;
+using Microsoft.IdentityModel.Tokens;
 
 namespace WebApi
 {
@@ -27,6 +29,8 @@ namespace WebApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            new FondosRepository().ConstruirFondoGlobal();
         }
 
         public IConfiguration Configuration { get; }
