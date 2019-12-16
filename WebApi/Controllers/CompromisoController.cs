@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Controllers.Generics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers
 {
+    // [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class CompromisoController : GenericController<Compromiso>

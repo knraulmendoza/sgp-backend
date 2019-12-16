@@ -1,6 +1,7 @@
 ﻿using Controllers.Generics;
 using Dominio.Entities;
 using Infraestructura.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using static Dominio.Entities.FondoGlobal;
 
 namespace WebApi.Controllers
 {
+    // [Authorize]
     [ApiController]
     [Route("Api/Cdp")]
     public class CDPController : GenericController<CDP>

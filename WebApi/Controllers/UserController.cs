@@ -56,7 +56,8 @@ namespace WebApi.Controllers
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
-
+            uow.Save();
+            uow.Dispose();
             return user.WithoutPassword();
         }
 
@@ -79,7 +80,7 @@ namespace WebApi.Controllers
 
     [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
         private IUserService _userService;

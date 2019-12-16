@@ -1,14 +1,17 @@
 ﻿using Controllers.Generics;
 using Dominio.Entities;
 using Infraestructura.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static Dominio.Entities.FondoGlobal;
 
 namespace WebApi.Controllers
 {
+    // [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class IngresoOnceavaController : GenericController<IngresoOnceava>
@@ -50,6 +53,29 @@ namespace WebApi.Controllers
         {
             uow = new UnitOfWork();
             uow.IngresoOnceavaRepository.Insert(entity);
+            Fondo sgp = FondoGlobal.instance.Value.GetFondo("Sistema general de participación");
+            Fondo intereses = FondoGlobal.instance.Value.GetFondo("Intereses");
+            FondoGlobal.GetInstance().GenerarMovimiento(MovimientoType.INGRESO, sgp, entity.Valor);
+            FondoGlobal.GetInstance().GenerarMovimiento(MovimientoType.INGRESO, intereses, entity.Interes);
+
+            Movimiento movimiento = new Movimiento {
+                NombreDelFondo = "Sistema general de participación",
+                Tipo = MovimientoType.INGRESO,
+                Monto = entity.Valor,
+                Concepto = "Ingreso de Onceava",
+                Fecha = System.DateTime.Now
+            };
+            uow.MovimientoRepository.Insert(movimiento);
+
+            Movimiento movimientoInteres = new Movimiento {
+                NombreDelFondo = "Intereses",
+                Tipo = MovimientoType.INGRESO,
+                Monto = entity.Interes,
+                Concepto = "Interes de Onceava",
+                Fecha = System.DateTime.Now
+            };
+            uow.MovimientoRepository.Insert(movimientoInteres);
+            
             uow.Save();
             uow.Dispose();
             return entity;

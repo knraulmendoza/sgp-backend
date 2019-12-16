@@ -2,11 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Dominio.Entities;
 using Infraestructura.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static Dominio.Entities.FondoGlobal;
 
 namespace WebApi.Controllers
 {
+    // [Authorize]
     [ApiController]
     [Route("Api/[controller]")]
     public class FondosController

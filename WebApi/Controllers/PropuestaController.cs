@@ -2,6 +2,7 @@
 using Dominio.Entities;
 using Dominio.Entities.States;
 using Infraestructura.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,6 +11,7 @@ using System.Linq;
 
 namespace WebApi.Controllers
 {
+    // [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class PropuestaController : GenericController<Propuesta>, PropuestaContract

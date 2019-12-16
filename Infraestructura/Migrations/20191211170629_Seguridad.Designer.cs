@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructura.Migrations
 {
     [DbContext(typeof(SgpContext))]
-    [Migration("20191211163046_InitiatCreate")]
-    partial class InitiatCreate
+    [Migration("20191211170629_Seguridad")]
+    partial class Seguridad
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

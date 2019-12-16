@@ -5,9 +5,11 @@ using Infraestructura.Utils;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers
 {
+    // [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class TransaccionBinariaController : GenericController<TransaccionBinaria>
